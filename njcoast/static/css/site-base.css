@@ -172,6 +172,9 @@ img.watermark {
   margin: 15px 0 0 0;
 }
 
+footer {
+  padding: 0.3em;
+}
 
 @media screen and (max-width: 768px) {
 
