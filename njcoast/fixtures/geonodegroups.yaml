@@ -1,0 +1,22 @@
+- fields:
+    name: berkeley-emergency-management
+    permissions: []
+  model: auth.group
+- fields:
+    access: private
+    description: Berkeley Emergency Management
+    email: ''
+    group: [berkeley-emergency-management]
+    last_modified: 2018-08-16 11:33:09.870388
+    logo: ''
+    slug: berkeley-emergency-management
+    title: berkeley_emergency_management
+  model: groups.groupprofile
+  pk: 1
+- fields:
+    group: 1
+    joined: 2018-08-16 11:33:09.887995
+    role: manager
+    user: [admin]
+  model: groups.groupmember
+  pk: 1

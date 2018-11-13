@@ -12,7 +12,7 @@ python << END
 import sys
 import psycopg2
 try:
-    conn = psycopg2.connect(dbname="$DATABASE_NAME", user="$DATABASE_USER", password="$DATABASE_PASSWORD", host="$DATABASE_HOST")
+    conn = psycopg2.connect(dbname="$GEONODE_DATABASE", user="$GEONODE_DATABASE_USER", password="$GEONODE_DATABASE_PASSWORD", host="$DATABASE_HOST")
 except psycopg2.OperationalError:
     sys.exit(-1)
 sys.exit(0)

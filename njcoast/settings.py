@@ -34,7 +34,7 @@ LOCAL_ROOT = os.path.abspath(os.path.dirname(__file__))
 WSGI_APPLICATION = "njcoast.wsgi.application"
 ASGI_APPLICATION = "njcoast.asgi.application"
 
-PROXY_ALLOWED_HOSTS = (os.getenv('ALLOWED_HOSTS'),)
+PROXY_ALLOWED_HOSTS = (os.getenv('PROXY_ALLOWED_HOSTS'),)
 
 MAX_DOCUMENT_SIZE = 512
 

@@ -54,4 +54,6 @@ RUN sed -i 's/\r//' /celary.sh \
     && chmod +x /entrypoint.sh \
     && chmod +x /celary.sh
 
+EXPOSE 8000
+
 ENTRYPOINT ["/entrypoint.sh"]

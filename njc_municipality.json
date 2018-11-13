@@ -1,0 +1,67 @@
+Operations to perform:
+  Synchronize unmigrated apps: tasks, modeltranslation, channels, django_extensions, djcelery, polymorphic, treebeard, gis, pinax_theme_bootstrap_account, django_forms_bootstrap, catalogue, humanize, geoserver, storages, mptt, friendlytagloader, staticfiles, geoexplorer, sitemaps, proxy, pinax_theme_bootstrap, pagination, autocomplete_light, messages, leaflet, api, social, security
+  Apply all migrations: dialogos, people, tastypie, upload, agon_ratings, documents, actstream, sites, maps, contenttypes, announcements, user_messages, layers, sessions, guardian, auth, base, groups, services, oauth2_provider, account, admin, njcoast, avatar, taggit
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+  Installing custom SQL...
+Running migrations:
+  No migrations to apply.
+[
+{
+  "fields": {
+    "city": null,
+    "justification": null,
+    "is_muni_approved": false,
+    "zip": null,
+    "dca_approval_date": null,
+    "notes": null,
+    "municipality": null,
+    "is_dca_approved": false,
+    "region_level": null,
+    "county": null,
+    "additional_muni_approved": null,
+    "role": null,
+    "user": [
+      "AnonymousUser"
+    ],
+    "additional_muni_request": null,
+    "dca_approver": null,
+    "position": null,
+    "address_line_2": null,
+    "muni_approver": null,
+    "muni_approval_date": null,
+    "address_line_1": null
+  },
+  "model": "njcoast.njcusermeta",
+  "pk": 1
+},
+{
+  "fields": {
+    "city": "",
+    "justification": "",
+    "is_muni_approved": true,
+    "zip": "",
+    "dca_approval_date": "2018-08-16T11:06:21",
+    "notes": "",
+    "municipality": 1,
+    "is_dca_approved": true,
+    "region_level": 2,
+    "county": 10,
+    "additional_muni_approved": "",
+    "role": 1,
+    "user": [
+      "admin"
+    ],
+    "additional_muni_request": "",
+    "dca_approver": "",
+    "position": "",
+    "address_line_2": "",
+    "muni_approver": "",
+    "muni_approval_date": "2018-08-16T11:06:23",
+    "address_line_1": ""
+  },
+  "model": "njcoast.njcusermeta",
+  "pk": 2
+}
+]
