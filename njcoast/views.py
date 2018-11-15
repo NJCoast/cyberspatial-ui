@@ -42,7 +42,6 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from itertools import chain
 from datetime import datetime
-import requests
 
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
