@@ -7,11 +7,13 @@
 
 <body>
     <p>
-        A new application for a NJcoast account from {{ user }} has been received requesting access under your municipal view.
+        A new application for a NJcoast account from {{ user }}, {% if municipality != "" %}for municipality {{ municipality }}{% elif county != "" %}for county {{county}}{% else %}for whole state{% endif %}, has been received requesting access under your {% if municipality != "" and approver_municipality != "" %}municipal{% else %}administrative{% endif %} view.
         Please visit your administrator account to enter your decision on this application.
         <br>
-        If you are no longer the approver for {{ municipality }}, please contact contact njcoast@dca.nj.gov.
+        {% if municipality != "" and approver_municipality != "" %}
+        If you are no longer the approver for {{ approver_municipality }}, please contact contact njcoast@dca.nj.gov.
         <br>
+        {% endif %}
         https://{{ domain }}/dca_dashboard/
     </p>
     <table cellspacing="0" cellpadding="0" border="0">
