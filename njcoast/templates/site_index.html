@@ -37,7 +37,7 @@
 
   {% block mainbody %}
     {% block datasets %}
-    <div class="gray-zone" style="margin-bottom: 50px">
+    <div class="gray-zone">
       <div class="container ways-to-use">
         <div class="row emphasis">
           <img class="watermark" src="{{ STATIC_URL }}images/njcoast-logo_white_watermark.png" />
@@ -69,15 +69,22 @@
       </div>
       </div>
 
+      <div class="gray-zone intro-video" style="margin-bottom: 50px">
+        <div class="row" id="video">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-5 col-md-5 col-sm-4">
+            <h2>Tour NJcoast</h2>  
+            <p>Learn more about what NJcoast is, how it works, and if enrollment may be for you in this brief video tour.</p>  
+            <p><a href="">Register for NJcoast &raquo;</a></p>
+          </div>
+          <div class="col-lg-5 col-md-7 col-sm-8">
+            <div class='embed-container'><iframe src='https://www.youtube.com/embed/Oo0eZdh2cg0' frameborder='0' allowfullscreen></iframe></div>
+          </div>
+          <div class="col-lg-1"></div>
+        </div>
+      </div>
 
       <div class="container ads">
-        <div class="row" id="video">
-            <div class="col-sm-12">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/Oo0eZdh2cg0?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="center-block"></iframe>
-            </div>
-          </div>
-          <hr />
-          
         <!-- Information -->
         <div class="row" id="research">
           <div class="col-sm-3">
