@@ -921,6 +921,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                 },
                 pane: 'layer'
             }).addTo(mymap);
+            add_surge_legend(mymap);
         }else{
             heatmap[sim_type] = L.geoJSON(addressPoints, {
                 style: function(feature) {
