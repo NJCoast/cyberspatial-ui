@@ -1,0 +1,5650 @@
+- model: njcoast.NJCMunicipality
+  pk: 1
+  fields:
+    name: "Aberdeen Township"
+    home_latitude: "40.406513"
+    home_longitude: "-74.225327"
+    zoom_level: 14
+    code: 1301
+    county: 1
+    group_name: "aberdeen_township"
+- model: njcoast.NJCMunicipality
+  pk: 2
+  fields:
+    name: "Absecon"
+    home_latitude: "39.489090"
+    home_longitude: "-74.680300"
+    zoom_level: 14
+    code: 101
+    county: 2
+    group_name: "absecon"
+- model: njcoast.NJCMunicipality
+  pk: 3
+  fields:
+    name: "Alexandria Township"
+    home_latitude: "40.595199"
+    home_longitude: "-75.052355"
+    zoom_level: 14
+    code: 1001
+    county: 3
+    group_name: "alexandria_township"
+- model: njcoast.NJCMunicipality
+  pk: 4
+  fields:
+    name: "Allamuchy Township"
+    home_latitude: "40.869650"
+    home_longitude: "-74.849700"
+    zoom_level: 14
+    code: 2101
+    county: 4
+    group_name: "allamuchy_township"
+- model: njcoast.NJCMunicipality
+  pk: 5
+  fields:
+    name: "Allendale Borough"
+    home_latitude: "41.017450"
+    home_longitude: "-74.062800"
+    zoom_level: 14
+    code: 201
+    county: 5
+    group_name: "allendale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 6
+  fields:
+    name: "Allenhurst Borough"
+    home_latitude: "40.302720"
+    home_longitude: "-74.249300"
+    zoom_level: 14
+    code: 1302
+    county: 1
+    group_name: "allenhurst_borough"
+- model: njcoast.NJCMunicipality
+  pk: 7
+  fields:
+    name: "Allentown Borough"
+    home_latitude: "40.149710"
+    home_longitude: "-74.539600"
+    zoom_level: 14
+    code: 1303
+    county: 1
+    group_name: "allentown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 8
+  fields:
+    name: "Alloway Township"
+    home_latitude: "39.559080"
+    home_longitude: "-75.350600"
+    zoom_level: 14
+    code: 1701
+    county: 6
+    group_name: "alloway_township"
+- model: njcoast.NJCMunicipality
+  pk: 9
+  fields:
+    name: "Alpha Borough"
+    home_latitude: "40.663546"
+    home_longitude: "-75.161724"
+    zoom_level: 14
+    code: 2102
+    county: 4
+    group_name: "alpha_borough"
+- model: njcoast.NJCMunicipality
+  pk: 10
+  fields:
+    name: "Alpine Borough"
+    home_latitude: "40.958980"
+    home_longitude: "-73.927900"
+    zoom_level: 14
+    code: 202
+    county: 5
+    group_name: "alpine_borough"
+- model: njcoast.NJCMunicipality
+  pk: 11
+  fields:
+    name: "Andover Borough"
+    home_latitude: "40.986880"
+    home_longitude: "-74.742299"
+    zoom_level: 14
+    code: 1901
+    county: 7
+    group_name: "andover_borough"
+- model: njcoast.NJCMunicipality
+  pk: 12
+  fields:
+    name: "Andover Township"
+    home_latitude: "41.040488"
+    home_longitude: "-74.720824"
+    zoom_level: 14
+    code: 1902
+    county: 7
+    group_name: "andover_township"
+- model: njcoast.NJCMunicipality
+  pk: 13
+  fields:
+    name: "Asbury Park"
+    home_latitude: "40.250730"
+    home_longitude: "-74.048600"
+    zoom_level: 14
+    code: 1304
+    county: 1
+    group_name: "asbury_park"
+- model: njcoast.NJCMunicipality
+  pk: 14
+  fields:
+    name: "Atlantic City"
+    home_latitude: "39.363339"
+    home_longitude: "-74.428741"
+    zoom_level: 14
+    code: 102
+    county: 2
+    group_name: "atlantic_city"
+- model: njcoast.NJCMunicipality
+  pk: 15
+  fields:
+    name: "Atlantic Highlands Borough"
+    home_latitude: "40.404760"
+    home_longitude: "-74.056200"
+    zoom_level: 14
+    code: 1305
+    county: 1
+    group_name: "atlantic_highlands_borough"
+- model: njcoast.NJCMunicipality
+  pk: 16
+  fields:
+    name: "Audubon Borough"
+    home_latitude: "39.828350"
+    home_longitude: "-74.994600"
+    zoom_level: 14
+    code: 401
+    county: 8
+    group_name: "audubon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 17
+  fields:
+    name: "Audubon Park Borough"
+    home_latitude: "39.895819"
+    home_longitude: "-75.090208"
+    zoom_level: 14
+    code: 402
+    county: 8
+    group_name: "audubon_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 18
+  fields:
+    name: "Avalon Borough"
+    home_latitude: "39.112030"
+    home_longitude: "-74.731400"
+    zoom_level: 14
+    code: 501
+    county: 9
+    group_name: "avalon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 19
+  fields:
+    name: "Avon By The Sea Borough"
+    home_latitude: "40.191910"
+    home_longitude: "-74.015900"
+    zoom_level: 14
+    code: 1306
+    county: 1
+    group_name: "avon-by-the-sea_borough"
+- model: njcoast.NJCMunicipality
+  pk: 20
+  fields:
+    name: "Barnegat Light Borough"
+    home_latitude: "39.751210"
+    home_longitude: "-74.114600"
+    zoom_level: 14
+    code: 1502
+    county: 10
+    group_name: "barnegat_light_borough"
+- model: njcoast.NJCMunicipality
+  pk: 21
+  fields:
+    name: "Barnegat Township"
+    home_latitude: "39.753860"
+    home_longitude: "-74.294000"
+    zoom_level: 14
+    code: 1501
+    county: 10
+    group_name: "barnegat_township"
+- model: njcoast.NJCMunicipality
+  pk: 22
+  fields:
+    name: "Barrington Borough"
+    home_latitude: "39.863810"
+    home_longitude: "-75.053800"
+    zoom_level: 14
+    code: 403
+    county: 8
+    group_name: "barrington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 23
+  fields:
+    name: "Bass River Township"
+    home_latitude: "39.592990"
+    home_longitude: "-74.451357"
+    zoom_level: 14
+    code: 301
+    county: 11
+    group_name: "bass_river_township"
+- model: njcoast.NJCMunicipality
+  pk: 24
+  fields:
+    name: "Bay Head Borough"
+    home_latitude: "40.073057"
+    home_longitude: "-74.048747"
+    zoom_level: 14
+    code: 1503
+    county: 10
+    group_name: "bay_head_borough"
+- model: njcoast.NJCMunicipality
+  pk: 25
+  fields:
+    name: "Bayonne"
+    home_latitude: "40.670860"
+    home_longitude: "-74.109500"
+    zoom_level: 14
+    code: 901
+    county: 12
+    group_name: "bayonne"
+- model: njcoast.NJCMunicipality
+  pk: 26
+  fields:
+    name: "Beach Haven Borough"
+    home_latitude: "39.641060"
+    home_longitude: "-74.192200"
+    zoom_level: 14
+    code: 1504
+    county: 10
+    group_name: "beach_haven_borough"
+- model: njcoast.NJCMunicipality
+  pk: 27
+  fields:
+    name: "Beachwood Borough"
+    home_latitude: "39.927520"
+    home_longitude: "-74.198600"
+    zoom_level: 14
+    code: 1505
+    county: 10
+    group_name: "beachwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 28
+  fields:
+    name: "Bedminster Township"
+    home_latitude: "40.659150"
+    home_longitude: "-74.676800"
+    zoom_level: 14
+    code: 1801
+    county: 13
+    group_name: "bedminster_township"
+- model: njcoast.NJCMunicipality
+  pk: 29
+  fields:
+    name: "Belleville Township"
+    home_latitude: "40.786216"
+    home_longitude: "-74.152632"
+    zoom_level: 14
+    code: 701
+    county: 14
+    group_name: "belleville_township"
+- model: njcoast.NJCMunicipality
+  pk: 30
+  fields:
+    name: "Bellmawr Borough"
+    home_latitude: "39.805540"
+    home_longitude: "-75.067700"
+    zoom_level: 14
+    code: 404
+    county: 8
+    group_name: "bellmawr_borough"
+- model: njcoast.NJCMunicipality
+  pk: 31
+  fields:
+    name: "Belmar Borough"
+    home_latitude: "40.302720"
+    home_longitude: "-74.249300"
+    zoom_level: 14
+    code: 1307
+    county: 1
+    group_name: "belmar_borough"
+- model: njcoast.NJCMunicipality
+  pk: 32
+  fields:
+    name: "Belvidere"
+    home_latitude: "40.819770"
+    home_longitude: "-75.031000"
+    zoom_level: 14
+    code: 2103
+    county: 4
+    group_name: "belvidere"
+- model: njcoast.NJCMunicipality
+  pk: 33
+  fields:
+    name: "Bergenfield Borough"
+    home_latitude: "40.923500"
+    home_longitude: "-73.998300"
+    zoom_level: 14
+    code: 203
+    county: 5
+    group_name: "bergenfield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 34
+  fields:
+    name: "Berkeley Heights Township"
+    home_latitude: "40.675450"
+    home_longitude: "-74.422200"
+    zoom_level: 14
+    code: 2001
+    county: 15
+    group_name: "berkeley_heights_township"
+- model: njcoast.NJCMunicipality
+  pk: 35
+  fields:
+    name: "Berkeley Township"
+    home_latitude: "39.905348"
+    home_longitude: "-74.233428"
+    zoom_level: 14
+    code: 1506
+    county: 10
+    group_name: "berkeley_township"
+- model: njcoast.NJCMunicipality
+  pk: 36
+  fields:
+    name: "Berlin Borough"
+    home_latitude: "39.799180"
+    home_longitude: "-74.927997"
+    zoom_level: 14
+    code: 405
+    county: 8
+    group_name: "berlin_borough"
+- model: njcoast.NJCMunicipality
+  pk: 37
+  fields:
+    name: "Berlin Township"
+    home_latitude: "39.798008"
+    home_longitude: "-74.925644"
+    zoom_level: 14
+    code: 406
+    county: 8
+    group_name: "berlin_township"
+- model: njcoast.NJCMunicipality
+  pk: 38
+  fields:
+    name: "Bernards Township"
+    home_latitude: "40.697322"
+    home_longitude: "-74.545760"
+    zoom_level: 14
+    code: 1802
+    county: 13
+    group_name: "bernards_township"
+- model: njcoast.NJCMunicipality
+  pk: 39
+  fields:
+    name: "Bernardsville Borough"
+    home_latitude: "40.725750"
+    home_longitude: "-74.593600"
+    zoom_level: 14
+    code: 1803
+    county: 13
+    group_name: "bernardsville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 40
+  fields:
+    name: "Bethlehem Township"
+    home_latitude: "40.661905"
+    home_longitude: "-75.019179"
+    zoom_level: 14
+    code: 1002
+    county: 3
+    group_name: "bethlehem_township"
+- model: njcoast.NJCMunicipality
+  pk: 41
+  fields:
+    name: "Beverly"
+    home_latitude: "40.049950"
+    home_longitude: "-74.917100"
+    zoom_level: 14
+    code: 302
+    county: 11
+    group_name: "beverly"
+- model: njcoast.NJCMunicipality
+  pk: 42
+  fields:
+    name: "Blairstown Township"
+    home_latitude: "40.942240"
+    home_longitude: "-74.937500"
+    zoom_level: 14
+    code: 2104
+    county: 4
+    group_name: "blairstown_township"
+- model: njcoast.NJCMunicipality
+  pk: 43
+  fields:
+    name: "Bloomfield Township"
+    home_latitude: "40.808550"
+    home_longitude: "-74.187000"
+    zoom_level: 14
+    code: 702
+    county: 14
+    group_name: "bloomfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 44
+  fields:
+    name: "Bloomingdale Borough"
+    home_latitude: "41.023410"
+    home_longitude: "-74.334400"
+    zoom_level: 14
+    code: 1601
+    county: 16
+    group_name: "bloomingdale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 45
+  fields:
+    name: "Bloomsbury Borough"
+    home_latitude: "40.646290"
+    home_longitude: "-75.092900"
+    zoom_level: 14
+    code: 1003
+    county: 3
+    group_name: "bloomsbury_borough"
+- model: njcoast.NJCMunicipality
+  pk: 46
+  fields:
+    name: "Bogota Borough"
+    home_latitude: "40.874770"
+    home_longitude: "-74.030500"
+    zoom_level: 14
+    code: 204
+    county: 5
+    group_name: "bogota_borough"
+- model: njcoast.NJCMunicipality
+  pk: 47
+  fields:
+    name: "Boonton"
+    home_latitude: "40.904747"
+    home_longitude: "-74.409369"
+    zoom_level: 14
+    code: 1401
+    county: 17
+    group_name: "boonton"
+- model: njcoast.NJCMunicipality
+  pk: 48
+  fields:
+    name: "Boonton Township"
+    home_latitude: "40.912408"
+    home_longitude: "-74.427024"
+    zoom_level: 14
+    code: 1402
+    county: 17
+    group_name: "boonton_township"
+- model: njcoast.NJCMunicipality
+  pk: 49
+  fields:
+    name: "Bordentown"
+    home_latitude: "40.146454"
+    home_longitude: "-74.710595"
+    zoom_level: 14
+    code: 303
+    county: 11
+    group_name: "bordentown"
+- model: njcoast.NJCMunicipality
+  pk: 50
+  fields:
+    name: "Bordentown Township"
+    home_latitude: "40.148167"
+    home_longitude: "-74.697063"
+    zoom_level: 14
+    code: 304
+    county: 11
+    group_name: "bordentown_township"
+- model: njcoast.NJCMunicipality
+  pk: 51
+  fields:
+    name: "Bound Brook Borough"
+    home_latitude: "40.575400"
+    home_longitude: "-74.538200"
+    zoom_level: 14
+    code: 1804
+    county: 13
+    group_name: "bound_brook_borough"
+- model: njcoast.NJCMunicipality
+  pk: 52
+  fields:
+    name: "Bradley Beach Borough"
+    home_latitude: "40.202110"
+    home_longitude: "-74.012600"
+    zoom_level: 14
+    code: 1308
+    county: 1
+    group_name: "bradley_beach_borough"
+- model: njcoast.NJCMunicipality
+  pk: 53
+  fields:
+    name: "Branchburg Township"
+    home_latitude: "40.561765"
+    home_longitude: "-74.699275"
+    zoom_level: 14
+    code: 1805
+    county: 13
+    group_name: "branchburg_township"
+- model: njcoast.NJCMunicipality
+  pk: 54
+  fields:
+    name: "Branchville Borough"
+    home_latitude: "41.188040"
+    home_longitude: "-74.824700"
+    zoom_level: 14
+    code: 1903
+    county: 7
+    group_name: "branchville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 55
+  fields:
+    name: "Brick Township"
+    home_latitude: "39.940020"
+    home_longitude: "-74.123000"
+    zoom_level: 14
+    code: 1507
+    county: 10
+    group_name: "brick_township"
+- model: njcoast.NJCMunicipality
+  pk: 56
+  fields:
+    name: "Bridgeton"
+    home_latitude: "39.376200"
+    home_longitude: "-75.161700"
+    zoom_level: 14
+    code: 601
+    county: 18
+    group_name: "bridgeton"
+- model: njcoast.NJCMunicipality
+  pk: 57
+  fields:
+    name: "Bridgewater Township"
+    home_latitude: "40.598700"
+    home_longitude: "-74.607500"
+    zoom_level: 14
+    code: 1806
+    county: 13
+    group_name: "bridgewater_township"
+- model: njcoast.NJCMunicipality
+  pk: 58
+  fields:
+    name: "Brielle Borough"
+    home_latitude: "40.107610"
+    home_longitude: "-74.065100"
+    zoom_level: 14
+    code: 1309
+    county: 1
+    group_name: "brielle_borough"
+- model: njcoast.NJCMunicipality
+  pk: 59
+  fields:
+    name: "Brigantine"
+    home_latitude: "39.370170"
+    home_longitude: "-74.494000"
+    zoom_level: 14
+    code: 103
+    county: 2
+    group_name: "brigantine"
+- model: njcoast.NJCMunicipality
+  pk: 60
+  fields:
+    name: "Brooklawn Borough"
+    home_latitude: "39.878418"
+    home_longitude: "-75.118885"
+    zoom_level: 14
+    code: 407
+    county: 8
+    group_name: "brooklawn_borough"
+- model: njcoast.NJCMunicipality
+  pk: 61
+  fields:
+    name: "Buena Borough"
+    home_latitude: "39.523710"
+    home_longitude: "-74.899800"
+    zoom_level: 14
+    code: 104
+    county: 2
+    group_name: "buena_borough"
+- model: njcoast.NJCMunicipality
+  pk: 62
+  fields:
+    name: "Buena Vista Township"
+    home_latitude: "39.507987"
+    home_longitude: "-74.908377"
+    zoom_level: 14
+    code: 105
+    county: 2
+    group_name: "buena_vista_township"
+- model: njcoast.NJCMunicipality
+  pk: 63
+  fields:
+    name: "Burlington"
+    home_latitude: "40.074648"
+    home_longitude: "-74.856465"
+    zoom_level: 14
+    code: 305
+    county: 11
+    group_name: "burlington"
+- model: njcoast.NJCMunicipality
+  pk: 64
+  fields:
+    name: "Burlington Township"
+    home_latitude: "40.046749"
+    home_longitude: "-74.842595"
+    zoom_level: 14
+    code: 306
+    county: 11
+    group_name: "burlington_township"
+- model: njcoast.NJCMunicipality
+  pk: 65
+  fields:
+    name: "Butler Borough"
+    home_latitude: "40.998800"
+    home_longitude: "-74.426100"
+    zoom_level: 14
+    code: 1403
+    county: 17
+    group_name: "butler_borough"
+- model: njcoast.NJCMunicipality
+  pk: 66
+  fields:
+    name: "Byram Township"
+    home_latitude: "40.954865"
+    home_longitude: "-74.717502"
+    zoom_level: 14
+    code: 1904
+    county: 7
+    group_name: "byram_township"
+- model: njcoast.NJCMunicipality
+  pk: 67
+  fields:
+    name: "Caldwell Borough"
+    home_latitude: "40.854550"
+    home_longitude: "-74.278900"
+    zoom_level: 14
+    code: 703
+    county: 14
+    group_name: "caldwell_borough"
+- model: njcoast.NJCMunicipality
+  pk: 68
+  fields:
+    name: "Califon Borough"
+    home_latitude: "40.717420"
+    home_longitude: "-74.814000"
+    zoom_level: 14
+    code: 1004
+    county: 3
+    group_name: "califon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 69
+  fields:
+    name: "Camden"
+    home_latitude: "39.925900"
+    home_longitude: "-75.119600"
+    zoom_level: 14
+    code: 408
+    county: 8
+    group_name: "camden"
+- model: njcoast.NJCMunicipality
+  pk: 70
+  fields:
+    name: "Cape May"
+    home_latitude: "39.110340"
+    home_longitude: "-74.767900"
+    zoom_level: 14
+    code: 502
+    county: 9
+    group_name: "cape_may"
+- model: njcoast.NJCMunicipality
+  pk: 71
+  fields:
+    name: "Cape May Point Borough"
+    home_latitude: "38.937170"
+    home_longitude: "-74.965400"
+    zoom_level: 14
+    code: 503
+    county: 9
+    group_name: "cape_may_point_borough"
+- model: njcoast.NJCMunicipality
+  pk: 72
+  fields:
+    name: "Carlstadt Borough"
+    home_latitude: "40.828400"
+    home_longitude: "-74.076100"
+    zoom_level: 14
+    code: 205
+    county: 5
+    group_name: "carlstadt_borough"
+- model: njcoast.NJCMunicipality
+  pk: 73
+  fields:
+    name: "Carneys Point Township"
+    home_latitude: "39.711025"
+    home_longitude: "-75.470059"
+    zoom_level: 14
+    code: 1702
+    county: 6
+    group_name: "carneys_point_township"
+- model: njcoast.NJCMunicipality
+  pk: 74
+  fields:
+    name: "Carteret Borough"
+    home_latitude: "40.583200"
+    home_longitude: "-74.234800"
+    zoom_level: 14
+    code: 1201
+    county: 19
+    group_name: "carteret_borough"
+- model: njcoast.NJCMunicipality
+  pk: 75
+  fields:
+    name: "Cedar Grove Township"
+    home_latitude: "40.857050"
+    home_longitude: "-74.227100"
+    zoom_level: 14
+    code: 704
+    county: 14
+    group_name: "cedar_grove_township"
+- model: njcoast.NJCMunicipality
+  pk: 76
+  fields:
+    name: "Chatham Borough"
+    home_latitude: "40.738504"
+    home_longitude: "-74.384589"
+    zoom_level: 14
+    code: 1404
+    county: 17
+    group_name: "chatham_borough"
+- model: njcoast.NJCMunicipality
+  pk: 77
+  fields:
+    name: "Chatham Township"
+    home_latitude: "40.704926"
+    home_longitude: "-74.435531"
+    zoom_level: 14
+    code: 1405
+    county: 17
+    group_name: "chatham_township"
+- model: njcoast.NJCMunicipality
+  pk: 78
+  fields:
+    name: "Cherry Hill Township"
+    home_latitude: "39.908660"
+    home_longitude: "-75.010300"
+    zoom_level: 14
+    code: 409
+    county: 8
+    group_name: "cherry_hill_township"
+- model: njcoast.NJCMunicipality
+  pk: 79
+  fields:
+    name: "Chesilhurst Borough"
+    home_latitude: "39.731934"
+    home_longitude: "-74.874534"
+    zoom_level: 14
+    code: 410
+    county: 8
+    group_name: "chesilhurst_borough"
+- model: njcoast.NJCMunicipality
+  pk: 80
+  fields:
+    name: "Chester Borough"
+    home_latitude: "40.792666"
+    home_longitude: "-74.677158"
+    zoom_level: 14
+    code: 1406
+    county: 17
+    group_name: "chester_borough"
+- model: njcoast.NJCMunicipality
+  pk: 81
+  fields:
+    name: "Chester Township"
+    home_latitude: "40.779239"
+    home_longitude: "-74.724350"
+    zoom_level: 14
+    code: 1407
+    county: 17
+    group_name: "chester_township"
+- model: njcoast.NJCMunicipality
+  pk: 82
+  fields:
+    name: "Chesterfield Township"
+    home_latitude: "40.115375"
+    home_longitude: "-74.641371"
+    zoom_level: 14
+    code: 307
+    county: 11
+    group_name: "chesterfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 83
+  fields:
+    name: "Cinnaminson Township"
+    home_latitude: "39.997695"
+    home_longitude: "-74.994793"
+    zoom_level: 14
+    code: 308
+    county: 11
+    group_name: "cinnaminson_township"
+- model: njcoast.NJCMunicipality
+  pk: 84
+  fields:
+    name: "City Of Orange Township"
+    home_latitude: "40.773026"
+    home_longitude: "-74.229666"
+    zoom_level: 14
+    code: 717
+    county: 14
+    group_name: "city_of_orange_township"
+- model: njcoast.NJCMunicipality
+  pk: 85
+  fields:
+    name: "Clark Township"
+    home_latitude: "40.622500"
+    home_longitude: "-74.311100"
+    zoom_level: 14
+    code: 2002
+    county: 15
+    group_name: "clark_township"
+- model: njcoast.NJCMunicipality
+  pk: 86
+  fields:
+    name: "Clayton Borough"
+    home_latitude: "39.653530"
+    home_longitude: "-75.078600"
+    zoom_level: 14
+    code: 801
+    county: 20
+    group_name: "clayton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 87
+  fields:
+    name: "Clementon Borough"
+    home_latitude: "39.803640"
+    home_longitude: "-75.005800"
+    zoom_level: 14
+    code: 411
+    county: 8
+    group_name: "clementon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 88
+  fields:
+    name: "Cliffside Park Borough"
+    home_latitude: "40.820540"
+    home_longitude: "-73.987800"
+    zoom_level: 14
+    code: 206
+    county: 5
+    group_name: "cliffside_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 89
+  fields:
+    name: "Clifton"
+    home_latitude: "40.866342"
+    home_longitude: "-74.160470"
+    zoom_level: 14
+    code: 1602
+    county: 16
+    group_name: "clifton"
+- model: njcoast.NJCMunicipality
+  pk: 90
+  fields:
+    name: "Clinton"
+    home_latitude: "40.636549"
+    home_longitude: "-74.910155"
+    zoom_level: 14
+    code: 1005
+    county: 3
+    group_name: "clinton"
+- model: njcoast.NJCMunicipality
+  pk: 91
+  fields:
+    name: "Clinton Township"
+    home_latitude: "40.530500"
+    home_longitude: "-74.845600"
+    zoom_level: 14
+    code: 1006
+    county: 3
+    group_name: "clinton_township"
+- model: njcoast.NJCMunicipality
+  pk: 92
+  fields:
+    name: "Closter Borough"
+    home_latitude: "40.970620"
+    home_longitude: "-73.960200"
+    zoom_level: 14
+    code: 207
+    county: 5
+    group_name: "closter_borough"
+- model: njcoast.NJCMunicipality
+  pk: 93
+  fields:
+    name: "Collingswood Borough"
+    home_latitude: "39.834000"
+    home_longitude: "-74.991300"
+    zoom_level: 14
+    code: 412
+    county: 8
+    group_name: "collingswood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 94
+  fields:
+    name: "Colts Neck Township"
+    home_latitude: "40.294381"
+    home_longitude: "-74.193309"
+    zoom_level: 14
+    code: 1310
+    county: 1
+    group_name: "colts_neck_township"
+- model: njcoast.NJCMunicipality
+  pk: 95
+  fields:
+    name: "Commercial Township"
+    home_latitude: "39.275397"
+    home_longitude: "-75.037906"
+    zoom_level: 14
+    code: 602
+    county: 18
+    group_name: "commercial_township"
+- model: njcoast.NJCMunicipality
+  pk: 96
+  fields:
+    name: "Corbin City"
+    home_latitude: "39.305676"
+    home_longitude: "-74.758137"
+    zoom_level: 14
+    code: 106
+    county: 2
+    group_name: "corbin_city"
+- model: njcoast.NJCMunicipality
+  pk: 97
+  fields:
+    name: "Cranbury Township"
+    home_latitude: "40.315154"
+    home_longitude: "-74.510401"
+    zoom_level: 14
+    code: 1202
+    county: 19
+    group_name: "cranbury_township"
+- model: njcoast.NJCMunicipality
+  pk: 98
+  fields:
+    name: "Cranford Township"
+    home_latitude: "40.654800"
+    home_longitude: "-74.304800"
+    zoom_level: 14
+    code: 2003
+    county: 15
+    group_name: "cranford_township"
+- model: njcoast.NJCMunicipality
+  pk: 99
+  fields:
+    name: "Cresskill Borough"
+    home_latitude: "40.972900"
+    home_longitude: "-74.098800"
+    zoom_level: 14
+    code: 208
+    county: 5
+    group_name: "cresskill_borough"
+- model: njcoast.NJCMunicipality
+  pk: 100
+  fields:
+    name: "Deal Borough"
+    home_latitude: "40.250860"
+    home_longitude: "-74.004600"
+    zoom_level: 14
+    code: 1311
+    county: 1
+    group_name: "deal_borough"
+- model: njcoast.NJCMunicipality
+  pk: 101
+  fields:
+    name: "Deerfield Township"
+    home_latitude: "39.529260"
+    home_longitude: "-75.224900"
+    zoom_level: 14
+    code: 603
+    county: 18
+    group_name: "deerfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 102
+  fields:
+    name: "Delanco Township"
+    home_latitude: "40.048297"
+    home_longitude: "-74.940375"
+    zoom_level: 14
+    code: 309
+    county: 11
+    group_name: "delanco_township"
+- model: njcoast.NJCMunicipality
+  pk: 103
+  fields:
+    name: "Delaware Township"
+    home_latitude: "40.906910"
+    home_longitude: "-75.075400"
+    zoom_level: 14
+    code: 1007
+    county: 3
+    group_name: "delaware_township"
+- model: njcoast.NJCMunicipality
+  pk: 104
+  fields:
+    name: "Delran Township"
+    home_latitude: "40.020955"
+    home_longitude: "-74.959659"
+    zoom_level: 14
+    code: 310
+    county: 11
+    group_name: "delran_township"
+- model: njcoast.NJCMunicipality
+  pk: 105
+  fields:
+    name: "Demarest Borough"
+    home_latitude: "40.954200"
+    home_longitude: "-73.957600"
+    zoom_level: 14
+    code: 209
+    county: 5
+    group_name: "demarest_borough"
+- model: njcoast.NJCMunicipality
+  pk: 106
+  fields:
+    name: "Dennis Township"
+    home_latitude: "39.196442"
+    home_longitude: "-74.815837"
+    zoom_level: 14
+    code: 504
+    county: 9
+    group_name: "dennis_township"
+- model: njcoast.NJCMunicipality
+  pk: 107
+  fields:
+    name: "Denville Township"
+    home_latitude: "40.881250"
+    home_longitude: "-74.489300"
+    zoom_level: 14
+    code: 1408
+    county: 17
+    group_name: "denville_township"
+- model: njcoast.NJCMunicipality
+  pk: 108
+  fields:
+    name: "Deptford Township"
+    home_latitude: "39.827318"
+    home_longitude: "-75.122507"
+    zoom_level: 14
+    code: 802
+    county: 20
+    group_name: "deptford_township"
+- model: njcoast.NJCMunicipality
+  pk: 109
+  fields:
+    name: "Dover"
+    home_latitude: "40.884714"
+    home_longitude: "-74.558921"
+    zoom_level: 14
+    code: 1409
+    county: 17
+    group_name: "dover"
+- model: njcoast.NJCMunicipality
+  pk: 110
+  fields:
+    name: "Downe Township"
+    home_latitude: "39.293016"
+    home_longitude: "-75.164206"
+    zoom_level: 14
+    code: 604
+    county: 18
+    group_name: "downe_township"
+- model: njcoast.NJCMunicipality
+  pk: 111
+  fields:
+    name: "Dumont Borough"
+    home_latitude: "40.955020"
+    home_longitude: "-73.989900"
+    zoom_level: 14
+    code: 210
+    county: 5
+    group_name: "dumont_borough"
+- model: njcoast.NJCMunicipality
+  pk: 112
+  fields:
+    name: "Dunellen Borough"
+    home_latitude: "40.589700"
+    home_longitude: "-74.463900"
+    zoom_level: 14
+    code: 1203
+    county: 19
+    group_name: "dunellen_borough"
+- model: njcoast.NJCMunicipality
+  pk: 113
+  fields:
+    name: "Eagleswood Township"
+    home_latitude: "39.669582"
+    home_longitude: "-74.304471"
+    zoom_level: 14
+    code: 1509
+    county: 10
+    group_name: "eagleswood_township"
+- model: njcoast.NJCMunicipality
+  pk: 114
+  fields:
+    name: "East Amwell Township"
+    home_latitude: "40.451073"
+    home_longitude: "-74.808657"
+    zoom_level: 14
+    code: 1008
+    county: 3
+    group_name: "east_amwell_township"
+- model: njcoast.NJCMunicipality
+  pk: 115
+  fields:
+    name: "East Brunswick Township"
+    home_latitude: "40.427700"
+    home_longitude: "-74.421700"
+    zoom_level: 14
+    code: 1204
+    county: 19
+    group_name: "east_brunswick_township"
+- model: njcoast.NJCMunicipality
+  pk: 116
+  fields:
+    name: "East Greenwich Township"
+    home_latitude: "39.778768"
+    home_longitude: "-75.255287"
+    zoom_level: 14
+    code: 803
+    county: 20
+    group_name: "east_greenwich_township"
+- model: njcoast.NJCMunicipality
+  pk: 117
+  fields:
+    name: "East Hanover Township"
+    home_latitude: "40.816350"
+    home_longitude: "-74.367700"
+    zoom_level: 14
+    code: 1410
+    county: 17
+    group_name: "east_hanover_township"
+- model: njcoast.NJCMunicipality
+  pk: 118
+  fields:
+    name: "East Newark Borough"
+    home_latitude: "40.751514"
+    home_longitude: "-74.162736"
+    zoom_level: 14
+    code: 902
+    county: 12
+    group_name: "east_newark_borough"
+- model: njcoast.NJCMunicipality
+  pk: 119
+  fields:
+    name: "East Orange"
+    home_latitude: "40.771850"
+    home_longitude: "-74.207000"
+    zoom_level: 14
+    code: 705
+    county: 14
+    group_name: "east_orange"
+- model: njcoast.NJCMunicipality
+  pk: 120
+  fields:
+    name: "East Rutherford Borough"
+    home_latitude: "40.828400"
+    home_longitude: "-74.093900"
+    zoom_level: 14
+    code: 212
+    county: 5
+    group_name: "east_rutherford_borough"
+- model: njcoast.NJCMunicipality
+  pk: 121
+  fields:
+    name: "East Windsor Township"
+    home_latitude: "40.264296"
+    home_longitude: "-74.541731"
+    zoom_level: 14
+    code: 1101
+    county: 21
+    group_name: "east_windsor_township"
+- model: njcoast.NJCMunicipality
+  pk: 122
+  fields:
+    name: "Eastampton Township"
+    home_latitude: "40.008427"
+    home_longitude: "-74.753293"
+    zoom_level: 14
+    code: 311
+    county: 11
+    group_name: "eastampton_township"
+- model: njcoast.NJCMunicipality
+  pk: 123
+  fields:
+    name: "Eatontown Borough"
+    home_latitude: "40.304660"
+    home_longitude: "-74.073400"
+    zoom_level: 14
+    code: 1312
+    county: 1
+    group_name: "eatontown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 124
+  fields:
+    name: "Edgewater Borough"
+    home_latitude: "40.826550"
+    home_longitude: "-73.978100"
+    zoom_level: 14
+    code: 213
+    county: 5
+    group_name: "edgewater_borough"
+- model: njcoast.NJCMunicipality
+  pk: 125
+  fields:
+    name: "Edgewater Park Township"
+    home_latitude: "40.057312"
+    home_longitude: "-74.906804"
+    zoom_level: 14
+    code: 312
+    county: 11
+    group_name: "edgewater_park_township"
+- model: njcoast.NJCMunicipality
+  pk: 126
+  fields:
+    name: "Edison Township"
+    home_latitude: "40.519750"
+    home_longitude: "-74.393400"
+    zoom_level: 14
+    code: 1205
+    county: 19
+    group_name: "edison_township"
+- model: njcoast.NJCMunicipality
+  pk: 127
+  fields:
+    name: "Egg Harbor City"
+    home_latitude: "39.530540"
+    home_longitude: "-74.638300"
+    zoom_level: 14
+    code: 107
+    county: 2
+    group_name: "egg_harbor_city"
+- model: njcoast.NJCMunicipality
+  pk: 128
+  fields:
+    name: "Egg Harbor Township"
+    home_latitude: "39.374070"
+    home_longitude: "-74.611800"
+    zoom_level: 14
+    code: 108
+    county: 2
+    group_name: "egg_harbor_township"
+- model: njcoast.NJCMunicipality
+  pk: 129
+  fields:
+    name: "Elizabeth"
+    home_latitude: "40.672050"
+    home_longitude: "-74.183400"
+    zoom_level: 14
+    code: 2004
+    county: 15
+    group_name: "elizabeth"
+- model: njcoast.NJCMunicipality
+  pk: 130
+  fields:
+    name: "Elk Township"
+    home_latitude: "39.666720"
+    home_longitude: "-75.152416"
+    zoom_level: 14
+    code: 804
+    county: 20
+    group_name: "elk_township"
+- model: njcoast.NJCMunicipality
+  pk: 131
+  fields:
+    name: "Elmer Borough"
+    home_latitude: "39.548070"
+    home_longitude: "-75.198400"
+    zoom_level: 14
+    code: 1703
+    county: 6
+    group_name: "elmer_borough"
+- model: njcoast.NJCMunicipality
+  pk: 132
+  fields:
+    name: "Elmwood Park Borough"
+    home_latitude: "40.905850"
+    home_longitude: "-74.117700"
+    zoom_level: 14
+    code: 211
+    county: 5
+    group_name: "elmwood_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 133
+  fields:
+    name: "Elsinboro Township"
+    home_latitude: "39.538384"
+    home_longitude: "-75.493192"
+    zoom_level: 14
+    code: 1704
+    county: 6
+    group_name: "elsinboro_township"
+- model: njcoast.NJCMunicipality
+  pk: 134
+  fields:
+    name: "Emerson Borough"
+    home_latitude: "40.977240"
+    home_longitude: "-74.024955"
+    zoom_level: 14
+    code: 214
+    county: 5
+    group_name: "emerson_borough"
+- model: njcoast.NJCMunicipality
+  pk: 135
+  fields:
+    name: "Englewood"
+    home_latitude: "40.889500"
+    home_longitude: "-73.971800"
+    zoom_level: 14
+    code: 215
+    county: 5
+    group_name: "englewood"
+- model: njcoast.NJCMunicipality
+  pk: 136
+  fields:
+    name: "Englewood Cliffs Borough"
+    home_latitude: "40.883950"
+    home_longitude: "-73.952400"
+    zoom_level: 14
+    code: 216
+    county: 5
+    group_name: "englewood_cliffs_borough"
+- model: njcoast.NJCMunicipality
+  pk: 137
+  fields:
+    name: "Englishtown Borough"
+    home_latitude: "40.269700"
+    home_longitude: "-74.265500"
+    zoom_level: 14
+    code: 1313
+    county: 1
+    group_name: "englishtown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 138
+  fields:
+    name: "Essex Fells Borough"
+    home_latitude: "40.826160"
+    home_longitude: "-74.276600"
+    zoom_level: 14
+    code: 706
+    county: 14
+    group_name: "essex_fells_borough"
+- model: njcoast.NJCMunicipality
+  pk: 139
+  fields:
+    name: "Estell Manor"
+    home_latitude: "39.376140"
+    home_longitude: "-74.805400"
+    zoom_level: 14
+    code: 109
+    county: 2
+    group_name: "estell_manor"
+- model: njcoast.NJCMunicipality
+  pk: 140
+  fields:
+    name: "Evesham Township"
+    home_latitude: "39.869420"
+    home_longitude: "-74.887093"
+    zoom_level: 14
+    code: 313
+    county: 11
+    group_name: "evesham_township"
+- model: njcoast.NJCMunicipality
+  pk: 141
+  fields:
+    name: "Ewing Township"
+    home_latitude: "40.271620"
+    home_longitude: "-74.796189"
+    zoom_level: 14
+    code: 1102
+    county: 21
+    group_name: "ewing_township"
+- model: njcoast.NJCMunicipality
+  pk: 142
+  fields:
+    name: "Fair Haven Borough"
+    home_latitude: "40.358460"
+    home_longitude: "-74.036400"
+    zoom_level: 14
+    code: 1314
+    county: 1
+    group_name: "fair_haven_borough"
+- model: njcoast.NJCMunicipality
+  pk: 143
+  fields:
+    name: "Fair Lawn Borough"
+    home_latitude: "40.935350"
+    home_longitude: "-74.119200"
+    zoom_level: 14
+    code: 217
+    county: 5
+    group_name: "fair_lawn_borough"
+- model: njcoast.NJCMunicipality
+  pk: 144
+  fields:
+    name: "Fairfield Township"
+    home_latitude: "39.368811"
+    home_longitude: "-75.232254"
+    zoom_level: 14
+    code: 605
+    county: 18
+    group_name: "fairfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 145
+  fields:
+    name: "Fairfield Township"
+    home_latitude: "40.878754"
+    home_longitude: "-74.300544"
+    zoom_level: 14
+    code: 707
+    county: 14
+    group_name: "fairfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 146
+  fields:
+    name: "Fairview Borough"
+    home_latitude: "40.817540"
+    home_longitude: "-74.000900"
+    zoom_level: 14
+    code: 218
+    county: 5
+    group_name: "fairview_borough"
+- model: njcoast.NJCMunicipality
+  pk: 147
+  fields:
+    name: "Fanwood Borough"
+    home_latitude: "40.641900"
+    home_longitude: "-74.387000"
+    zoom_level: 14
+    code: 2005
+    county: 15
+    group_name: "fanwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 148
+  fields:
+    name: "Far Hills Borough"
+    home_latitude: "40.699570"
+    home_longitude: "-74.653600"
+    zoom_level: 14
+    code: 1807
+    county: 13
+    group_name: "far_hills_borough"
+- model: njcoast.NJCMunicipality
+  pk: 149
+  fields:
+    name: "Farmingdale Borough"
+    home_latitude: "40.285210"
+    home_longitude: "-74.161600"
+    zoom_level: 14
+    code: 1315
+    county: 1
+    group_name: "farmingdale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 150
+  fields:
+    name: "Fieldsboro Borough"
+    home_latitude: "40.137084,"
+    home_longitude: "-74.729200"
+    zoom_level: 14
+    code: 314
+    county: 11
+    group_name: "fieldsboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 151
+  fields:
+    name: "Flemington Borough"
+    home_latitude: "40.507860"
+    home_longitude: "-74.863300"
+    zoom_level: 14
+    code: 1009
+    county: 3
+    group_name: "flemington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 152
+  fields:
+    name: "Florence Township"
+    home_latitude: "40.124860"
+    home_longitude: "-74.738900"
+    zoom_level: 14
+    code: 315
+    county: 11
+    group_name: "florence_township"
+- model: njcoast.NJCMunicipality
+  pk: 153
+  fields:
+    name: "Florham Park Borough"
+    home_latitude: "40.773500"
+    home_longitude: "-74.398000"
+    zoom_level: 14
+    code: 1411
+    county: 17
+    group_name: "florham_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 154
+  fields:
+    name: "Folsom Borough"
+    home_latitude: "39.600269"
+    home_longitude: "-74.843881"
+    zoom_level: 14
+    code: 110
+    county: 2
+    group_name: "folsom_borough"
+- model: njcoast.NJCMunicipality
+  pk: 155
+  fields:
+    name: "Fort Lee Borough"
+    home_latitude: "40.848750"
+    home_longitude: "-73.974000"
+    zoom_level: 14
+    code: 219
+    county: 5
+    group_name: "fort_lee_borough"
+- model: njcoast.NJCMunicipality
+  pk: 156
+  fields:
+    name: "Frankford Township"
+    home_latitude: "41.151893,"
+    home_longitude: "-74.724257"
+    zoom_level: 14
+    code: 1905
+    county: 7
+    group_name: "frankford_township"
+- model: njcoast.NJCMunicipality
+  pk: 157
+  fields:
+    name: "Franklin Borough"
+    home_latitude: "41.121341"
+    home_longitude: "-74.580218"
+    zoom_level: 14
+    code: 1906
+    county: 7
+    group_name: "franklin_borough"
+- model: njcoast.NJCMunicipality
+  pk: 158
+  fields:
+    name: "Franklin Lakes Borough"
+    home_latitude: "41.010460"
+    home_longitude: "-74.208300"
+    zoom_level: 14
+    code: 220
+    county: 5
+    group_name: "franklin_lakes_borough"
+- model: njcoast.NJCMunicipality
+  pk: 159
+  fields:
+    name: "Franklin Township"
+    home_latitude: "39.610326"
+    home_longitude: "-75.018019"
+    zoom_level: 14
+    code: 805
+    county: 20
+    group_name: "franklin_township"
+- model: njcoast.NJCMunicipality
+  pk: 160
+  fields:
+    name: "Franklin Township"
+    home_latitude: "40.567134"
+    home_longitude: "-74.939071"
+    zoom_level: 14
+    code: 1010
+    county: 3
+    group_name: "franklin_township"
+- model: njcoast.NJCMunicipality
+  pk: 161
+  fields:
+    name: "Franklin Township"
+    home_latitude: "40.484716"
+    home_longitude: "-74.542495"
+    zoom_level: 14
+    code: 1808
+    county: 13
+    group_name: "franklin_township"
+- model: njcoast.NJCMunicipality
+  pk: 162
+  fields:
+    name: "Franklin Township"
+    home_latitude: "40.713670"
+    home_longitude: "-75.049623"
+    zoom_level: 14
+    code: 2105
+    county: 4
+    group_name: "franklin_township"
+- model: njcoast.NJCMunicipality
+  pk: 163
+  fields:
+    name: "Fredon Township"
+    home_latitude: "41.033637"
+    home_longitude: "-74.809733"
+    zoom_level: 14
+    code: 1907
+    county: 7
+    group_name: "fredon_township"
+- model: njcoast.NJCMunicipality
+  pk: 164
+  fields:
+    name: "Freehold Borough"
+    home_latitude: "40.261390"
+    home_longitude: "-74.272811"
+    zoom_level: 14
+    code: 1316
+    county: 1
+    group_name: "freehold_borough"
+- model: njcoast.NJCMunicipality
+  pk: 165
+  fields:
+    name: "Freehold Township"
+    home_latitude: "40.199819"
+    home_longitude: "-74.327818"
+    zoom_level: 14
+    code: 1317
+    county: 1
+    group_name: "freehold_township"
+- model: njcoast.NJCMunicipality
+  pk: 166
+  fields:
+    name: "Frelinghuysen Township"
+    home_latitude: "40.967323"
+    home_longitude: "-74.897247"
+    zoom_level: 14
+    code: 2106
+    county: 4
+    group_name: "frelinghuysen_township"
+- model: njcoast.NJCMunicipality
+  pk: 167
+  fields:
+    name: "Frenchtown Borough"
+    home_latitude: "40.581190"
+    home_longitude: "-75.012700"
+    zoom_level: 14
+    code: 1011
+    county: 3
+    group_name: "frenchtown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 168
+  fields:
+    name: "Galloway Township"
+    home_latitude: "39.489715"
+    home_longitude: "-74.542877"
+    zoom_level: 14
+    code: 111
+    county: 2
+    group_name: "galloway_township"
+- model: njcoast.NJCMunicipality
+  pk: 169
+  fields:
+    name: "Garfield"
+    home_latitude: "40.884650"
+    home_longitude: "-74.110300"
+    zoom_level: 14
+    code: 221
+    county: 5
+    group_name: "garfield"
+- model: njcoast.NJCMunicipality
+  pk: 170
+  fields:
+    name: "Garwood Borough"
+    home_latitude: "40.651240"
+    home_longitude: "-74.322900"
+    zoom_level: 14
+    code: 2006
+    county: 15
+    group_name: "garwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 171
+  fields:
+    name: "Gibbsboro Borough"
+    home_latitude: "39.833110"
+    home_longitude: "-74.967500"
+    zoom_level: 14
+    code: 413
+    county: 8
+    group_name: "gibbsboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 172
+  fields:
+    name: "Glassboro Borough"
+    home_latitude: "39.771130"
+    home_longitude: "-75.272100"
+    zoom_level: 14
+    code: 806
+    county: 20
+    group_name: "glassboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 173
+  fields:
+    name: "Glen Gardner Borough"
+    home_latitude: "40.578190"
+    home_longitude: "-74.904600"
+    zoom_level: 14
+    code: 1012
+    county: 3
+    group_name: "glen_gardner_borough"
+- model: njcoast.NJCMunicipality
+  pk: 174
+  fields:
+    name: "Glen Ridge Borough"
+    home_latitude: "40.807500"
+    home_longitude: "-74.205000"
+    zoom_level: 14
+    code: 708
+    county: 14
+    group_name: "glen_ridge_borough"
+- model: njcoast.NJCMunicipality
+  pk: 175
+  fields:
+    name: "Glen Rock Borough"
+    home_latitude: "40.960350"
+    home_longitude: "-74.125000"
+    zoom_level: 14
+    code: 222
+    county: 5
+    group_name: "glen_rock_borough"
+- model: njcoast.NJCMunicipality
+  pk: 176
+  fields:
+    name: "Gloucester City"
+    home_latitude: "39.895607"
+    home_longitude: "-75.120985"
+    zoom_level: 14
+    code: 414
+    county: 8
+    group_name: "gloucester_city"
+- model: njcoast.NJCMunicipality
+  pk: 177
+  fields:
+    name: "Gloucester Township"
+    home_latitude: "39.796887"
+    home_longitude: "-75.035052"
+    zoom_level: 14
+    code: 415
+    county: 8
+    group_name: "gloucester_township"
+- model: njcoast.NJCMunicipality
+  pk: 178
+  fields:
+    name: "Green Brook Township"
+    home_latitude: "40.601328"
+    home_longitude: "-74.486315"
+    zoom_level: 14
+    code: 1809
+    county: 13
+    group_name: "green_brook_township"
+- model: njcoast.NJCMunicipality
+  pk: 179
+  fields:
+    name: "Green Township"
+    home_latitude: "40.978168"
+    home_longitude: "-74.801595"
+    zoom_level: 14
+    code: 1908
+    county: 7
+    group_name: "green_township"
+- model: njcoast.NJCMunicipality
+  pk: 180
+  fields:
+    name: "Greenwich Township"
+    home_latitude: "39.400480"
+    home_longitude: "-75.363033"
+    zoom_level: 14
+    code: 606
+    county: 18
+    group_name: "greenwich_township"
+- model: njcoast.NJCMunicipality
+  pk: 181
+  fields:
+    name: "Greenwich Township"
+    home_latitude: "39.831256"
+    home_longitude: "-75.278340"
+    zoom_level: 14
+    code: 807
+    county: 20
+    group_name: "greenwich_township"
+- model: njcoast.NJCMunicipality
+  pk: 182
+  fields:
+    name: "Greenwich Township"
+    home_latitude: "40.664994"
+    home_longitude: "-75.110942"
+    zoom_level: 14
+    code: 2107
+    county: 4
+    group_name: "greenwich_township"
+- model: njcoast.NJCMunicipality
+  pk: 183
+  fields:
+    name: "Guttenberg"
+    home_latitude: "40.793959"
+    home_longitude: "-74.006299"
+    zoom_level: 14
+    code: 903
+    county: 12
+    group_name: "guttenberg"
+- model: njcoast.NJCMunicipality
+  pk: 184
+  fields:
+    name: "Hackensack"
+    home_latitude: "40.885727"
+    home_longitude: "-74.050166"
+    zoom_level: 14
+    code: 223
+    county: 5
+    group_name: "hackensack"
+- model: njcoast.NJCMunicipality
+  pk: 185
+  fields:
+    name: "Hackettstown"
+    home_latitude: "40.868800"
+    home_longitude: "-74.844700"
+    zoom_level: 14
+    code: 2108
+    county: 4
+    group_name: "hackettstown"
+- model: njcoast.NJCMunicipality
+  pk: 186
+  fields:
+    name: "Haddon Heights Borough"
+    home_latitude: "39.879160"
+    home_longitude: "-75.065700"
+    zoom_level: 14
+    code: 418
+    county: 8
+    group_name: "haddon_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 187
+  fields:
+    name: "Haddon Township"
+    home_latitude: "39.906757"
+    home_longitude: "-75.053640"
+    zoom_level: 14
+    code: 416
+    county: 8
+    group_name: "haddon_township"
+- model: njcoast.NJCMunicipality
+  pk: 188
+  fields:
+    name: "Haddonfield Borough"
+    home_latitude: "39.876310"
+    home_longitude: "-75.033400"
+    zoom_level: 14
+    code: 417
+    county: 8
+    group_name: "haddonfield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 189
+  fields:
+    name: "Hainesport Township"
+    home_latitude: "39.987210"
+    home_longitude: "-74.829300"
+    zoom_level: 14
+    code: 316
+    county: 11
+    group_name: "hainesport_township"
+- model: njcoast.NJCMunicipality
+  pk: 190
+  fields:
+    name: "Haledon Borough"
+    home_latitude: "40.951590"
+    home_longitude: "-74.186300"
+    zoom_level: 14
+    code: 1603
+    county: 16
+    group_name: "haledon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 191
+  fields:
+    name: "Hamburg Borough"
+    home_latitude: "41.159190"
+    home_longitude: "-74.576900"
+    zoom_level: 14
+    code: 1909
+    county: 7
+    group_name: "hamburg_borough"
+- model: njcoast.NJCMunicipality
+  pk: 192
+  fields:
+    name: "Hamilton Township"
+    home_latitude: "39.512515"
+    home_longitude: "-74.745988"
+    zoom_level: 14
+    code: 112
+    county: 2
+    group_name: "hamilton_township"
+- model: njcoast.NJCMunicipality
+  pk: 193
+  fields:
+    name: "Hamilton Township"
+    home_latitude: "40.220369"
+    home_longitude: "-74.680265"
+    zoom_level: 14
+    code: 1103
+    county: 21
+    group_name: "hamilton_township"
+- model: njcoast.NJCMunicipality
+  pk: 194
+  fields:
+    name: "Hammonton"
+    home_latitude: "39.652930"
+    home_longitude: "-74.774335"
+    zoom_level: 14
+    code: 113
+    county: 2
+    group_name: "hammonton"
+- model: njcoast.NJCMunicipality
+  pk: 195
+  fields:
+    name: "Hampton Borough"
+    home_latitude: "40.707147"
+    home_longitude: "-74.958206"
+    zoom_level: 14
+    code: 1013
+    county: 3
+    group_name: "hampton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 196
+  fields:
+    name: "Hampton Township"
+    home_latitude: "41.110177"
+    home_longitude: "-74.804356"
+    zoom_level: 14
+    code: 1910
+    county: 7
+    group_name: "hampton_township"
+- model: njcoast.NJCMunicipality
+  pk: 197
+  fields:
+    name: "Hanover Township"
+    home_latitude: "40.823910"
+    home_longitude: "-74.428764"
+    zoom_level: 14
+    code: 1412
+    county: 17
+    group_name: "hanover_township"
+- model: njcoast.NJCMunicipality
+  pk: 198
+  fields:
+    name: "Harding Township"
+    home_latitude: "40.742154"
+    home_longitude: "-74.505653"
+    zoom_level: 14
+    code: 1413
+    county: 17
+    group_name: "harding_township"
+- model: njcoast.NJCMunicipality
+  pk: 199
+  fields:
+    name: "Hardwick Township"
+    home_latitude: "41.041641"
+    home_longitude: "-74.958986"
+    zoom_level: 14
+    code: 2109
+    county: 4
+    group_name: "hardwick_township"
+- model: njcoast.NJCMunicipality
+  pk: 200
+  fields:
+    name: "Hardyston Township"
+    home_latitude: "41.132796"
+    home_longitude: "74.548565"
+    zoom_level: 14
+    code: 1911
+    county: 7
+    group_name: "hardyston_township"
+- model: njcoast.NJCMunicipality
+  pk: 201
+  fields:
+    name: "Harmony Township"
+    home_latitude: "40.756485"
+    home_longitude: "-75.121991"
+    zoom_level: 14
+    code: 2110
+    county: 4
+    group_name: "harmony_township"
+- model: njcoast.NJCMunicipality
+  pk: 202
+  fields:
+    name: "Harrington Park Borough"
+    home_latitude: "40.991700"
+    home_longitude: "-73.984900"
+    zoom_level: 14
+    code: 224
+    county: 5
+    group_name: "harrington_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 203
+  fields:
+    name: "Harrison"
+    home_latitude: "40.745943"
+    home_longitude: "-74.156596"
+    zoom_level: 14
+    code: 904
+    county: 12
+    group_name: "harrison"
+- model: njcoast.NJCMunicipality
+  pk: 204
+  fields:
+    name: "Harrison Township"
+    home_latitude: "39.729222"
+    home_longitude: "-75.205447"
+    zoom_level: 14
+    code: 808
+    county: 20
+    group_name: "harrison_township"
+- model: njcoast.NJCMunicipality
+  pk: 205
+  fields:
+    name: "Harvey Cedars Borough"
+    home_latitude: "39.698760"
+    home_longitude: "-74.137897"
+    zoom_level: 14
+    code: 1510
+    county: 10
+    group_name: "harvey_cedars_borough"
+- model: njcoast.NJCMunicipality
+  pk: 206
+  fields:
+    name: "Hasbrouck Heights Borough"
+    home_latitude: "40.862350"
+    home_longitude: "-74.075600"
+    zoom_level: 14
+    code: 225
+    county: 5
+    group_name: "hasbrouck_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 207
+  fields:
+    name: "Haworth Borough"
+    home_latitude: "40.963870"
+    home_longitude: "-73.993600"
+    zoom_level: 14
+    code: 226
+    county: 5
+    group_name: "haworth_borough"
+- model: njcoast.NJCMunicipality
+  pk: 208
+  fields:
+    name: "Hawthorne Borough"
+    home_latitude: "40.952809"
+    home_longitude: "-74.153743"
+    zoom_level: 14
+    code: 1604
+    county: 16
+    group_name: "hawthorne_borough"
+- model: njcoast.NJCMunicipality
+  pk: 209
+  fields:
+    name: "Hazlet Township"
+    home_latitude: "40.423060"
+    home_longitude: "-74.176000"
+    zoom_level: 14
+    code: 1318
+    county: 1
+    group_name: "hazlet_township"
+- model: njcoast.NJCMunicipality
+  pk: 210
+  fields:
+    name: "Helmetta Borough"
+    home_latitude: "40.375540"
+    home_longitude: "-74.421600"
+    zoom_level: 14
+    code: 1206
+    county: 19
+    group_name: "helmetta_borough"
+- model: njcoast.NJCMunicipality
+  pk: 211
+  fields:
+    name: "Hi Nella Borough"
+    home_latitude: "39.840692"
+    home_longitude: "-75.019331"
+    zoom_level: 14
+    code: 419
+    county: 8
+    group_name: "hi-nella_borough"
+- model: njcoast.NJCMunicipality
+  pk: 212
+  fields:
+    name: "High Bridge Borough"
+    home_latitude: "40.668160"
+    home_longitude: "-74.889800"
+    zoom_level: 14
+    code: 1014
+    county: 3
+    group_name: "high_bridge_borough"
+- model: njcoast.NJCMunicipality
+  pk: 213
+  fields:
+    name: "Highland Park Borough"
+    home_latitude: "40.499870"
+    home_longitude: "-74.428100"
+    zoom_level: 14
+    code: 1207
+    county: 19
+    group_name: "highland_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 214
+  fields:
+    name: "Highlands Borough"
+    home_latitude: "40.401080"
+    home_longitude: "-74.000600"
+    zoom_level: 14
+    code: 1319
+    county: 1
+    group_name: "highlands_borough"
+- model: njcoast.NJCMunicipality
+  pk: 215
+  fields:
+    name: "Hightstown Borough"
+    home_latitude: "40.268232"
+    home_longitude: "-74.523423"
+    zoom_level: 14
+    code: 1104
+    county: 21
+    group_name: "hightstown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 216
+  fields:
+    name: "Hillsborough Township"
+    home_latitude: "40.503730"
+    home_longitude: "-74.651351"
+    zoom_level: 14
+    code: 1810
+    county: 13
+    group_name: "hillsborough_township"
+- model: njcoast.NJCMunicipality
+  pk: 217
+  fields:
+    name: "Hillsdale Borough"
+    home_latitude: "41.002995"
+    home_longitude: "-74.043588"
+    zoom_level: 14
+    code: 227
+    county: 5
+    group_name: "hillsdale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 218
+  fields:
+    name: "Hillside Township"
+    home_latitude: "40.701512"
+    home_longitude: "-74.232966"
+    zoom_level: 14
+    code: 2007
+    county: 15
+    group_name: "hillside_township"
+- model: njcoast.NJCMunicipality
+  pk: 219
+  fields:
+    name: "Ho Ho Kus Borough"
+    home_latitude: "40.998880"
+    home_longitude: "-74.096800"
+    zoom_level: 14
+    code: 228
+    county: 5
+    group_name: "ho-ho-kus_borough"
+- model: njcoast.NJCMunicipality
+  pk: 220
+  fields:
+    name: "Hoboken"
+    home_latitude: "40.746850"
+    home_longitude: "-74.033900"
+    zoom_level: 14
+    code: 905
+    county: 12
+    group_name: "hoboken"
+- model: njcoast.NJCMunicipality
+  pk: 221
+  fields:
+    name: "Holland Township"
+    home_latitude: "40.600455"
+    home_longitude: "-75.108754"
+    zoom_level: 14
+    code: 1015
+    county: 3
+    group_name: "holland_township"
+- model: njcoast.NJCMunicipality
+  pk: 222
+  fields:
+    name: "Holmdel Township"
+    home_latitude: "40.376410"
+    home_longitude: "-74.170000"
+    zoom_level: 14
+    code: 1320
+    county: 1
+    group_name: "holmdel_township"
+- model: njcoast.NJCMunicipality
+  pk: 223
+  fields:
+    name: "Hopatcong Borough"
+    home_latitude: "40.936750"
+    home_longitude: "-74.660000"
+    zoom_level: 14
+    code: 1912
+    county: 7
+    group_name: "hopatcong_borough"
+- model: njcoast.NJCMunicipality
+  pk: 224
+  fields:
+    name: "Hope Township"
+    home_latitude: "40.911427"
+    home_longitude: "-74.977080"
+    zoom_level: 14
+    code: 2111
+    county: 4
+    group_name: "hope_township"
+- model: njcoast.NJCMunicipality
+  pk: 225
+  fields:
+    name: "Hopewell Borough"
+    home_latitude: "40.388400"
+    home_longitude: "-74.764754"
+    zoom_level: 14
+    code: 1105
+    county: 21
+    group_name: "hopewell_borough"
+- model: njcoast.NJCMunicipality
+  pk: 226
+  fields:
+    name: "Hopewell Township"
+    home_latitude: "39.450088"
+    home_longitude: "-75.273269"
+    zoom_level: 14
+    code: 607
+    county: 18
+    group_name: "hopewell_township"
+- model: njcoast.NJCMunicipality
+  pk: 227
+  fields:
+    name: "Hopewell Township"
+    home_latitude: "40.315627"
+    home_longitude: "-74.807316"
+    zoom_level: 14
+    code: 1106
+    county: 21
+    group_name: "hopewell_township"
+- model: njcoast.NJCMunicipality
+  pk: 228
+  fields:
+    name: "Howell Township"
+    home_latitude: "40.258360"
+    home_longitude: "-74.196800"
+    zoom_level: 14
+    code: 1321
+    county: 1
+    group_name: "howell_township"
+- model: njcoast.NJCMunicipality
+  pk: 229
+  fields:
+    name: "Independence Township"
+    home_latitude: "40.875708"
+    home_longitude: "-74.902345"
+    zoom_level: 14
+    code: 2112
+    county: 4
+    group_name: "independence_township"
+- model: njcoast.NJCMunicipality
+  pk: 230
+  fields:
+    name: "Interlaken Borough"
+    home_latitude: "40.235207"
+    home_longitude: "-74.017220"
+    zoom_level: 14
+    code: 1322
+    county: 1
+    group_name: "interlaken_borough"
+- model: njcoast.NJCMunicipality
+  pk: 231
+  fields:
+    name: "Irvington Township"
+    home_latitude: "40.726230"
+    home_longitude: "-74.232900"
+    zoom_level: 14
+    code: 709
+    county: 14
+    group_name: "irvington_township"
+- model: njcoast.NJCMunicipality
+  pk: 232
+  fields:
+    name: "Island Heights Borough"
+    home_latitude: "39.983270"
+    home_longitude: "-74.128500"
+    zoom_level: 14
+    code: 1511
+    county: 10
+    group_name: "island_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 233
+  fields:
+    name: "Jackson Township"
+    home_latitude: "40.105160"
+    home_longitude: "-74.352800"
+    zoom_level: 14
+    code: 1512
+    county: 10
+    group_name: "jackson_township"
+- model: njcoast.NJCMunicipality
+  pk: 234
+  fields:
+    name: "Jamesburg Borough"
+    home_latitude: "40.346624"
+    home_longitude: "-74.437677"
+    zoom_level: 14
+    code: 1208
+    county: 19
+    group_name: "jamesburg_borough"
+- model: njcoast.NJCMunicipality
+  pk: 235
+  fields:
+    name: "Jefferson Township"
+    home_latitude: "40.982611"
+    home_longitude: "-74.568810"
+    zoom_level: 14
+    code: 1414
+    county: 17
+    group_name: "jefferson_township"
+- model: njcoast.NJCMunicipality
+  pk: 236
+  fields:
+    name: "Jersey City"
+    home_latitude: "40.727890"
+    home_longitude: "-74.065248"
+    zoom_level: 14
+    code: 906
+    county: 12
+    group_name: "jersey_city"
+- model: njcoast.NJCMunicipality
+  pk: 237
+  fields:
+    name: "Keansburg Borough"
+    home_latitude: "40.438150"
+    home_longitude: "-74.127900"
+    zoom_level: 14
+    code: 1323
+    county: 1
+    group_name: "keansburg_borough"
+- model: njcoast.NJCMunicipality
+  pk: 238
+  fields:
+    name: "Kearny"
+    home_latitude: "40.751750"
+    home_longitude: "-74.122900"
+    zoom_level: 14
+    code: 907
+    county: 12
+    group_name: "kearny"
+- model: njcoast.NJCMunicipality
+  pk: 239
+  fields:
+    name: "Kenilworth Borough"
+    home_latitude: "40.677600"
+    home_longitude: "-74.291200"
+    zoom_level: 14
+    code: 2008
+    county: 15
+    group_name: "kenilworth_borough"
+- model: njcoast.NJCMunicipality
+  pk: 240
+  fields:
+    name: "Keyport Borough"
+    home_latitude: "40.438400"
+    home_longitude: "-74.188100"
+    zoom_level: 14
+    code: 1324
+    county: 1
+    group_name: "keyport_borough"
+- model: njcoast.NJCMunicipality
+  pk: 241
+  fields:
+    name: "Kingwood Township"
+    home_latitude: "40.497793"
+    home_longitude: "-75.019891"
+    zoom_level: 14
+    code: 1016
+    county: 3
+    group_name: "kingwood_township"
+- model: njcoast.NJCMunicipality
+  pk: 242
+  fields:
+    name: "Kinnelon Borough"
+    home_latitude: "40.989191"
+    home_longitude: "-74.374258"
+    zoom_level: 14
+    code: 1415
+    county: 17
+    group_name: "kinnelon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 243
+  fields:
+    name: "Knowlton Township"
+    home_latitude: "40.934226"
+    home_longitude: "-75.060931"
+    zoom_level: 14
+    code: 2113
+    county: 4
+    group_name: "knowlton_township"
+- model: njcoast.NJCMunicipality
+  pk: 244
+  fields:
+    name: "Lacey Township"
+    home_latitude: "39.859179"
+    home_longitude: "-74.281856"
+    zoom_level: 14
+    code: 1513
+    county: 10
+    group_name: "lacey_township"
+- model: njcoast.NJCMunicipality
+  pk: 245
+  fields:
+    name: "Lafayette Township"
+    home_latitude: "41.128180"
+    home_longitude: "-74.731800"
+    zoom_level: 14
+    code: 1913
+    county: 7
+    group_name: "lafayette_township"
+- model: njcoast.NJCMunicipality
+  pk: 246
+  fields:
+    name: "Lake Como Borough"
+    home_latitude: "40.171212"
+    home_longitude: "-74.027001"
+    zoom_level: 14
+    code: 1346
+    county: 1
+    group_name: "lake_como_borough"
+- model: njcoast.NJCMunicipality
+  pk: 247
+  fields:
+    name: "Lakehurst Borough"
+    home_latitude: "40.014238"
+    home_longitude: "-74.317841"
+    zoom_level: 14
+    code: 1514
+    county: 10
+    group_name: "lakehurst_borough"
+- model: njcoast.NJCMunicipality
+  pk: 248
+  fields:
+    name: "Lakewood Township"
+    home_latitude: "39.945170"
+    home_longitude: "-74.149800"
+    zoom_level: 14
+    code: 1515
+    county: 10
+    group_name: "lakewood_township"
+- model: njcoast.NJCMunicipality
+  pk: 249
+  fields:
+    name: "Lambertville"
+    home_latitude: "40.379360"
+    home_longitude: "-74.901500"
+    zoom_level: 14
+    code: 1017
+    county: 3
+    group_name: "lambertville"
+- model: njcoast.NJCMunicipality
+  pk: 250
+  fields:
+    name: "Laurel Springs Borough"
+    home_latitude: "39.819897"
+    home_longitude: "-75.006139"
+    zoom_level: 14
+    code: 420
+    county: 8
+    group_name: "laurel_springs_borough"
+- model: njcoast.NJCMunicipality
+  pk: 251
+  fields:
+    name: "Lavallette Borough"
+    home_latitude: "39.980920"
+    home_longitude: "-74.072000"
+    zoom_level: 14
+    code: 1516
+    county: 10
+    group_name: "lavallette_borough"
+- model: njcoast.NJCMunicipality
+  pk: 252
+  fields:
+    name: "Lawnside Borough"
+    home_latitude: "39.868110"
+    home_longitude: "-75.032100"
+    zoom_level: 14
+    code: 421
+    county: 8
+    group_name: "lawnside_borough"
+- model: njcoast.NJCMunicipality
+  pk: 253
+  fields:
+    name: "Lawrence Township"
+    home_latitude: "39.330101"
+    home_longitude: "-75.193434"
+    zoom_level: 14
+    code: 608
+    county: 18
+    group_name: "lawrence_township"
+- model: njcoast.NJCMunicipality
+  pk: 254
+  fields:
+    name: "Lawrence Township"
+    home_latitude: "40.273829"
+    home_longitude: "-74.727222"
+    zoom_level: 14
+    code: 1107
+    county: 21
+    group_name: "lawrence_township"
+- model: njcoast.NJCMunicipality
+  pk: 255
+  fields:
+    name: "Lebanon Borough"
+    home_latitude: "40.643119"
+    home_longitude: "-74.835988"
+    zoom_level: 14
+    code: 1018
+    county: 3
+    group_name: "lebanon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 256
+  fields:
+    name: "Lebanon Township"
+    home_latitude: "40.720143"
+    home_longitude: "-74.892155"
+    zoom_level: 14
+    code: 1019
+    county: 3
+    group_name: "lebanon_township"
+- model: njcoast.NJCMunicipality
+  pk: 257
+  fields:
+    name: "Leonia Borough"
+    home_latitude: "40.863500"
+    home_longitude: "-73.987100"
+    zoom_level: 14
+    code: 229
+    county: 5
+    group_name: "leonia_borough"
+- model: njcoast.NJCMunicipality
+  pk: 258
+  fields:
+    name: "Liberty Township"
+    home_latitude: "40.865634"
+    home_longitude: "-74.949082"
+    zoom_level: 14
+    code: 2114
+    county: 4
+    group_name: "liberty_township"
+- model: njcoast.NJCMunicipality
+  pk: 259
+  fields:
+    name: "Lincoln Park Borough"
+    home_latitude: "40.926640"
+    home_longitude: "-74.303100"
+    zoom_level: 14
+    code: 1416
+    county: 17
+    group_name: "lincoln_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 260
+  fields:
+    name: "Linden"
+    home_latitude: "40.626950"
+    home_longitude: "-74.250900"
+    zoom_level: 14
+    code: 2009
+    county: 15
+    group_name: "linden"
+- model: njcoast.NJCMunicipality
+  pk: 261
+  fields:
+    name: "Lindenwold Borough"
+    home_latitude: "39.819337"
+    home_longitude: "-74.984749"
+    zoom_level: 14
+    code: 422
+    county: 8
+    group_name: "lindenwold_borough"
+- model: njcoast.NJCMunicipality
+  pk: 262
+  fields:
+    name: "Linwood"
+    home_latitude: "39.427790"
+    home_longitude: "-74.622100"
+    zoom_level: 14
+    code: 114
+    county: 2
+    group_name: "linwood"
+- model: njcoast.NJCMunicipality
+  pk: 263
+  fields:
+    name: "Little Egg Harbor Township"
+    home_latitude: "39.610484"
+    home_longitude: "-74.376332"
+    zoom_level: 14
+    code: 1517
+    county: 10
+    group_name: "little_egg_harbor_township"
+- model: njcoast.NJCMunicipality
+  pk: 264
+  fields:
+    name: "Little Falls Township"
+    home_latitude: "40.883550"
+    home_longitude: "-74.214400"
+    zoom_level: 14
+    code: 1605
+    county: 16
+    group_name: "little_falls_township"
+- model: njcoast.NJCMunicipality
+  pk: 265
+  fields:
+    name: "Little Ferry Borough"
+    home_latitude: "40.925360"
+    home_longitude: "-74.076000"
+    zoom_level: 14
+    code: 230
+    county: 5
+    group_name: "little_ferry_borough"
+- model: njcoast.NJCMunicipality
+  pk: 266
+  fields:
+    name: "Little Silver Borough"
+    home_latitude: "40.382030"
+    home_longitude: "-74.168900"
+    zoom_level: 14
+    code: 1325
+    county: 1
+    group_name: "little_silver_borough"
+- model: njcoast.NJCMunicipality
+  pk: 267
+  fields:
+    name: "Livingston Township"
+    home_latitude: "40.787010"
+    home_longitude: "-74.326000"
+    zoom_level: 14
+    code: 710
+    county: 14
+    group_name: "livingston_township"
+- model: njcoast.NJCMunicipality
+  pk: 268
+  fields:
+    name: "Loch Arbour Village"
+    home_latitude: "40.232922"
+    home_longitude: "-74.001272"
+    zoom_level: 14
+    code: 1326
+    county: 1
+    group_name: "loch_arbour_village"
+- model: njcoast.NJCMunicipality
+  pk: 269
+  fields:
+    name: "Lodi Borough"
+    home_latitude: "40.878350"
+    home_longitude: "-74.081300"
+    zoom_level: 14
+    code: 231
+    county: 5
+    group_name: "lodi_borough"
+- model: njcoast.NJCMunicipality
+  pk: 270
+  fields:
+    name: "Logan Township"
+    home_latitude: "39.780319"
+    home_longitude: "-75.374979"
+    zoom_level: 14
+    code: 809
+    county: 20
+    group_name: "logan_township"
+- model: njcoast.NJCMunicipality
+  pk: 271
+  fields:
+    name: "Long Beach Township"
+    home_latitude: "39.609138"
+    home_longitude: "-74.205566"
+    zoom_level: 14
+    code: 1518
+    county: 10
+    group_name: "long_beach_township"
+- model: njcoast.NJCMunicipality
+  pk: 272
+  fields:
+    name: "Long Branch"
+    home_latitude: "40.345360"
+    home_longitude: "-74.110900"
+    zoom_level: 14
+    code: 1327
+    county: 1
+    group_name: "long_branch"
+- model: njcoast.NJCMunicipality
+  pk: 273
+  fields:
+    name: "Long Hill Township"
+    home_latitude: "40.687862"
+    home_longitude: "-74.497770"
+    zoom_level: 14
+    code: 1430
+    county: 17
+    group_name: "long_hill_township"
+- model: njcoast.NJCMunicipality
+  pk: 274
+  fields:
+    name: "Longport Borough"
+    home_latitude: "39.324270"
+    home_longitude: "-74.513500"
+    zoom_level: 14
+    code: 115
+    county: 2
+    group_name: "longport_borough"
+- model: njcoast.NJCMunicipality
+  pk: 275
+  fields:
+    name: "Lopatcong Township"
+    home_latitude: "40.704986"
+    home_longitude: "-75.158362"
+    zoom_level: 14
+    code: 2115
+    county: 4
+    group_name: "lopatcong_township"
+- model: njcoast.NJCMunicipality
+  pk: 276
+  fields:
+    name: "Lower Alloways Creek Township"
+    home_latitude: "39.474412"
+    home_longitude: "-75.453794"
+    zoom_level: 14
+    code: 1705
+    county: 6
+    group_name: "lower_alloways_creek_township"
+- model: njcoast.NJCMunicipality
+  pk: 277
+  fields:
+    name: "Lower Township"
+    home_latitude: "38.995142"
+    home_longitude: "-74.917913"
+    zoom_level: 14
+    code: 505
+    county: 9
+    group_name: "lower_township"
+- model: njcoast.NJCMunicipality
+  pk: 278
+  fields:
+    name: "Lumberton Township"
+    home_latitude: "39.962300"
+    home_longitude: "-74.800100"
+    zoom_level: 14
+    code: 317
+    county: 11
+    group_name: "lumberton_township"
+- model: njcoast.NJCMunicipality
+  pk: 279
+  fields:
+    name: "Lyndhurst Township"
+    home_latitude: "40.799550"
+    home_longitude: "-74.116500"
+    zoom_level: 14
+    code: 232
+    county: 5
+    group_name: "lyndhurst_township"
+- model: njcoast.NJCMunicipality
+  pk: 280
+  fields:
+    name: "Madison Borough"
+    home_latitude: "40.758200"
+    home_longitude: "-74.423000"
+    zoom_level: 14
+    code: 1417
+    county: 17
+    group_name: "madison_borough"
+- model: njcoast.NJCMunicipality
+  pk: 281
+  fields:
+    name: "Magnolia Borough"
+    home_latitude: "39.854360"
+    home_longitude: "-75.036200"
+    zoom_level: 14
+    code: 423
+    county: 8
+    group_name: "magnolia_borough"
+- model: njcoast.NJCMunicipality
+  pk: 282
+  fields:
+    name: "Mahwah Township"
+    home_latitude: "41.053450"
+    home_longitude: "-74.172800"
+    zoom_level: 14
+    code: 233
+    county: 5
+    group_name: "mahwah_township"
+- model: njcoast.NJCMunicipality
+  pk: 283
+  fields:
+    name: "Manalapan Township"
+    home_latitude: "40.283986"
+    home_longitude: "-74.348368"
+    zoom_level: 14
+    code: 1328
+    county: 1
+    group_name: "manalapan_township"
+- model: njcoast.NJCMunicipality
+  pk: 284
+  fields:
+    name: "Manasquan Borough"
+    home_latitude: "40.121510"
+    home_longitude: "-74.070000"
+    zoom_level: 14
+    code: 1329
+    county: 1
+    group_name: "manasquan_borough"
+- model: njcoast.NJCMunicipality
+  pk: 285
+  fields:
+    name: "Manchester Township"
+    home_latitude: "39.945800"
+    home_longitude: "-74.297800"
+    zoom_level: 14
+    code: 1519
+    county: 10
+    group_name: "manchester_township"
+- model: njcoast.NJCMunicipality
+  pk: 286
+  fields:
+    name: "Mannington Township"
+    home_latitude: "39.614468"
+    home_longitude: "-75.418898"
+    zoom_level: 14
+    code: 1706
+    county: 6
+    group_name: "mannington_township"
+- model: njcoast.NJCMunicipality
+  pk: 287
+  fields:
+    name: "Mansfield Township"
+    home_latitude: "40.079766"
+    home_longitude: "-74.720788"
+    zoom_level: 14
+    code: 318
+    county: 11
+    group_name: "mansfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 288
+  fields:
+    name: "Mansfield Township"
+    home_latitude: "40.817102"
+    home_longitude: "-74.917008"
+    zoom_level: 14
+    code: 2116
+    county: 4
+    group_name: "mansfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 289
+  fields:
+    name: "Mantoloking Borough"
+    home_latitude: "40.029920"
+    home_longitude: "-74.056900"
+    zoom_level: 14
+    code: 1520
+    county: 10
+    group_name: "mantoloking_borough"
+- model: njcoast.NJCMunicipality
+  pk: 290
+  fields:
+    name: "Mantua Township"
+    home_latitude: "39.751570"
+    home_longitude: "-75.212800"
+    zoom_level: 14
+    code: 810
+    county: 20
+    group_name: "mantua_township"
+- model: njcoast.NJCMunicipality
+  pk: 291
+  fields:
+    name: "Manville Borough"
+    home_latitude: "40.541050"
+    home_longitude: "-74.589200"
+    zoom_level: 14
+    code: 1811
+    county: 13
+    group_name: "manville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 292
+  fields:
+    name: "Maple Shade Township"
+    home_latitude: "39.951210"
+    home_longitude: "-74.992200"
+    zoom_level: 14
+    code: 319
+    county: 11
+    group_name: "maple_shade_township"
+- model: njcoast.NJCMunicipality
+  pk: 293
+  fields:
+    name: "Maplewood Township"
+    home_latitude: "40.729100"
+    home_longitude: "-74.266500"
+    zoom_level: 14
+    code: 711
+    county: 14
+    group_name: "maplewood_township"
+- model: njcoast.NJCMunicipality
+  pk: 294
+  fields:
+    name: "Margate City"
+    home_latitude: "39.442070"
+    home_longitude: "-74.666100"
+    zoom_level: 14
+    code: 116
+    county: 2
+    group_name: "margate_city"
+- model: njcoast.NJCMunicipality
+  pk: 295
+  fields:
+    name: "Marlboro Township"
+    home_latitude: "40.351280"
+    home_longitude: "-74.141200"
+    zoom_level: 14
+    code: 1330
+    county: 1
+    group_name: "marlboro_township"
+- model: njcoast.NJCMunicipality
+  pk: 296
+  fields:
+    name: "Matawan Borough"
+    home_latitude: "40.416386"
+    home_longitude: "-74.233216"
+    zoom_level: 14
+    code: 1331
+    county: 1
+    group_name: "matawan_borough"
+- model: njcoast.NJCMunicipality
+  pk: 297
+  fields:
+    name: "Maurice River Township"
+    home_latitude: "39.305185"
+    home_longitude: "-74.926514"
+    zoom_level: 14
+    code: 609
+    county: 18
+    group_name: "maurice_river_township"
+- model: njcoast.NJCMunicipality
+  pk: 298
+  fields:
+    name: "Maywood Borough"
+    home_latitude: "40.901810"
+    home_longitude: "-74.061800"
+    zoom_level: 14
+    code: 234
+    county: 5
+    group_name: "maywood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 299
+  fields:
+    name: "Medford Lakes Borough"
+    home_latitude: "39.861293"
+    home_longitude: "-74.806094"
+    zoom_level: 14
+    code: 321
+    county: 11
+    group_name: "medford_lakes_borough"
+- model: njcoast.NJCMunicipality
+  pk: 300
+  fields:
+    name: "Medford Township"
+    home_latitude: "39.875447"
+    home_longitude: "-74.830152"
+    zoom_level: 14
+    code: 320
+    county: 11
+    group_name: "medford_township"
+- model: njcoast.NJCMunicipality
+  pk: 301
+  fields:
+    name: "Mendham Borough"
+    home_latitude: "40.769657"
+    home_longitude: "-74.602673"
+    zoom_level: 14
+    code: 1418
+    county: 17
+    group_name: "mendham_borough"
+- model: njcoast.NJCMunicipality
+  pk: 302
+  fields:
+    name: "Mendham Township"
+    home_latitude: "40.791814"
+    home_longitude: "-74.571509"
+    zoom_level: 14
+    code: 1419
+    county: 17
+    group_name: "mendham_township"
+- model: njcoast.NJCMunicipality
+  pk: 303
+  fields:
+    name: "Merchantville Borough"
+    home_latitude: "39.950310"
+    home_longitude: "-75.059900"
+    zoom_level: 14
+    code: 424
+    county: 8
+    group_name: "merchantville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 304
+  fields:
+    name: "Metuchen Borough"
+    home_latitude: "40.472220"
+    home_longitude: "-74.451900"
+    zoom_level: 14
+    code: 1209
+    county: 19
+    group_name: "metuchen_borough"
+- model: njcoast.NJCMunicipality
+  pk: 305
+  fields:
+    name: "Middle Township"
+    home_latitude: "39.085114"
+    home_longitude: "-74.846926"
+    zoom_level: 14
+    code: 506
+    county: 9
+    group_name: "middle_township"
+- model: njcoast.NJCMunicipality
+  pk: 306
+  fields:
+    name: "Middlesex Borough"
+    home_latitude: "40.575200"
+    home_longitude: "-74.499400"
+    zoom_level: 14
+    code: 1210
+    county: 19
+    group_name: "middlesex_borough"
+- model: njcoast.NJCMunicipality
+  pk: 307
+  fields:
+    name: "Middletown Township"
+    home_latitude: "40.401000"
+    home_longitude: "-74.144600"
+    zoom_level: 14
+    code: 1332
+    county: 1
+    group_name: "middletown_township"
+- model: njcoast.NJCMunicipality
+  pk: 308
+  fields:
+    name: "Midland Park Borough"
+    home_latitude: "40.994700"
+    home_longitude: "-74.142300"
+    zoom_level: 14
+    code: 235
+    county: 5
+    group_name: "midland_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 309
+  fields:
+    name: "Milford Borough"
+    home_latitude: "40.664750"
+    home_longitude: "-74.970500"
+    zoom_level: 14
+    code: 1020
+    county: 3
+    group_name: "milford_borough"
+- model: njcoast.NJCMunicipality
+  pk: 310
+  fields:
+    name: "Millburn Township"
+    home_latitude: "40.733650"
+    home_longitude: "-74.301700"
+    zoom_level: 14
+    code: 712
+    county: 14
+    group_name: "millburn_township"
+- model: njcoast.NJCMunicipality
+  pk: 311
+  fields:
+    name: "Millstone Borough"
+    home_latitude: "40.498135"
+    home_longitude: "-74.590421"
+    zoom_level: 14
+    code: 1812
+    county: 13
+    group_name: "millstone_borough"
+- model: njcoast.NJCMunicipality
+  pk: 312
+  fields:
+    name: "Millstone Township"
+    home_latitude: "40.208915"
+    home_longitude: "-74.425383"
+    zoom_level: 14
+    code: 1333
+    county: 1
+    group_name: "millstone_township"
+- model: njcoast.NJCMunicipality
+  pk: 313
+  fields:
+    name: "Milltown Borough"
+    home_latitude: "40.448260"
+    home_longitude: "-74.444400"
+    zoom_level: 14
+    code: 1211
+    county: 19
+    group_name: "milltown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 314
+  fields:
+    name: "Millville"
+    home_latitude: "39.370400"
+    home_longitude: "-75.042800"
+    zoom_level: 14
+    code: 610
+    county: 18
+    group_name: "millville"
+- model: njcoast.NJCMunicipality
+  pk: 315
+  fields:
+    name: "Mine Hill Township"
+    home_latitude: "40.878109"
+    home_longitude: "-74.596738"
+    zoom_level: 14
+    code: 1420
+    county: 17
+    group_name: "mine_hill_township"
+- model: njcoast.NJCMunicipality
+  pk: 316
+  fields:
+    name: "Monmouth Beach Borough"
+    home_latitude: "40.277760"
+    home_longitude: "-74.194700"
+    zoom_level: 14
+    code: 1334
+    county: 1
+    group_name: "monmouth_beach_borough"
+- model: njcoast.NJCMunicipality
+  pk: 317
+  fields:
+    name: "Monroe Township"
+    home_latitude: "39.680292"
+    home_longitude: "-74.997973"
+    zoom_level: 14
+    code: 811
+    county: 20
+    group_name: "monroe_township"
+- model: njcoast.NJCMunicipality
+  pk: 318
+  fields:
+    name: "Monroe Township"
+    home_latitude: "40.332706"
+    home_longitude: "-74.432839"
+    zoom_level: 14
+    code: 1212
+    county: 19
+    group_name: "monroe_township"
+- model: njcoast.NJCMunicipality
+  pk: 319
+  fields:
+    name: "Montague Township"
+    home_latitude: "41.255280"
+    home_longitude: "-74.644700"
+    zoom_level: 14
+    code: 1914
+    county: 7
+    group_name: "montague_township"
+- model: njcoast.NJCMunicipality
+  pk: 320
+  fields:
+    name: "Montclair Township"
+    home_latitude: "40.811910"
+    home_longitude: "-74.216400"
+    zoom_level: 14
+    code: 713
+    county: 14
+    group_name: "montclair_township"
+- model: njcoast.NJCMunicipality
+  pk: 321
+  fields:
+    name: "Montgomery Township"
+    home_latitude: "40.425461"
+    home_longitude: "-74.669018"
+    zoom_level: 14
+    code: 1813
+    county: 13
+    group_name: "montgomery_township"
+- model: njcoast.NJCMunicipality
+  pk: 322
+  fields:
+    name: "Montvale Borough"
+    home_latitude: "41.054650"
+    home_longitude: "-74.045400"
+    zoom_level: 14
+    code: 236
+    county: 5
+    group_name: "montvale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 323
+  fields:
+    name: "Montville Township"
+    home_latitude: "40.906310"
+    home_longitude: "-74.363200"
+    zoom_level: 14
+    code: 1421
+    county: 17
+    group_name: "montville_township"
+- model: njcoast.NJCMunicipality
+  pk: 324
+  fields:
+    name: "Moonachie Borough"
+    home_latitude: "40.839300"
+    home_longitude: "-74.060200"
+    zoom_level: 14
+    code: 237
+    county: 5
+    group_name: "moonachie_borough"
+- model: njcoast.NJCMunicipality
+  pk: 325
+  fields:
+    name: "Moorestown Township"
+    home_latitude: "40.054260"
+    home_longitude: "-74.840100"
+    zoom_level: 14
+    code: 322
+    county: 11
+    group_name: "moorestown_township"
+- model: njcoast.NJCMunicipality
+  pk: 326
+  fields:
+    name: "Morris Plains Borough"
+    home_latitude: "40.843400"
+    home_longitude: "-74.540300"
+    zoom_level: 14
+    code: 1423
+    county: 17
+    group_name: "morris_plains_borough"
+- model: njcoast.NJCMunicipality
+  pk: 327
+  fields:
+    name: "Morris Township"
+    home_latitude: "40.804077"
+    home_longitude: "-74.500707"
+    zoom_level: 14
+    code: 1422
+    county: 17
+    group_name: "morris_township"
+- model: njcoast.NJCMunicipality
+  pk: 328
+  fields:
+    name: "Morristown"
+    home_latitude: "40.798666"
+    home_longitude: "-74.480533"
+    zoom_level: 14
+    code: 1424
+    county: 17
+    group_name: "morristown"
+- model: njcoast.NJCMunicipality
+  pk: 329
+  fields:
+    name: "Mount Arlington Borough"
+    home_latitude: "40.874050"
+    home_longitude: "-74.734300"
+    zoom_level: 14
+    code: 1426
+    county: 17
+    group_name: "mount_arlington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 330
+  fields:
+    name: "Mount Ephraim Borough"
+    home_latitude: "39.886460"
+    home_longitude: "-75.094100"
+    zoom_level: 14
+    code: 425
+    county: 8
+    group_name: "mount_ephraim_borough"
+- model: njcoast.NJCMunicipality
+  pk: 331
+  fields:
+    name: "Mount Holly Township"
+    home_latitude: "40.044960"
+    home_longitude: "-74.801900"
+    zoom_level: 14
+    code: 323
+    county: 11
+    group_name: "mount_holly_township"
+- model: njcoast.NJCMunicipality
+  pk: 332
+  fields:
+    name: "Mount Laurel Township"
+    home_latitude: "39.955910"
+    home_longitude: "-74.917300"
+    zoom_level: 14
+    code: 324
+    county: 11
+    group_name: "mount_laurel_township"
+- model: njcoast.NJCMunicipality
+  pk: 333
+  fields:
+    name: "Mount Olive Township"
+    home_latitude: "40.859776"
+    home_longitude: "-74.741739"
+    zoom_level: 14
+    code: 1427
+    county: 17
+    group_name: "mount_olive_township"
+- model: njcoast.NJCMunicipality
+  pk: 334
+  fields:
+    name: "Mountain Lakes Borough"
+    home_latitude: "40.890500"
+    home_longitude: "-74.440900"
+    zoom_level: 14
+    code: 1425
+    county: 17
+    group_name: "mountain_lakes_borough"
+- model: njcoast.NJCMunicipality
+  pk: 335
+  fields:
+    name: "Mountainside Borough"
+    home_latitude: "40.680700"
+    home_longitude: "-74.358400"
+    zoom_level: 14
+    code: 2010
+    county: 15
+    group_name: "mountainside_borough"
+- model: njcoast.NJCMunicipality
+  pk: 336
+  fields:
+    name: "Mullica Township"
+    home_latitude: "39.715860"
+    home_longitude: "-75.235000"
+    zoom_level: 14
+    code: 117
+    county: 2
+    group_name: "mullica_township"
+- model: njcoast.NJCMunicipality
+  pk: 337
+  fields:
+    name: "National Park Borough"
+    home_latitude: "39.779650"
+    home_longitude: "-75.218400"
+    zoom_level: 14
+    code: 812
+    county: 20
+    group_name: "national_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 338
+  fields:
+    name: "Neptune City Borough"
+    home_latitude: "40.199392"
+    home_longitude: "-74.030184"
+    zoom_level: 14
+    code: 1336
+    county: 1
+    group_name: "neptune_city_borough"
+- model: njcoast.NJCMunicipality
+  pk: 339
+  fields:
+    name: "Neptune Township"
+    home_latitude: "40.196861"
+    home_longitude: "-74.050449"
+    zoom_level: 14
+    code: 1335
+    county: 1
+    group_name: "neptune_township"
+- model: njcoast.NJCMunicipality
+  pk: 340
+  fields:
+    name: "Netcong Borough"
+    home_latitude: "40.899147"
+    home_longitude: "-74.705069"
+    zoom_level: 14
+    code: 1428
+    county: 17
+    group_name: "netcong_borough"
+- model: njcoast.NJCMunicipality
+  pk: 341
+  fields:
+    name: "New Brunswick"
+    home_latitude: "40.486750"
+    home_longitude: "-74.444400"
+    zoom_level: 14
+    code: 1213
+    county: 19
+    group_name: "new_brunswick"
+- model: njcoast.NJCMunicipality
+  pk: 342
+  fields:
+    name: "New Hanover Township"
+    home_latitude: "40.027212"
+    home_longitude: "-74.588638"
+    zoom_level: 14
+    code: 325
+    county: 11
+    group_name: "new_hanover_township"
+- model: njcoast.NJCMunicipality
+  pk: 343
+  fields:
+    name: "New Milford Borough"
+    home_latitude: "40.923788"
+    home_longitude: "-74.027411"
+    zoom_level: 14
+    code: 238
+    county: 5
+    group_name: "new_milford_borough"
+- model: njcoast.NJCMunicipality
+  pk: 344
+  fields:
+    name: "New Providence Borough"
+    home_latitude: "40.706489"
+    home_longitude: "-74.395871"
+    zoom_level: 14
+    code: 2011
+    county: 15
+    group_name: "new_providence_borough"
+- model: njcoast.NJCMunicipality
+  pk: 345
+  fields:
+    name: "Newark"
+    home_latitude: "40.719294"
+    home_longitude: "-74.174848"
+    zoom_level: 14
+    code: 714
+    county: 14
+    group_name: "newark"
+- model: njcoast.NJCMunicipality
+  pk: 346
+  fields:
+    name: "Newfield Borough"
+    home_latitude: "39.565470"
+    home_longitude: "-75.014100"
+    zoom_level: 14
+    code: 813
+    county: 20
+    group_name: "newfield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 347
+  fields:
+    name: "Newton"
+    home_latitude: "41.058395"
+    home_longitude: "-74.752340"
+    zoom_level: 14
+    code: 1915
+    county: 7
+    group_name: "newton"
+- model: njcoast.NJCMunicipality
+  pk: 348
+  fields:
+    name: "North Arlington Borough"
+    home_latitude: "40.787110"
+    home_longitude: "-74.127300"
+    zoom_level: 14
+    code: 239
+    county: 5
+    group_name: "north_arlington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 349
+  fields:
+    name: "North Bergen Township"
+    home_latitude: "40.789720"
+    home_longitude: "-74.023200"
+    zoom_level: 14
+    code: 908
+    county: 12
+    group_name: "north_bergen_township"
+- model: njcoast.NJCMunicipality
+  pk: 350
+  fields:
+    name: "North Brunswick Township"
+    home_latitude: "40.437710"
+    home_longitude: "-74.488500"
+    zoom_level: 14
+    code: 1214
+    county: 19
+    group_name: "north_brunswick_township"
+- model: njcoast.NJCMunicipality
+  pk: 351
+  fields:
+    name: "North Caldwell Borough"
+    home_latitude: "40.860738"
+    home_longitude: "-74.260084"
+    zoom_level: 14
+    code: 715
+    county: 14
+    group_name: "north_caldwell_borough"
+- model: njcoast.NJCMunicipality
+  pk: 352
+  fields:
+    name: "North Haledon Borough"
+    home_latitude: "40.953345"
+    home_longitude: "-74.184432"
+    zoom_level: 14
+    code: 1606
+    county: 16
+    group_name: "north_haledon_borough"
+- model: njcoast.NJCMunicipality
+  pk: 353
+  fields:
+    name: "North Hanover Township"
+    home_latitude: "40.079945"
+    home_longitude: "-74.580641"
+    zoom_level: 14
+    code: 326
+    county: 11
+    group_name: "north_hanover_township"
+- model: njcoast.NJCMunicipality
+  pk: 354
+  fields:
+    name: "North Plainfield Borough"
+    home_latitude: "40.630916"
+    home_longitude: "-74.428109"
+    zoom_level: 14
+    code: 1814
+    county: 13
+    group_name: "north_plainfield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 355
+  fields:
+    name: "North Wildwood"
+    home_latitude: "39.001594"
+    home_longitude: "-74.796723"
+    zoom_level: 14
+    code: 507
+    county: 9
+    group_name: "north_wildwood"
+- model: njcoast.NJCMunicipality
+  pk: 356
+  fields:
+    name: "Northfield"
+    home_latitude: "39.421920"
+    home_longitude: "-74.572200"
+    zoom_level: 14
+    code: 118
+    county: 2
+    group_name: "northfield"
+- model: njcoast.NJCMunicipality
+  pk: 357
+  fields:
+    name: "Northvale Borough"
+    home_latitude: "41.008640"
+    home_longitude: "-73.938900"
+    zoom_level: 14
+    code: 240
+    county: 5
+    group_name: "northvale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 358
+  fields:
+    name: "Norwood Borough"
+    home_latitude: "40.992920"
+    home_longitude: "-73.949700"
+    zoom_level: 14
+    code: 241
+    county: 5
+    group_name: "norwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 359
+  fields:
+    name: "Nutley Township"
+    home_latitude: "40.821300"
+    home_longitude: "-74.159400"
+    zoom_level: 14
+    code: 716
+    county: 14
+    group_name: "nutley_township"
+- model: njcoast.NJCMunicipality
+  pk: 360
+  fields:
+    name: "Oakland Borough"
+    home_latitude: "41.023400"
+    home_longitude: "-74.238600"
+    zoom_level: 14
+    code: 242
+    county: 5
+    group_name: "oakland_borough"
+- model: njcoast.NJCMunicipality
+  pk: 361
+  fields:
+    name: "Oaklyn Borough"
+    home_latitude: "39.872000"
+    home_longitude: "-75.053100"
+    zoom_level: 14
+    code: 426
+    county: 8
+    group_name: "oaklyn_borough"
+- model: njcoast.NJCMunicipality
+  pk: 362
+  fields:
+    name: "Ocean City"
+    home_latitude: "39.248530"
+    home_longitude: "-74.604400"
+    zoom_level: 14
+    code: 508
+    county: 9
+    group_name: "ocean_city"
+- model: njcoast.NJCMunicipality
+  pk: 363
+  fields:
+    name: "Ocean Gate Borough"
+    home_latitude: "39.926630"
+    home_longitude: "-74.133300"
+    zoom_level: 14
+    code: 1522
+    county: 10
+    group_name: "ocean_gate_borough"
+- model: njcoast.NJCMunicipality
+  pk: 364
+  fields:
+    name: "Ocean Township"
+    home_latitude: "40.253503"
+    home_longitude: "-74.013937"
+    zoom_level: 14
+    code: 1337
+    county: 1
+    group_name: "ocean_township"
+- model: njcoast.NJCMunicipality
+  pk: 365
+  fields:
+    name: "Ocean Township"
+    home_latitude: "39.792550"
+    home_longitude: "-74.217237"
+    zoom_level: 14
+    code: 1521
+    county: 10
+    group_name: "ocean_township"
+- model: njcoast.NJCMunicipality
+  pk: 366
+  fields:
+    name: "Oceanport Borough"
+    home_latitude: "40.314960"
+    home_longitude: "-74.019000"
+    zoom_level: 14
+    code: 1338
+    county: 1
+    group_name: "oceanport_borough"
+- model: njcoast.NJCMunicipality
+  pk: 367
+  fields:
+    name: "Ogdensburg Borough"
+    home_latitude: "41.078350"
+    home_longitude: "-74.594100"
+    zoom_level: 14
+    code: 1916
+    county: 7
+    group_name: "ogdensburg_borough"
+- model: njcoast.NJCMunicipality
+  pk: 368
+  fields:
+    name: "Old Bridge Township"
+    home_latitude: "40.407320"
+    home_longitude: "-74.314300"
+    zoom_level: 14
+    code: 1215
+    county: 19
+    group_name: "old_bridge_township"
+- model: njcoast.NJCMunicipality
+  pk: 369
+  fields:
+    name: "Old Tappan Borough"
+    home_latitude: "41.012923"
+    home_longitude: "-73.984162"
+    zoom_level: 14
+    code: 243
+    county: 5
+    group_name: "old_tappan_borough"
+- model: njcoast.NJCMunicipality
+  pk: 370
+  fields:
+    name: "Oldmans Township"
+    home_latitude: "39.761394"
+    home_longitude: "-75.405841"
+    zoom_level: 14
+    code: 1707
+    county: 6
+    group_name: "oldmans_township"
+- model: njcoast.NJCMunicipality
+  pk: 371
+  fields:
+    name: "Oradell Borough"
+    home_latitude: "40.955350"
+    home_longitude: "-74.027000"
+    zoom_level: 14
+    code: 244
+    county: 5
+    group_name: "oradell_borough"
+- model: njcoast.NJCMunicipality
+  pk: 372
+  fields:
+    name: "Oxford Township"
+    home_latitude: "40.820040"
+    home_longitude: "-74.941400"
+    zoom_level: 14
+    code: 2117
+    county: 4
+    group_name: "oxford_township"
+- model: njcoast.NJCMunicipality
+  pk: 373
+  fields:
+    name: "Palisades Park Borough"
+    home_latitude: "40.939670"
+    home_longitude: "-74.010800"
+    zoom_level: 14
+    code: 245
+    county: 5
+    group_name: "palisades_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 374
+  fields:
+    name: "Palmyra Borough"
+    home_latitude: "40.031290"
+    home_longitude: "-74.862000"
+    zoom_level: 14
+    code: 327
+    county: 11
+    group_name: "palmyra_borough"
+- model: njcoast.NJCMunicipality
+  pk: 375
+  fields:
+    name: "Paramus Borough"
+    home_latitude: "40.945000"
+    home_longitude: "-74.069000"
+    zoom_level: 14
+    code: 246
+    county: 5
+    group_name: "paramus_borough"
+- model: njcoast.NJCMunicipality
+  pk: 376
+  fields:
+    name: "Park Ridge Borough"
+    home_latitude: "41.032870"
+    home_longitude: "-74.042900"
+    zoom_level: 14
+    code: 247
+    county: 5
+    group_name: "park_ridge_borough"
+- model: njcoast.NJCMunicipality
+  pk: 377
+  fields:
+    name: "Parsippany Troy Hills Township"
+    home_latitude: "40.861323"
+    home_longitude: "-74.423581"
+    zoom_level: 14
+    code: 1429
+    county: 17
+    group_name: "parsippany-troy_hills_township"
+- model: njcoast.NJCMunicipality
+  pk: 378
+  fields:
+    name: "Passaic"
+    home_latitude: "40.855194"
+    home_longitude: "-74.127689"
+    zoom_level: 14
+    code: 1607
+    county: 16
+    group_name: "passaic"
+- model: njcoast.NJCMunicipality
+  pk: 379
+  fields:
+    name: "Paterson"
+    home_latitude: "40.915050"
+    home_longitude: "-74.174500"
+    zoom_level: 14
+    code: 1608
+    county: 16
+    group_name: "paterson"
+- model: njcoast.NJCMunicipality
+  pk: 380
+  fields:
+    name: "Paulsboro Borough"
+    home_latitude: "39.815690"
+    home_longitude: "-75.238800"
+    zoom_level: 14
+    code: 814
+    county: 20
+    group_name: "paulsboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 381
+  fields:
+    name: "Peapack Gladstone Borough"
+    home_latitude: "40.707880"
+    home_longitude: "-74.654100"
+    zoom_level: 14
+    code: 1815
+    county: 13
+    group_name: "peapack-gladstone_borough"
+- model: njcoast.NJCMunicipality
+  pk: 382
+  fields:
+    name: "Pemberton Borough"
+    home_latitude: "39.973451"
+    home_longitude: "-74.679857"
+    zoom_level: 14
+    code: 328
+    county: 11
+    group_name: "pemberton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 383
+  fields:
+    name: "Pemberton Township"
+    home_latitude: "39.963154"
+    home_longitude: "-74.639132"
+    zoom_level: 14
+    code: 329
+    county: 11
+    group_name: "pemberton_township"
+- model: njcoast.NJCMunicipality
+  pk: 384
+  fields:
+    name: "Pennington Borough"
+    home_latitude: "40.328630"
+    home_longitude: "-74.813600"
+    zoom_level: 14
+    code: 1108
+    county: 21
+    group_name: "pennington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 385
+  fields:
+    name: "Penns Grove Borough"
+    home_latitude: "39.619940"
+    home_longitude: "-75.288400"
+    zoom_level: 14
+    code: 1708
+    county: 6
+    group_name: "penns_grove_borough"
+- model: njcoast.NJCMunicipality
+  pk: 386
+  fields:
+    name: "Pennsauken Township"
+    home_latitude: "39.839410"
+    home_longitude: "-74.945600"
+    zoom_level: 14
+    code: 427
+    county: 8
+    group_name: "pennsauken_township"
+- model: njcoast.NJCMunicipality
+  pk: 387
+  fields:
+    name: "Pennsville Township"
+    home_latitude: "39.637680"
+    home_longitude: "-75.512700"
+    zoom_level: 14
+    code: 1709
+    county: 6
+    group_name: "pennsville_township"
+- model: njcoast.NJCMunicipality
+  pk: 388
+  fields:
+    name: "Pequannock Township"
+    home_latitude: "40.948210"
+    home_longitude: "-74.295600"
+    zoom_level: 14
+    code: 1431
+    county: 17
+    group_name: "pequannock_township"
+- model: njcoast.NJCMunicipality
+  pk: 389
+  fields:
+    name: "Perth Amboy"
+    home_latitude: "40.520650"
+    home_longitude: "-74.279100"
+    zoom_level: 14
+    code: 1216
+    county: 19
+    group_name: "perth_amboy"
+- model: njcoast.NJCMunicipality
+  pk: 390
+  fields:
+    name: "Phillipsburg"
+    home_latitude: "40.765310"
+    home_longitude: "-74.987400"
+    zoom_level: 14
+    code: 2119
+    county: 4
+    group_name: "phillipsburg"
+- model: njcoast.NJCMunicipality
+  pk: 391
+  fields:
+    name: "Pilesgrove Township"
+    home_latitude: "39.655331"
+    home_longitude: "-75.308851"
+    zoom_level: 14
+    code: 1710
+    county: 6
+    group_name: "pilesgrove_township"
+- model: njcoast.NJCMunicipality
+  pk: 392
+  fields:
+    name: "Pine Beach Borough"
+    home_latitude: "40.003250"
+    home_longitude: "-74.109600"
+    zoom_level: 14
+    code: 1523
+    county: 10
+    group_name: "pine_beach_borough"
+- model: njcoast.NJCMunicipality
+  pk: 393
+  fields:
+    name: "Pine Hill Borough"
+    home_latitude: "39.783294"
+    home_longitude: "-74.991592"
+    zoom_level: 14
+    code: 428
+    county: 8
+    group_name: "pine_hill_borough"
+- model: njcoast.NJCMunicipality
+  pk: 394
+  fields:
+    name: "Pine Valley Borough"
+    home_latitude: "39.785948"
+    home_longitude: "-74.973981"
+    zoom_level: 14
+    code: 429
+    county: 8
+    group_name: "pine_valley_borough"
+- model: njcoast.NJCMunicipality
+  pk: 395
+  fields:
+    name: "Piscataway Township"
+    home_latitude: "40.552930"
+    home_longitude: "-74.457700"
+    zoom_level: 14
+    code: 1217
+    county: 19
+    group_name: "piscataway_township"
+- model: njcoast.NJCMunicipality
+  pk: 396
+  fields:
+    name: "Pitman Borough"
+    home_latitude: "39.734930"
+    home_longitude: "-75.136800"
+    zoom_level: 14
+    code: 815
+    county: 20
+    group_name: "pitman_borough"
+- model: njcoast.NJCMunicipality
+  pk: 397
+  fields:
+    name: "Pittsgrove Township"
+    home_latitude: "39.537626"
+    home_longitude: "-75.116882"
+    zoom_level: 14
+    code: 1711
+    county: 6
+    group_name: "pittsgrove_township"
+- model: njcoast.NJCMunicipality
+  pk: 398
+  fields:
+    name: "Plainfield"
+    home_latitude: "40.615200"
+    home_longitude: "-74.415000"
+    zoom_level: 14
+    code: 2012
+    county: 15
+    group_name: "plainfield"
+- model: njcoast.NJCMunicipality
+  pk: 399
+  fields:
+    name: "Plainsboro Township"
+    home_latitude: "40.342200"
+    home_longitude: "-74.582100"
+    zoom_level: 14
+    code: 1218
+    county: 19
+    group_name: "plainsboro_township"
+- model: njcoast.NJCMunicipality
+  pk: 400
+  fields:
+    name: "Pleasantville"
+    home_latitude: "39.470870"
+    home_longitude: "-74.686000"
+    zoom_level: 14
+    code: 119
+    county: 2
+    group_name: "pleasantville"
+- model: njcoast.NJCMunicipality
+  pk: 401
+  fields:
+    name: "Plumsted Township"
+    home_latitude: "40.041728"
+    home_longitude: "-74.480348"
+    zoom_level: 14
+    code: 1524
+    county: 10
+    group_name: "plumsted_township"
+- model: njcoast.NJCMunicipality
+  pk: 402
+  fields:
+    name: "Pohatcong Township"
+    home_latitude: "40.641091"
+    home_longitude: "-75.170208"
+    zoom_level: 14
+    code: 2120
+    county: 4
+    group_name: "pohatcong_township"
+- model: njcoast.NJCMunicipality
+  pk: 403
+  fields:
+    name: "Point Pleasant Beach Borough"
+    home_latitude: "39.954810"
+    home_longitude: "-74.157100"
+    zoom_level: 14
+    code: 1526
+    county: 10
+    group_name: "point_pleasant_beach_borough"
+- model: njcoast.NJCMunicipality
+  pk: 404
+  fields:
+    name: "Point Pleasant Borough"
+    home_latitude: "40.078434"
+    home_longitude: "-74.071732"
+    zoom_level: 14
+    code: 1525
+    county: 10
+    group_name: "point_pleasant_borough"
+- model: njcoast.NJCMunicipality
+  pk: 405
+  fields:
+    name: "Pompton Lakes Borough"
+    home_latitude: "41.003195"
+    home_longitude: "-74.290601"
+    zoom_level: 14
+    code: 1609
+    county: 16
+    group_name: "pompton_lakes_borough"
+- model: njcoast.NJCMunicipality
+  pk: 406
+  fields:
+    name: "Port Republic"
+    home_latitude: "39.523297"
+    home_longitude: "-74.486384"
+    zoom_level: 14
+    code: 120
+    county: 2
+    group_name: "port_republic"
+- model: njcoast.NJCMunicipality
+  pk: 407
+  fields:
+    name: "Princeton"
+    home_latitude: "40.353263"
+    home_longitude: "-74.660575"
+    zoom_level: 14
+    code: 1114
+    county: 21
+    group_name: "princeton"
+- model: njcoast.NJCMunicipality
+  pk: 408
+  fields:
+    name: "Prospect Park Borough"
+    home_latitude: "39.887963"
+    home_longitude: "-75.308263"
+    zoom_level: 14
+    code: 1610
+    county: 16
+    group_name: "prospect_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 409
+  fields:
+    name: "Quinton Township"
+    home_latitude: "39.541060"
+    home_longitude: "-75.383700"
+    zoom_level: 14
+    code: 1712
+    county: 6
+    group_name: "quinton_township"
+- model: njcoast.NJCMunicipality
+  pk: 410
+  fields:
+    name: "Rahway"
+    home_latitude: "40.609550"
+    home_longitude: "-74.280600"
+    zoom_level: 14
+    code: 2013
+    county: 15
+    group_name: "rahway"
+- model: njcoast.NJCMunicipality
+  pk: 411
+  fields:
+    name: "Ramsey Borough"
+    home_latitude: "41.059120"
+    home_longitude: "-74.133400"
+    zoom_level: 14
+    code: 248
+    county: 5
+    group_name: "ramsey_borough"
+- model: njcoast.NJCMunicipality
+  pk: 412
+  fields:
+    name: "Randolph Township"
+    home_latitude: "40.837400"
+    home_longitude: "-74.586100"
+    zoom_level: 14
+    code: 1432
+    county: 17
+    group_name: "randolph_township"
+- model: njcoast.NJCMunicipality
+  pk: 413
+  fields:
+    name: "Raritan Borough"
+    home_latitude: "40.573800"
+    home_longitude: "-74.642600"
+    zoom_level: 14
+    code: 1816
+    county: 13
+    group_name: "raritan_borough"
+- model: njcoast.NJCMunicipality
+  pk: 414
+  fields:
+    name: "Raritan Township"
+    home_latitude: "40.524506"
+    home_longitude: "-74.868798"
+    zoom_level: 14
+    code: 1021
+    county: 3
+    group_name: "raritan_township"
+- model: njcoast.NJCMunicipality
+  pk: 415
+  fields:
+    name: "Readington Township"
+    home_latitude: "40.563650"
+    home_longitude: "-74.949400"
+    zoom_level: 14
+    code: 1022
+    county: 3
+    group_name: "readington_township"
+- model: njcoast.NJCMunicipality
+  pk: 416
+  fields:
+    name: "Red Bank Borough"
+    home_latitude: "40.358410"
+    home_longitude: "-74.068100"
+    zoom_level: 14
+    code: 1339
+    county: 1
+    group_name: "red_bank_borough"
+- model: njcoast.NJCMunicipality
+  pk: 417
+  fields:
+    name: "Ridgefield Borough"
+    home_latitude: "40.833150"
+    home_longitude: "-74.004200"
+    zoom_level: 14
+    code: 249
+    county: 5
+    group_name: "ridgefield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 418
+  fields:
+    name: "Ridgefield Park Village"
+    home_latitude: "40.853450"
+    home_longitude: "-74.021200"
+    zoom_level: 14
+    code: 250
+    county: 5
+    group_name: "ridgefield_park_village"
+- model: njcoast.NJCMunicipality
+  pk: 419
+  fields:
+    name: "Ridgewood Village"
+    home_latitude: "40.982589"
+    home_longitude: "-74.116070"
+    zoom_level: 14
+    code: 251
+    county: 5
+    group_name: "ridgewood_village"
+- model: njcoast.NJCMunicipality
+  pk: 420
+  fields:
+    name: "Ringwood Borough"
+    home_latitude: "41.110450"
+    home_longitude: "-74.293300"
+    zoom_level: 14
+    code: 1611
+    county: 16
+    group_name: "ringwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 421
+  fields:
+    name: "River Edge Borough"
+    home_latitude: "40.926250"
+    home_longitude: "-74.038500"
+    zoom_level: 14
+    code: 252
+    county: 5
+    group_name: "river_edge_borough"
+- model: njcoast.NJCMunicipality
+  pk: 422
+  fields:
+    name: "River Vale Township"
+    home_latitude: "41.016531"
+    home_longitude: "-74.010898"
+    zoom_level: 14
+    code: 253
+    county: 5
+    group_name: "river_vale_township"
+- model: njcoast.NJCMunicipality
+  pk: 423
+  fields:
+    name: "Riverdale Borough"
+    home_latitude: "40.992650"
+    home_longitude: "-74.312400"
+    zoom_level: 14
+    code: 1433
+    county: 17
+    group_name: "riverdale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 424
+  fields:
+    name: "Riverside Township"
+    home_latitude: "40.063290"
+    home_longitude: "-74.853300"
+    zoom_level: 14
+    code: 330
+    county: 11
+    group_name: "riverside_township"
+- model: njcoast.NJCMunicipality
+  pk: 425
+  fields:
+    name: "Riverton Borough"
+    home_latitude: "39.862430"
+    home_longitude: "-74.725100"
+    zoom_level: 14
+    code: 331
+    county: 11
+    group_name: "riverton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 426
+  fields:
+    name: "Robbinsville Township"
+    home_latitude: "40.224712"
+    home_longitude: "-74.593392"
+    zoom_level: 14
+    code: 1112
+    county: 21
+    group_name: "robbinsville_township"
+- model: njcoast.NJCMunicipality
+  pk: 427
+  fields:
+    name: "Rochelle Park Township"
+    home_latitude: "40.905700"
+    home_longitude: "-74.079000"
+    zoom_level: 14
+    code: 254
+    county: 5
+    group_name: "rochelle_park_township"
+- model: njcoast.NJCMunicipality
+  pk: 428
+  fields:
+    name: "Rockaway Borough"
+    home_latitude: "40.900142"
+    home_longitude: "-74.514141"
+    zoom_level: 14
+    code: 1434
+    county: 17
+    group_name: "rockaway_borough"
+- model: njcoast.NJCMunicipality
+  pk: 429
+  fields:
+    name: "Rockaway Township"
+    home_latitude: "40.948830"
+    home_longitude: "-74.503540"
+    zoom_level: 14
+    code: 1435
+    county: 17
+    group_name: "rockaway_township"
+- model: njcoast.NJCMunicipality
+  pk: 430
+  fields:
+    name: "Rockleigh Borough"
+    home_latitude: "41.003844"
+    home_longitude: "-73.925514"
+    zoom_level: 14
+    code: 255
+    county: 5
+    group_name: "rockleigh_borough"
+- model: njcoast.NJCMunicipality
+  pk: 431
+  fields:
+    name: "Rocky Hill Borough"
+    home_latitude: "40.402794"
+    home_longitude: "-74.639224"
+    zoom_level: 14
+    code: 1817
+    county: 13
+    group_name: "rocky_hill_borough"
+- model: njcoast.NJCMunicipality
+  pk: 432
+  fields:
+    name: "Roosevelt Borough"
+    home_latitude: "40.221360"
+    home_longitude: "-74.474700"
+    zoom_level: 14
+    code: 1340
+    county: 1
+    group_name: "roosevelt_borough"
+- model: njcoast.NJCMunicipality
+  pk: 433
+  fields:
+    name: "Roseland Borough"
+    home_latitude: "40.820500"
+    home_longitude: "-74.306100"
+    zoom_level: 14
+    code: 718
+    county: 14
+    group_name: "roseland_borough"
+- model: njcoast.NJCMunicipality
+  pk: 434
+  fields:
+    name: "Roselle Borough"
+    home_latitude: "40.650150"
+    home_longitude: "-74.258800"
+    zoom_level: 14
+    code: 2014
+    county: 15
+    group_name: "roselle_borough"
+- model: njcoast.NJCMunicipality
+  pk: 435
+  fields:
+    name: "Roselle Park Borough"
+    home_latitude: "40.665650"
+    home_longitude: "-74.266700"
+    zoom_level: 14
+    code: 2015
+    county: 15
+    group_name: "roselle_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 436
+  fields:
+    name: "Roxbury Township"
+    home_latitude: "40.880576"
+    home_longitude: "-74.655529"
+    zoom_level: 14
+    code: 1436
+    county: 17
+    group_name: "roxbury_township"
+- model: njcoast.NJCMunicipality
+  pk: 437
+  fields:
+    name: "Rumson Borough"
+    home_latitude: "40.370680"
+    home_longitude: "-74.008400"
+    zoom_level: 14
+    code: 1341
+    county: 1
+    group_name: "rumson_borough"
+- model: njcoast.NJCMunicipality
+  pk: 438
+  fields:
+    name: "Runnemede Borough"
+    home_latitude: "39.850160"
+    home_longitude: "-75.070700"
+    zoom_level: 14
+    code: 430
+    county: 8
+    group_name: "runnemede_borough"
+- model: njcoast.NJCMunicipality
+  pk: 439
+  fields:
+    name: "Rutherford Borough"
+    home_latitude: "40.827450"
+    home_longitude: "-74.109800"
+    zoom_level: 14
+    code: 256
+    county: 5
+    group_name: "rutherford_borough"
+- model: njcoast.NJCMunicipality
+  pk: 440
+  fields:
+    name: "Saddle Brook Township"
+    home_latitude: "40.942100"
+    home_longitude: "-74.094700"
+    zoom_level: 14
+    code: 257
+    county: 5
+    group_name: "saddle_brook_township"
+- model: njcoast.NJCMunicipality
+  pk: 441
+  fields:
+    name: "Saddle River Borough"
+    home_latitude: "41.044320"
+    home_longitude: "-74.098100"
+    zoom_level: 14
+    code: 258
+    county: 5
+    group_name: "saddle_river_borough"
+- model: njcoast.NJCMunicipality
+  pk: 442
+  fields:
+    name: "Salem"
+    home_latitude: "39.587730"
+    home_longitude: "-75.439400"
+    zoom_level: 14
+    code: 1713
+    county: 6
+    group_name: "salem"
+- model: njcoast.NJCMunicipality
+  pk: 443
+  fields:
+    name: "Sandyston Township"
+    home_latitude: "41.235422"
+    home_longitude: "-74.790692"
+    zoom_level: 14
+    code: 1917
+    county: 7
+    group_name: "sandyston_township"
+- model: njcoast.NJCMunicipality
+  pk: 444
+  fields:
+    name: "Sayreville Borough"
+    home_latitude: "40.430010"
+    home_longitude: "-74.417300"
+    zoom_level: 14
+    code: 1219
+    county: 19
+    group_name: "sayreville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 445
+  fields:
+    name: "Scotch Plains Township"
+    home_latitude: "40.637850"
+    home_longitude: "-74.368200"
+    zoom_level: 14
+    code: 2016
+    county: 15
+    group_name: "scotch_plains_township"
+- model: njcoast.NJCMunicipality
+  pk: 446
+  fields:
+    name: "Sea Bright Borough"
+    home_latitude: "40.365927"
+    home_longitude: "-73.973790"
+    zoom_level: 14
+    code: 1342
+    county: 1
+    group_name: "sea_bright_borough"
+- model: njcoast.NJCMunicipality
+  pk: 447
+  fields:
+    name: "Sea Girt Borough"
+    home_latitude: "40.161390"
+    home_longitude: "-74.043800"
+    zoom_level: 14
+    code: 1343
+    county: 1
+    group_name: "sea_girt_borough"
+- model: njcoast.NJCMunicipality
+  pk: 448
+  fields:
+    name: "Sea Isle City"
+    home_latitude: "39.154030"
+    home_longitude: "-74.700500"
+    zoom_level: 14
+    code: 509
+    county: 9
+    group_name: "sea_isle_city"
+- model: njcoast.NJCMunicipality
+  pk: 449
+  fields:
+    name: "Seaside Heights Borough"
+    home_latitude: "39.945990"
+    home_longitude: "-74.181600"
+    zoom_level: 14
+    code: 1527
+    county: 10
+    group_name: "seaside_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 450
+  fields:
+    name: "Seaside Park Borough"
+    home_latitude: "39.805830"
+    home_longitude: "-74.145700"
+    zoom_level: 14
+    code: 1528
+    county: 10
+    group_name: "seaside_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 451
+  fields:
+    name: "Secaucus"
+    home_latitude: "40.793313"
+    home_longitude: "-74.062830"
+    zoom_level: 14
+    code: 909
+    county: 12
+    group_name: "secaucus"
+- model: njcoast.NJCMunicipality
+  pk: 452
+  fields:
+    name: "Shamong Township"
+    home_latitude: "39.800803"
+    home_longitude: "-74.728882"
+    zoom_level: 14
+    code: 332
+    county: 11
+    group_name: "shamong_township"
+- model: njcoast.NJCMunicipality
+  pk: 453
+  fields:
+    name: "Shiloh Borough"
+    home_latitude: "39.421650"
+    home_longitude: "-75.207700"
+    zoom_level: 14
+    code: 611
+    county: 18
+    group_name: "shiloh_borough"
+- model: njcoast.NJCMunicipality
+  pk: 454
+  fields:
+    name: "Ship Bottom Borough"
+    home_latitude: "39.648942"
+    home_longitude: "-74.176642"
+    zoom_level: 14
+    code: 1529
+    county: 10
+    group_name: "ship_bottom_borough"
+- model: njcoast.NJCMunicipality
+  pk: 455
+  fields:
+    name: "Shrewsbury Borough"
+    home_latitude: "40.328767"
+    home_longitude: "-74.061546"
+    zoom_level: 14
+    code: 1344
+    county: 1
+    group_name: "shrewsbury_borough"
+- model: njcoast.NJCMunicipality
+  pk: 456
+  fields:
+    name: "Shrewsbury Township"
+    home_latitude: "40.313897"
+    home_longitude: "-74.071091"
+    zoom_level: 14
+    code: 1345
+    county: 1
+    group_name: "shrewsbury_township"
+- model: njcoast.NJCMunicipality
+  pk: 457
+  fields:
+    name: "Somerdale Borough"
+    home_latitude: "39.844060"
+    home_longitude: "-75.022200"
+    zoom_level: 14
+    code: 431
+    county: 8
+    group_name: "somerdale_borough"
+- model: njcoast.NJCMunicipality
+  pk: 458
+  fields:
+    name: "Somers Point"
+    home_latitude: "39.425660"
+    home_longitude: "-74.664400"
+    zoom_level: 14
+    code: 121
+    county: 2
+    group_name: "somers_point"
+- model: njcoast.NJCMunicipality
+  pk: 459
+  fields:
+    name: "Somerville Borough"
+    home_latitude: "40.560310"
+    home_longitude: "-74.661700"
+    zoom_level: 14
+    code: 1818
+    county: 13
+    group_name: "somerville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 460
+  fields:
+    name: "South Amboy"
+    home_latitude: "40.436870"
+    home_longitude: "-74.250900"
+    zoom_level: 14
+    code: 1220
+    county: 19
+    group_name: "south_amboy"
+- model: njcoast.NJCMunicipality
+  pk: 461
+  fields:
+    name: "South Bound Brook Borough"
+    home_latitude: "40.552250"
+    home_longitude: "-74.531100"
+    zoom_level: 14
+    code: 1819
+    county: 13
+    group_name: "south_bound_brook_borough"
+- model: njcoast.NJCMunicipality
+  pk: 462
+  fields:
+    name: "South Brunswick Township"
+    home_latitude: "40.392160,"
+    home_longitude: "-74.524873"
+    zoom_level: 14
+    code: 1221
+    county: 19
+    group_name: "south_brunswick_township"
+- model: njcoast.NJCMunicipality
+  pk: 463
+  fields:
+    name: "South Hackensack Township"
+    home_latitude: "40.857900"
+    home_longitude: "-74.048900"
+    zoom_level: 14
+    code: 259
+    county: 5
+    group_name: "south_hackensack_township"
+- model: njcoast.NJCMunicipality
+  pk: 464
+  fields:
+    name: "South Harrison Township"
+    home_latitude: "39.696395"
+    home_longitude: "-75.243772"
+    zoom_level: 14
+    code: 816
+    county: 20
+    group_name: "south_harrison_township"
+- model: njcoast.NJCMunicipality
+  pk: 465
+  fields:
+    name: "South Orange Village Township"
+    home_latitude: "40.745770"
+    home_longitude: "-74.267500"
+    zoom_level: 14
+    code: 719
+    county: 14
+    group_name: "south_orange_village_township"
+- model: njcoast.NJCMunicipality
+  pk: 466
+  fields:
+    name: "South Plainfield Borough"
+    home_latitude: "40.572070"
+    home_longitude: "-74.413500"
+    zoom_level: 14
+    code: 1222
+    county: 19
+    group_name: "south_plainfield_borough"
+- model: njcoast.NJCMunicipality
+  pk: 467
+  fields:
+    name: "South River Borough"
+    home_latitude: "40.430010"
+    home_longitude: "-74.417300"
+    zoom_level: 14
+    code: 1223
+    county: 19
+    group_name: "south_river_borough"
+- model: njcoast.NJCMunicipality
+  pk: 468
+  fields:
+    name: "South Toms River Borough"
+    home_latitude: "39.941880"
+    home_longitude: "-74.201543"
+    zoom_level: 14
+    code: 1530
+    county: 10
+    group_name: "south_toms_river_borough"
+- model: njcoast.NJCMunicipality
+  pk: 469
+  fields:
+    name: "Southampton Township"
+    home_latitude: "39.918007"
+    home_longitude: "-74.707621"
+    zoom_level: 14
+    code: 333
+    county: 11
+    group_name: "southampton_township"
+- model: njcoast.NJCMunicipality
+  pk: 470
+  fields:
+    name: "Sparta Township"
+    home_latitude: "41.040600"
+    home_longitude: "-74.718200"
+    zoom_level: 14
+    code: 1918
+    county: 7
+    group_name: "sparta_township"
+- model: njcoast.NJCMunicipality
+  pk: 471
+  fields:
+    name: "Spotswood Borough"
+    home_latitude: "40.385710"
+    home_longitude: "-74.393200"
+    zoom_level: 14
+    code: 1224
+    county: 19
+    group_name: "spotswood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 472
+  fields:
+    name: "Spring Lake Borough"
+    home_latitude: "40.176010"
+    home_longitude: "-74.031300"
+    zoom_level: 14
+    code: 1347
+    county: 1
+    group_name: "spring_lake_borough"
+- model: njcoast.NJCMunicipality
+  pk: 473
+  fields:
+    name: "Spring Lake Heights Borough"
+    home_latitude: "40.154841"
+    home_longitude: "-74.035254"
+    zoom_level: 14
+    code: 1348
+    county: 1
+    group_name: "spring_lake_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 474
+  fields:
+    name: "Springfield Township"
+    home_latitude: "40.032934"
+    home_longitude: "-74.690737"
+    zoom_level: 14
+    code: 334
+    county: 11
+    group_name: "springfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 475
+  fields:
+    name: "Springfield Township"
+    home_latitude: "40.698929"
+    home_longitude: "-74.325477"
+    zoom_level: 14
+    code: 2017
+    county: 15
+    group_name: "springfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 476
+  fields:
+    name: "Stafford Township"
+    home_latitude: "39.715044"
+    home_longitude: "-74.287700"
+    zoom_level: 14
+    code: 1531
+    county: 10
+    group_name: "stafford_township"
+- model: njcoast.NJCMunicipality
+  pk: 477
+  fields:
+    name: "Stanhope Borough"
+    home_latitude: "40.930940"
+    home_longitude: "-74.713600"
+    zoom_level: 14
+    code: 1919
+    county: 7
+    group_name: "stanhope_borough"
+- model: njcoast.NJCMunicipality
+  pk: 478
+  fields:
+    name: "Stillwater Township"
+    home_latitude: "41.043860"
+    home_longitude: "-74.872000"
+    zoom_level: 14
+    code: 1920
+    county: 7
+    group_name: "stillwater_township"
+- model: njcoast.NJCMunicipality
+  pk: 479
+  fields:
+    name: "Stockton Borough"
+    home_latitude: "40.436410"
+    home_longitude: "-74.970600"
+    zoom_level: 14
+    code: 1023
+    county: 3
+    group_name: "stockton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 480
+  fields:
+    name: "Stone Harbor Borough"
+    home_latitude: "39.047880"
+    home_longitude: "-74.775100"
+    zoom_level: 14
+    code: 510
+    county: 9
+    group_name: "stone_harbor_borough"
+- model: njcoast.NJCMunicipality
+  pk: 481
+  fields:
+    name: "Stow Creek Township"
+    home_latitude: "39.467337"
+    home_longitude: "-75.331858"
+    zoom_level: 14
+    code: 612
+    county: 18
+    group_name: "stow_creek_township"
+- model: njcoast.NJCMunicipality
+  pk: 482
+  fields:
+    name: "Stratford Borough"
+    home_latitude: "39.829760"
+    home_longitude: "-75.012000"
+    zoom_level: 14
+    code: 432
+    county: 8
+    group_name: "stratford_borough"
+- model: njcoast.NJCMunicipality
+  pk: 483
+  fields:
+    name: "Summit"
+    home_latitude: "40.712750"
+    home_longitude: "-74.361600"
+    zoom_level: 14
+    code: 2018
+    county: 15
+    group_name: "summit"
+- model: njcoast.NJCMunicipality
+  pk: 484
+  fields:
+    name: "Surf City Borough"
+    home_latitude: "39.660371"
+    home_longitude: "-74.167446"
+    zoom_level: 14
+    code: 1532
+    county: 10
+    group_name: "surf_city_borough"
+- model: njcoast.NJCMunicipality
+  pk: 485
+  fields:
+    name: "Sussex Borough"
+    home_latitude: "41.242700"
+    home_longitude: "-74.596700"
+    zoom_level: 14
+    code: 1921
+    county: 7
+    group_name: "sussex_borough"
+- model: njcoast.NJCMunicipality
+  pk: 486
+  fields:
+    name: "Swedesboro Borough"
+    home_latitude: "39.752740"
+    home_longitude: "-75.318000"
+    zoom_level: 14
+    code: 817
+    county: 20
+    group_name: "swedesboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 487
+  fields:
+    name: "Tabernacle Township"
+    home_latitude: "39.837032"
+    home_longitude: "-74.669841"
+    zoom_level: 14
+    code: 335
+    county: 11
+    group_name: "tabernacle_township"
+- model: njcoast.NJCMunicipality
+  pk: 488
+  fields:
+    name: "Tavistock Borough"
+    home_latitude: "39.875411"
+    home_longitude: "-75.028427"
+    zoom_level: 14
+    code: 433
+    county: 8
+    group_name: "tavistock_borough"
+- model: njcoast.NJCMunicipality
+  pk: 489
+  fields:
+    name: "Teaneck Township"
+    home_latitude: "40.914620"
+    home_longitude: "-73.986300"
+    zoom_level: 14
+    code: 260
+    county: 5
+    group_name: "teaneck_township"
+- model: njcoast.NJCMunicipality
+  pk: 490
+  fields:
+    name: "Tenafly Borough"
+    home_latitude: "40.919300"
+    home_longitude: "-73.960500"
+    zoom_level: 14
+    code: 261
+    county: 5
+    group_name: "tenafly_borough"
+- model: njcoast.NJCMunicipality
+  pk: 491
+  fields:
+    name: "Teterboro Borough"
+    home_latitude: "40.863950"
+    home_longitude: "-74.055600"
+    zoom_level: 14
+    code: 262
+    county: 5
+    group_name: "teterboro_borough"
+- model: njcoast.NJCMunicipality
+  pk: 492
+  fields:
+    name: "Tewksbury Township"
+    home_latitude: "40.703414"
+    home_longitude: "-74.774702"
+    zoom_level: 14
+    code: 1024
+    county: 3
+    group_name: "tewksbury_township"
+- model: njcoast.NJCMunicipality
+  pk: 493
+  fields:
+    name: "Tinton Falls Borough"
+    home_latitude: "40.283119"
+    home_longitude: "-74.089433"
+    zoom_level: 14
+    code: 1349
+    county: 1
+    group_name: "tinton_falls_borough"
+- model: njcoast.NJCMunicipality
+  pk: 494
+  fields:
+    name: "Toms River Township"
+    home_latitude: "39.980552"
+    home_longitude: "-74.159468"
+    zoom_level: 14
+    code: 1508
+    county: 10
+    group_name: "toms_river_township"
+- model: njcoast.NJCMunicipality
+  pk: 495
+  fields:
+    name: "Totowa Borough"
+    home_latitude: "41.011430"
+    home_longitude: "-74.304800"
+    zoom_level: 14
+    code: 1612
+    county: 16
+    group_name: "totowa_borough"
+- model: njcoast.NJCMunicipality
+  pk: 496
+  fields:
+    name: "Trenton"
+    home_latitude: "40.220594"
+    home_longitude: "-74.757082"
+    zoom_level: 14
+    code: 1111
+    county: 21
+    group_name: "trenton"
+- model: njcoast.NJCMunicipality
+  pk: 497
+  fields:
+    name: "Tuckerton Borough"
+    home_latitude: "39.671690"
+    home_longitude: "-74.288100"
+    zoom_level: 14
+    code: 1533
+    county: 10
+    group_name: "tuckerton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 498
+  fields:
+    name: "Union Beach Borough"
+    home_latitude: "40.445310"
+    home_longitude: "-74.170209"
+    zoom_level: 14
+    code: 1350
+    county: 1
+    group_name: "union_beach_borough"
+- model: njcoast.NJCMunicipality
+  pk: 499
+  fields:
+    name: "Union City"
+    home_latitude: "40.758950"
+    home_longitude: "-74.056300"
+    zoom_level: 14
+    code: 910
+    county: 12
+    group_name: "union_city"
+- model: njcoast.NJCMunicipality
+  pk: 500
+  fields:
+    name: "Union Township"
+    home_latitude: "40.634732"
+    home_longitude: "-74.959481"
+    zoom_level: 14
+    code: 1025
+    county: 3
+    group_name: "union_township"
+- model: njcoast.NJCMunicipality
+  pk: 501
+  fields:
+    name: "Union Township"
+    home_latitude: "40.696494"
+    home_longitude: "-74.267740"
+    zoom_level: 14
+    code: 2019
+    county: 15
+    group_name: "union_township"
+- model: njcoast.NJCMunicipality
+  pk: 502
+  fields:
+    name: "Upper Deerfield Township"
+    home_latitude: "39.496694"
+    home_longitude: "-75.216170"
+    zoom_level: 14
+    code: 613
+    county: 18
+    group_name: "upper_deerfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 503
+  fields:
+    name: "Upper Freehold Township"
+    home_latitude: "40.165023"
+    home_longitude: "-74.519901"
+    zoom_level: 14
+    code: 1351
+    county: 1
+    group_name: "upper_freehold_township"
+- model: njcoast.NJCMunicipality
+  pk: 504
+  fields:
+    name: "Upper Pittsgrove Township"
+    home_latitude: "39.615220"
+    home_longitude: "-75.227052"
+    zoom_level: 14
+    code: 1714
+    county: 6
+    group_name: "upper_pittsgrove_township"
+- model: njcoast.NJCMunicipality
+  pk: 505
+  fields:
+    name: "Upper Saddle River Borough"
+    home_latitude: "41.061862"
+    home_longitude: "-74.099176"
+    zoom_level: 14
+    code: 263
+    county: 5
+    group_name: "upper_saddle_river_borough"
+- model: njcoast.NJCMunicipality
+  pk: 506
+  fields:
+    name: "Upper Township"
+    home_latitude: "39.263690"
+    home_longitude: "-74.751449"
+    zoom_level: 14
+    code: 511
+    county: 9
+    group_name: "upper_township"
+- model: njcoast.NJCMunicipality
+  pk: 507
+  fields:
+    name: "Ventnor City"
+    home_latitude: "39.414650"
+    home_longitude: "-74.664200"
+    zoom_level: 14
+    code: 122
+    county: 2
+    group_name: "ventnor_city"
+- model: njcoast.NJCMunicipality
+  pk: 508
+  fields:
+    name: "Vernon Township"
+    home_latitude: "41.189050"
+    home_longitude: "-74.514300"
+    zoom_level: 14
+    code: 1922
+    county: 7
+    group_name: "vernon_township"
+- model: njcoast.NJCMunicipality
+  pk: 509
+  fields:
+    name: "Verona Township"
+    home_latitude: "40.832850"
+    home_longitude: "-74.243900"
+    zoom_level: 14
+    code: 720
+    county: 14
+    group_name: "verona_township"
+- model: njcoast.NJCMunicipality
+  pk: 510
+  fields:
+    name: "Victory Gardens Borough"
+    home_latitude: "40.872477"
+    home_longitude: "-74.546360"
+    zoom_level: 14
+    code: 1437
+    county: 17
+    group_name: "victory_gardens_borough"
+- model: njcoast.NJCMunicipality
+  pk: 511
+  fields:
+    name: "Vineland"
+    home_latitude: "39.392670"
+    home_longitude: "-75.025700"
+    zoom_level: 14
+    code: 614
+    county: 18
+    group_name: "vineland"
+- model: njcoast.NJCMunicipality
+  pk: 512
+  fields:
+    name: "Voorhees Township"
+    home_latitude: "39.839160"
+    home_longitude: "-74.965100"
+    zoom_level: 14
+    code: 434
+    county: 8
+    group_name: "voorhees_township"
+- model: njcoast.NJCMunicipality
+  pk: 513
+  fields:
+    name: "Waldwick Borough"
+    home_latitude: "41.041230"
+    home_longitude: "-74.128300"
+    zoom_level: 14
+    code: 264
+    county: 5
+    group_name: "waldwick_borough"
+- model: njcoast.NJCMunicipality
+  pk: 514
+  fields:
+    name: "Wall Township"
+    home_latitude: "40.154079"
+    home_longitude: "-74.070574"
+    zoom_level: 14
+    code: 1352
+    county: 1
+    group_name: "wall_township"
+- model: njcoast.NJCMunicipality
+  pk: 515
+  fields:
+    name: "Wallington Borough"
+    home_latitude: "40.852800"
+    home_longitude: "-74.107300"
+    zoom_level: 14
+    code: 265
+    county: 5
+    group_name: "wallington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 516
+  fields:
+    name: "Walpack Township"
+    home_latitude: "41.125650"
+    home_longitude: "-74.917700"
+    zoom_level: 14
+    code: 1923
+    county: 7
+    group_name: "walpack_township"
+- model: njcoast.NJCMunicipality
+  pk: 517
+  fields:
+    name: "Wanaque Borough"
+    home_latitude: "41.065600"
+    home_longitude: "-74.297400"
+    zoom_level: 14
+    code: 1613
+    county: 16
+    group_name: "wanaque_borough"
+- model: njcoast.NJCMunicipality
+  pk: 518
+  fields:
+    name: "Wantage Township"
+    home_latitude: "41.240124"
+    home_longitude: "-74.623726"
+    zoom_level: 14
+    code: 1924
+    county: 7
+    group_name: "wantage_township"
+- model: njcoast.NJCMunicipality
+  pk: 519
+  fields:
+    name: "Warren Township"
+    home_latitude: "40.629100"
+    home_longitude: "-74.532400"
+    zoom_level: 14
+    code: 1820
+    county: 13
+    group_name: "warren_township"
+- model: njcoast.NJCMunicipality
+  pk: 520
+  fields:
+    name: "Washington Borough"
+    home_latitude: "40.759836"
+    home_longitude: "-74.979885"
+    zoom_level: 14
+    code: 2121
+    county: 4
+    group_name: "washington_borough"
+- model: njcoast.NJCMunicipality
+  pk: 521
+  fields:
+    name: "Washington Township"
+    home_latitude: "40.987085"
+    home_longitude: "-74.064327"
+    zoom_level: 14
+    code: 266
+    county: 5
+    group_name: "washington_township"
+- model: njcoast.NJCMunicipality
+  pk: 522
+  fields:
+    name: "Washington Township"
+    home_latitude: "39.611618"
+    home_longitude: "-74.503183"
+    zoom_level: 14
+    code: 336
+    county: 11
+    group_name: "washington_township"
+- model: njcoast.NJCMunicipality
+  pk: 523
+  fields:
+    name: "Washington Township"
+    home_latitude: "39.739357"
+    home_longitude: "-75.074011"
+    zoom_level: 14
+    code: 818
+    county: 20
+    group_name: "washington_township"
+- model: njcoast.NJCMunicipality
+  pk: 524
+  fields:
+    name: "Washington Township"
+    home_latitude: "40.802118"
+    home_longitude: "-74.796241"
+    zoom_level: 14
+    code: 1438
+    county: 17
+    group_name: "washington_township"
+- model: njcoast.NJCMunicipality
+  pk: 525
+  fields:
+    name: "Washington Township"
+    home_latitude: "40.768711"
+    home_longitude: "-74.991832"
+    zoom_level: 14
+    code: 2122
+    county: 4
+    group_name: "washington_township"
+- model: njcoast.NJCMunicipality
+  pk: 526
+  fields:
+    name: "Watchung Borough"
+    home_latitude: "40.637717"
+    home_longitude: "-74.450781"
+    zoom_level: 14
+    code: 1821
+    county: 13
+    group_name: "watchung_borough"
+- model: njcoast.NJCMunicipality
+  pk: 527
+  fields:
+    name: "Waterford Township"
+    home_latitude: "39.781087"
+    home_longitude: "-74.902663"
+    zoom_level: 14
+    code: 435
+    county: 8
+    group_name: "waterford_township"
+- model: njcoast.NJCMunicipality
+  pk: 528
+  fields:
+    name: "Wayne Township"
+    home_latitude: "40.946775"
+    home_longitude: "-74.248723"
+    zoom_level: 14
+    code: 1614
+    county: 16
+    group_name: "wayne_township"
+- model: njcoast.NJCMunicipality
+  pk: 529
+  fields:
+    name: "Weehawken Township"
+    home_latitude: "40.768751"
+    home_longitude: "-74.019722"
+    zoom_level: 14
+    code: 911
+    county: 12
+    group_name: "weehawken_township"
+- model: njcoast.NJCMunicipality
+  pk: 530
+  fields:
+    name: "Wenonah Borough"
+    home_latitude: "39.798310"
+    home_longitude: "-75.148100"
+    zoom_level: 14
+    code: 819
+    county: 20
+    group_name: "wenonah_borough"
+- model: njcoast.NJCMunicipality
+  pk: 531
+  fields:
+    name: "West Amwell Township"
+    home_latitude: "40.386356"
+    home_longitude: "-74.906115"
+    zoom_level: 14
+    code: 1026
+    county: 3
+    group_name: "west_amwell_township"
+- model: njcoast.NJCMunicipality
+  pk: 532
+  fields:
+    name: "West Caldwell Township"
+    home_latitude: "40.850439"
+    home_longitude: "-74.301124"
+    zoom_level: 14
+    code: 721
+    county: 14
+    group_name: "west_caldwell_township"
+- model: njcoast.NJCMunicipality
+  pk: 533
+  fields:
+    name: "West Cape May Borough"
+    home_latitude: "38.941221"
+    home_longitude: "-74.933468"
+    zoom_level: 14
+    code: 512
+    county: 9
+    group_name: "west_cape_may_borough"
+- model: njcoast.NJCMunicipality
+  pk: 534
+  fields:
+    name: "West Deptford Township"
+    home_latitude: "39.836371"
+    home_longitude: "-75.191296"
+    zoom_level: 14
+    code: 820
+    county: 20
+    group_name: "west_deptford_township"
+- model: njcoast.NJCMunicipality
+  pk: 535
+  fields:
+    name: "West Long Branch Borough"
+    home_latitude: "40.283510"
+    home_longitude: "-74.018300"
+    zoom_level: 14
+    code: 1353
+    county: 1
+    group_name: "west_long_branch_borough"
+- model: njcoast.NJCMunicipality
+  pk: 536
+  fields:
+    name: "West Milford Township"
+    home_latitude: "41.047300"
+    home_longitude: "-74.294200"
+    zoom_level: 14
+    code: 1615
+    county: 16
+    group_name: "west_milford_township"
+- model: njcoast.NJCMunicipality
+  pk: 537
+  fields:
+    name: "West New York"
+    home_latitude: "40.788800"
+    home_longitude: "-74.011500"
+    zoom_level: 14
+    code: 912
+    county: 12
+    group_name: "west_new_york"
+- model: njcoast.NJCMunicipality
+  pk: 538
+  fields:
+    name: "West Orange Township"
+    home_latitude: "40.789940"
+    home_longitude: "-74.227200"
+    zoom_level: 14
+    code: 722
+    county: 14
+    group_name: "west_orange_township"
+- model: njcoast.NJCMunicipality
+  pk: 539
+  fields:
+    name: "West Wildwood Borough"
+    home_latitude: "39.001792"
+    home_longitude: "-74.824279"
+    zoom_level: 14
+    code: 513
+    county: 9
+    group_name: "west_wildwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 540
+  fields:
+    name: "West Windsor Township"
+    home_latitude: "40.294360"
+    home_longitude: "-74.628381"
+    zoom_level: 14
+    code: 1113
+    county: 21
+    group_name: "west_windsor_township"
+- model: njcoast.NJCMunicipality
+  pk: 541
+  fields:
+    name: "Westampton Township"
+    home_latitude: "40.008252"
+    home_longitude: "-74.836616"
+    zoom_level: 14
+    code: 337
+    county: 11
+    group_name: "westampton_township"
+- model: njcoast.NJCMunicipality
+  pk: 542
+  fields:
+    name: "Westfield"
+    home_latitude: "40.665650"
+    home_longitude: "-74.299700"
+    zoom_level: 14
+    code: 2020
+    county: 15
+    group_name: "westfield"
+- model: njcoast.NJCMunicipality
+  pk: 543
+  fields:
+    name: "Westville Borough"
+    home_latitude: "39.857810"
+    home_longitude: "-75.137300"
+    zoom_level: 14
+    code: 821
+    county: 20
+    group_name: "westville_borough"
+- model: njcoast.NJCMunicipality
+  pk: 544
+  fields:
+    name: "Westwood Borough"
+    home_latitude: "41.011450"
+    home_longitude: "-74.021300"
+    zoom_level: 14
+    code: 267
+    county: 5
+    group_name: "westwood_borough"
+- model: njcoast.NJCMunicipality
+  pk: 545
+  fields:
+    name: "Weymouth Township"
+    home_latitude: "39.405235"
+    home_longitude: "-74.827316"
+    zoom_level: 14
+    code: 123
+    county: 2
+    group_name: "weymouth_township"
+- model: njcoast.NJCMunicipality
+  pk: 546
+  fields:
+    name: "Wharton Borough"
+    home_latitude: "40.935350"
+    home_longitude: "-74.577100"
+    zoom_level: 14
+    code: 1439
+    county: 17
+    group_name: "wharton_borough"
+- model: njcoast.NJCMunicipality
+  pk: 547
+  fields:
+    name: "White Township"
+    home_latitude: "40.811836"
+    home_longitude: "-75.049008"
+    zoom_level: 14
+    code: 2123
+    county: 4
+    group_name: "white_township"
+- model: njcoast.NJCMunicipality
+  pk: 548
+  fields:
+    name: "Wildwood"
+    home_latitude: "39.067780"
+    home_longitude: "-74.776700"
+    zoom_level: 14
+    code: 514
+    county: 9
+    group_name: "wildwood"
+- model: njcoast.NJCMunicipality
+  pk: 549
+  fields:
+    name: "Wildwood Crest Borough"
+    home_latitude: "38.970851"
+    home_longitude: "-74.837239"
+    zoom_level: 14
+    code: 515
+    county: 9
+    group_name: "wildwood_crest_borough"
+- model: njcoast.NJCMunicipality
+  pk: 550
+  fields:
+    name: "Willingboro Township"
+    home_latitude: "40.013740"
+    home_longitude: "-74.805800"
+    zoom_level: 14
+    code: 338
+    county: 11
+    group_name: "willingboro_township"
+- model: njcoast.NJCMunicipality
+  pk: 551
+  fields:
+    name: "Winfield Township"
+    home_latitude: "40.636133"
+    home_longitude: "-74.288315"
+    zoom_level: 14
+    code: 2021
+    county: 15
+    group_name: "winfield_township"
+- model: njcoast.NJCMunicipality
+  pk: 552
+  fields:
+    name: "Winslow Township"
+    home_latitude: "39.654890"
+    home_longitude: "-74.868500"
+    zoom_level: 14
+    code: 436
+    county: 8
+    group_name: "winslow_township"
+- model: njcoast.NJCMunicipality
+  pk: 553
+  fields:
+    name: "Wood Ridge Borough"
+    home_latitude: "40.848600"
+    home_longitude: "-74.089600"
+    zoom_level: 14
+    code: 269
+    county: 5
+    group_name: "wood-ridge_borough"
+- model: njcoast.NJCMunicipality
+  pk: 554
+  fields:
+    name: "Woodbine Borough"
+    home_latitude: "39.158170"
+    home_longitude: "-74.786900"
+    zoom_level: 14
+    code: 516
+    county: 9
+    group_name: "woodbine_borough"
+- model: njcoast.NJCMunicipality
+  pk: 555
+  fields:
+    name: "Woodbridge Township"
+    home_latitude: "40.553250"
+    home_longitude: "-74.288000"
+    zoom_level: 14
+    code: 1225
+    county: 19
+    group_name: "woodbridge_township"
+- model: njcoast.NJCMunicipality
+  pk: 556
+  fields:
+    name: "Woodbury"
+    home_latitude: "39.822010"
+    home_longitude: "-75.129700"
+    zoom_level: 14
+    code: 822
+    county: 20
+    group_name: "woodbury"
+- model: njcoast.NJCMunicipality
+  pk: 557
+  fields:
+    name: "Woodbury Heights Borough"
+    home_latitude: "39.762970"
+    home_longitude: "-75.197900"
+    zoom_level: 14
+    code: 823
+    county: 20
+    group_name: "woodbury_heights_borough"
+- model: njcoast.NJCMunicipality
+  pk: 558
+  fields:
+    name: "Woodcliff Lake Borough"
+    home_latitude: "41.022335"
+    home_longitude: "-74.048624"
+    zoom_level: 14
+    code: 268
+    county: 5
+    group_name: "woodcliff_lake_borough"
+- model: njcoast.NJCMunicipality
+  pk: 559
+  fields:
+    name: "Woodland Park Borough"
+    home_latitude: "40.895724"
+    home_longitude: "-74.199707"
+    zoom_level: 14
+    code: 1616
+    county: 16
+    group_name: "woodland_park_borough"
+- model: njcoast.NJCMunicipality
+  pk: 560
+  fields:
+    name: "Woodland Township"
+    home_latitude: "39.815344"
+    home_longitude: "-74.535494"
+    zoom_level: 14
+    code: 339
+    county: 11
+    group_name: "woodland_township"
+- model: njcoast.NJCMunicipality
+  pk: 561
+  fields:
+    name: "Woodlynne Borough"
+    home_latitude: "39.916330"
+    home_longitude: "-75.094610"
+    zoom_level: 14
+    code: 437
+    county: 8
+    group_name: "woodlynne_borough"
+- model: njcoast.NJCMunicipality
+  pk: 562
+  fields:
+    name: "Woodstown Borough"
+    home_latitude: "39.586000"
+    home_longitude: "-75.379900"
+    zoom_level: 14
+    code: 1715
+    county: 6
+    group_name: "woodstown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 563
+  fields:
+    name: "Woolwich Township"
+    home_latitude: "39.730411"
+    home_longitude: "-75.319573"
+    zoom_level: 14
+    code: 824
+    county: 20
+    group_name: "woolwich_township"
+- model: njcoast.NJCMunicipality
+  pk: 564
+  fields:
+    name: "Wrightstown Borough"
+    home_latitude: "40.075100"
+    home_longitude: "-74.608400"
+    zoom_level: 14
+    code: 340
+    county: 11
+    group_name: "wrightstown_borough"
+- model: njcoast.NJCMunicipality
+  pk: 565
+  fields:
+    name: "Wyckoff Township"
+    home_latitude: "40.998390"
+    home_longitude: "-74.165700"
+    zoom_level: 14
+    code: 270
+    county: 5
+    group_name: "wyckoff_township"
