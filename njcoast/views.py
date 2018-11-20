@@ -42,7 +42,6 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from itertools import chain
 from datetime import datetime
-import requests
 
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
@@ -910,7 +909,18 @@ def signup(request):
                 #now save everything
                 user.save()
 
-                #if has a muni
+                county_name = ""
+                try:
+                    county_name = user.njcusermeta.county.name
+                except:
+                    pass
+
+                municipality_name = ""
+                try:
+                    municipality_name = user.njcusermeta.municipality.name
+                except:
+                    pass
+                    
                 #send email
                 if user.njcusermeta.municipality:
                     #first find admin to approve
@@ -924,7 +934,9 @@ def signup(request):
                             message = render_to_string('account_created_email.html', {
                                 'user': user.first_name+" "+user.last_name,
                                 'domain': current_site.domain,
-                                'municipality': user.njcusermeta.municipality.name,
+                                'county': county_name,
+                                'municipality': municipality_name,
+                                'approver_municipality': user.njcusermeta.municipality.name,
                             })
 
                             #send it
@@ -944,9 +956,11 @@ def signup(request):
                             current_site = get_current_site(request)
                             subject = 'Account created on NJcoast'
                             message = render_to_string('account_created_email.html', {
-                                'user': dca_admin.first_name+" "+dca_admin.last_name,
+                                'user': user.first_name+" "+user.last_name,
                                 'domain': current_site.domain,
-                                'municipality': '',
+                                'county': county_name,
+                                'municipality': municipality_name,
+                                'approver_municipality': ''
                             })
 
                             #send it

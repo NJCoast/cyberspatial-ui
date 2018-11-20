@@ -97,13 +97,13 @@ class NJCMapExpert(models.Model):
         return self.sim_id
 
 class NJCMunicipality(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
     home_latitude = models.CharField(max_length=20)
     home_longitude = models.CharField(max_length=20)
     zoom_level = models.PositiveIntegerField()
     code = models.PositiveIntegerField()
     county = models.ForeignKey('NJCCounty', blank=True,null=True)
-    group_name = models.CharField(max_length=20, default="")
+    group_name = models.CharField(max_length=30, default="")
 
     def __str__(self):
         return self.name
