@@ -307,7 +307,75 @@ $(document).ready(function () {
     }).addTo(mymap);
 
     //get layers
-    get_layers_from_server();
+    //get_layers_from_server();
+
+    var layersVue = new Vue({
+        delimiters: ['${', '}'],
+        el: '#gisLayers',
+        data: {
+            group: {}
+        },
+        created: function () {
+            this.fetchData();
+        },
+        methods: {
+          fetchData: function () {
+            $.get("/api/my_layers/", (data) => {
+                for( var i = 0; i < data.layers.length; i++){
+                    Vue.set(this.group, data.layers[i].group, []);
+                };
+                for( var i = 0; i < data.layers.length; i++){
+                    data.layers[i].enabled = false;
+                    data.layers[i].opacity = 100;
+                    if( data.layers[i].group.toLowerCase() == "imagerybasemapsearthcover" ) {
+                        data.layers[i].maplayer = L.tileLayer.wms(data.layers[i].layer_link, {
+                            layers: data.layers[i].layer, 
+                            transparent: true, 
+                            format: 'image/png',
+                            tiled: true
+                        });
+                        layer_list.push(data.layers[i]);
+                    }else {
+                        data.layers[i].maplayer = L.tileLayer.betterWms(data.layers[i].layer_link, {
+                            layers: data.layers[i].layer, 
+                            transparent: true, 
+                            format: 'image/png',
+                            pane: 'layer',
+                            tiled: true
+                        });
+                        layer_list.push(data.layers[i]);
+                    }
+
+                    this.group[data.layers[i].group].push(data.layers[i]);
+                };
+            });
+          },
+          toggleLayer: function(group, layer){
+            for(var i = 0 ; i < this.group[group].length; i++) {
+                if( this.group[group][i].id == layer ){
+                    console.log("found matching layer: " + layer);
+                    if( this.group[group][i].enabled ){
+                        layers_selected.push(layer);
+                        this.group[group][i].maplayer.addTo(mymap);
+                    }else{
+                        var index = layers_selected.indexOf(layer);
+                        if (index !== -1) layers_selected.splice(index, 1);
+                        mymap.removeLayer(this.group[group][i].maplayer);
+                    }
+                    if(!initial_load) map_changed();
+                }
+            }
+          },
+          setOpacity: function(group, layer){
+            for(var i = 0 ; i < this.group[group].length; i++) {
+                if( this.group[group][i].id == layer ){
+                    this.group[group][i].maplayer.setOpacity(this.group[group][i].opacity/100.0);
+                    console.log("Setting Layer " + layer + " opacity to " + this.group[group][i].opacity/100.0);
+                }
+            }
+          }
+        }
+    })
 
     var app = new Vue({
         delimiters: ['${', '}'],
@@ -561,137 +629,11 @@ $(document).ready(function () {
           }
         }
     })
-});
 
-/*
-Ajax call to the server. Returns JSON with layers in it.
-TODO: Will need to update url to GeoServer eventually
- */
-function get_layers_from_server() {
-    $.ajax({
-        type: "GET",
-        url: "/api/my_layers/",
-        data: {},
-        dataType: "json",
-        success: function (result) {
-            console.log("GIS LAYERS -- SUCCESS!");
-            console.log(result.layers);
-            process_layers(result.layers);
-
-            //load map settings after layers loaded #TODO maybe this should be elsewhere?
-            if( annotate_map_id != null ){
-                load_map();
-            }
-        },
-        error: function (result) {
-            console.log("ERROR:", result)
-        }
-    });
-}
-
-/*
-Function to pull the layer groups out and call the appropriate function
-for layer group or layer to be added to the menu.
- */
-function process_layers(layers) {
-
-    layers.forEach(function (item) {
-        // Get layer groups
-        layer_groups.push(item.group);
-
-    });
-    layer_groups = layer_groups.unique();
-    console.log(layer_groups);
-
-    layer_groups.forEach(function (group) {
-        // Add the layer category group to the menu
-       add_layer_group_to_menu(group);
-
-       // For each layer in the layers list, if the group matches the current group
-        // add that layer to the unordered list
-       layers.forEach(function (layer){
-          if(layer.group == group) {
-              var ul_object = '#' + camelize(layer.group.toLowerCase());
-              add_layer_to_menu(layer, ul_object)
-          }
-       });
-    });
-
-}
-
-/*
-The base #layerGroup template is hidden by default. Cloning the template and
-it's children allows us to edit the attributes of each #layerGroup individually.
-
-Attributes are formatted in the exact same way as Kristina's mockups to retain functionality.
-Could likely be simplified, but camelizing the lowercase strings wasn't too difficult.
- */
-function add_layer_group_to_menu(layerGroup) {
-    var group_template = $('#layerGroup').clone(true);
-    $(group_template).find('span').html(layerGroup);
-
-    //add identifier to highlight group name
-    $(group_template).find('span').attr('id', camelize(layerGroup.toLowerCase()) + '_name');
-
-    $(group_template).find('a').attr('href', '#' +
-        camelize(layerGroup.toLowerCase())).attr('aria-controls', camelize(layerGroup.toLowerCase()));
-    $(group_template).find('ul').attr('id', camelize(layerGroup.toLowerCase()));
-    $(group_template).removeClass('hidden');
-    $("#gisLayers").append(group_template);
-}
-
-/*
-Add the individual layers to the menu under the appropriate layer category group.
-Params: layer - the layer to add to the menu (complete layer object)
-        ul_id - the id of the unordered list in which to append the layer.
- */
-function add_layer_to_menu(layer, ul_id) {
-    // Create the HTML <li> for each layer and append to the <ul>
-    var layer_html = '<li><input id="' + $.trim(layer.id) + '" type="checkbox"> ' + $.trim(layer.name) + '</li>';
-    $(ul_id).append(layer_html);
-    
-    if( ul_id == "#imageryBaseMapsEarthCover" ) {
-        layer.maplayer = L.tileLayer.wms(layer.layer_link, {
-            layers: layer.layer, 
-            transparent: true, 
-            format: 'image/png',
-            tiled: true
-        });
-        layer_list.push(layer);
-    }else {
-        layer.maplayer = L.tileLayer.betterWms(layer.layer_link, {
-            layers: layer.layer, 
-            transparent: true, 
-            format: 'image/png',
-            pane: 'layer',
-            tiled: true
-        });
-        layer_list.push(layer);
+    if( annotate_map_id != null ){
+        load_map();
     }
-
-    $('#' + $.trim(layer.id)).click(function () {
-        if ($(this).is(':checked')) {
-            for(var i=0; i<layer_list.length; i++) {
-                if (layer_list[i].id == this.id){
-                    console.log("found matching layer: " + this.id);
-                    layers_selected.push(this.id);
-                    layer_list[i].maplayer.addTo(mymap);
-                    if(!initial_load) map_changed();
-                }
-            }
-        } else {
-            for(var i=0; i<layer_list.length; i++) {
-                if (layer_list[i].id == this.id){
-                    console.log("found matching layer: " + this.id);
-                    var index = layers_selected.indexOf(this.id);
-                    if (index !== -1) layers_selected.splice(index, 1);
-                    mymap.removeLayer(layer_list[i].maplayer);
-                    if(!initial_load) map_changed();
-                }
-            }
-        }
-    });
-}
+});
 
 //used for features not yet implemented
 $(function () {
@@ -705,7 +647,6 @@ $('.beta-feature-not-available').tooltip(
 
 //load map data via AJAX call
 function load_map(){
-
   $.ajax({
       type: "GET",
       url: "/map/" + annotate_map_id + "/settings/",

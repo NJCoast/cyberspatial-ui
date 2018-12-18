@@ -19,7 +19,7 @@ script:
 - docker push 234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT
 - docker push 234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH
 after_success:
-- echo $VPNPASS | sudo openconnect vpnaccess.nd.edu -b --user=$VPNUSER --passwd-on-stdin
+- echo $VPNPASS | sudo openconnect vpnaccess.nd.edu/mfa -b --user=$VPNUSER --passwd-on-stdin
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then $HOME/kubectl -n staging set image deployment/staging-cyberspatial-django django=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then $HOME/kubectl -n staging set image deployment/staging-cyberspatial-worker celery=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
 - if [ "$TRAVIS_BRANCH" = "development" ]; then $HOME/kubectl -n development set image deployment/development-cyberspatial-django django=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi

@@ -105,22 +105,26 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                 <p id="map_description" class="qualifier" style="margin-bottom: 0"></p>
             </div>
             <div class="map-control-item">
-
                 <a data-toggle="collapse" href="#gisLayers" aria-expanded="false" aria-controls="gisLayers">
                     <h4 class="map-control-item-heading">GIS Layers
                         <i class="fa fa-chevron-down pull-right" aria-hidden="true"></i></h4>
                     <p class="qualifier" style="margin-bottom: 0">for Planning role</p>
                 </a>
                 <div class="collapse in" id="gisLayers">
-                    <div id="layerGroup" class="hidden">
+                    <div v-for="(value, key) in group" id="layerGroup">
                         <p class="map-layer-group-heading">
-                            <a data-toggle="collapse" href="" aria-expanded="false" aria-controls="">
+                            <a data-toggle="collapse" v-bind:href="'#'+key.toLowerCase()" aria-expanded="false" v-bind:aria-controls="key.toLowerCase()">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                <span></span>
+                                <span v-bind:id="key.toLowerCase()+'_name'">${key}</span>
                             </a>
                         </p>
-                        <ul class="collapse map-layers" id=""></ul>
-                    </div>
+                        <ul class="map-layers collapse" v-bind:id="key.toLowerCase()" style="height: auto;">
+                            <li v-for="(layer, index) in value">
+                                <input v-bind:id="layer.id" v-model="layer.enabled" type="checkbox" v-on:change="toggleLayer(key, layer.id)"> ${layer.name}</input>
+                                <input v-if="layer.enabled" v-model.number="layer.opacity" min="0" max="100" step="5" type="range" v-on:change="setOpacity(key, layer.id)"/>
+                            </li>
+                        </ul>
+                    </div> 
                 </div>
             </div>
             <div class="map-control-item">
