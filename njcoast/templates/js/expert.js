@@ -10,7 +10,6 @@
   *
   * Functions:
   *     start_expert_simulation     Start an expert simulation based on selected parameters.
-  *     send_expert_data_to_server  Store calculated model data
   *     get_expert_data_to_server   Get status of simulation from back end server.
   *     load_heatmap                Load or unload a heatmap from the view.
   *     load_expert_data_to_server  Get heatmap from S3 bucket.
@@ -21,12 +20,6 @@
   *     save_simulation             Save the simulation once complete.
   *     save_simulation_ajax        AJAX for above function.
   *     latLngChange                Check bounds of lat long input
-  *     get_layers_from_server      AJAX call for layers from server
-  *     process_layers              Function to pull the layer groups out and call the appropriate
-  *                                 function for layer group or layer to be added to the menu.
-  *     add_layer_group_to_menu     Add layer group to the menu.
-  *     add_layer_to_menu           Add the actual layer to the menu.
-  *     tab_flip_tools              Flip tabs for storm data input.
   *     add_expert_to_map           Add simulation to the map.
   *     updateCatagory              Update the storm catagory data in all tabs.
   */
@@ -226,12 +219,6 @@ function start_expert_simulation() {
 
     console.log(JSON.stringify(data));
 
-    //do Ajax
-    send_expert_data_to_server(data);
-}
-
-//function to start simulation, POSTs input data to the server. Actual AJAX call
-function send_expert_data_to_server(data) {
     $.ajax({
         type: "POST",
         url: "/queue/single?name=" + owner.toString() + "&id=" + sim_id,
@@ -805,135 +792,6 @@ function latLngChange(object) {
     update_widget();
 }
 
-/*
-Ajax call to the server. Returns JSON with layers in it.
-TODO: Will need to update url to GeoServer eventually
- */
-function get_layers_from_server() {
-    $.ajax({
-        type: "GET",
-        url: "/api/my_layers/",
-        data: {},
-        dataType: "json",
-        success: function (result) {
-            console.log("GIS LAYERS -- SUCCESS!");
-            console.log(result.layers);
-            process_layers(result.layers);
-        },
-        error: function (result) {
-            console.log("ERROR:", result)
-        }
-    });
-}
-
-/*
-Function to pull the layer groups out and call the appropriate function
-for layer group or layer to be added to the menu.
- */
-function process_layers(layers) {
-
-    layers.forEach(function (item) {
-        // Get layer groups
-        layer_groups.push(item.group);
-
-    });
-    layer_groups = layer_groups.unique();
-    console.log(layer_groups);
-
-    layer_groups.forEach(function (group) {
-        // Add the layer category group to the menu
-        add_layer_group_to_menu(group);
-
-        // For each layer in the layers list, if the group matches the current group
-        // add that layer to the unordered list
-        layers.forEach(function (layer) {
-            if (layer.group == group) {
-                var ul_object = '#' + camelize(layer.group.toLowerCase());
-                add_layer_to_menu(layer, ul_object)
-            }
-        });
-    });
-
-}
-
-/*
-The base #layerGroup template is hidden by default. Cloning the template and
-it's children allows us to edit the attributes of each #layerGroup individually.
-
-Attributes are formatted in the exact same way as Kristina's mockups to retain functionality.
-Could likely be simplified, but camelizing the lowercase strings wasn't too difficult.
- */
-function add_layer_group_to_menu(layerGroup) {
-    var group_template = $('#layerGroup').clone(true);
-    $(group_template).find('span').html(layerGroup);
-    $(group_template).find('a').attr('href', '#' +
-        camelize(layerGroup.toLowerCase())).attr('aria-controls', camelize(layerGroup.toLowerCase()));
-    $(group_template).find('ul').attr('id', camelize(layerGroup.toLowerCase()));
-    $(group_template).removeClass('hidden');
-    $("#gisLayers").append(group_template);
-}
-
-/*
-Add the individual layers to the menu under the appropriate layer category group.
-Params: layer - the layer to add to the menu (complete layer object)
-        ul_id - the id of the unordered list in which to append the layer.
- */
-function add_layer_to_menu(layer, ul_id) {
-    // Create the HTML <li> for each layer and append to the <ul>
-    var layer_html = '<li><input id="' + $.trim(layer.id) + '" type="checkbox"> ' + $.trim(layer.name) + '</li>';
-    $(ul_id).append(layer_html);
-    layer.maplayer = L.tileLayer.wms(layer.layer_link, { layers: layer.layer, transparent: true, format: 'image/png' });
-    layer_list.push(layer);
-
-    $('#' + $.trim(layer.id)).click(function () {
-        if ($(this).is(':checked')) {
-            for (var i = 0; i < layer_list.length; i++) {
-                if (layer_list[i].id == this.id) {
-                    console.log("found matching layer: " + this.id);
-                    layer_list[i].maplayer.addTo(mymap);
-                }
-            }
-        } else {
-            for (var i = 0; i < layer_list.length; i++) {
-                if (layer_list[i].id == this.id) {
-                    console.log("found matching layer: " + this.id);
-                    mymap.removeLayer(layer_list[i].maplayer);
-                }
-            }
-        }
-    });
-}
-
-//function to flip advanced/basic toolset
-function tab_flip_tools(basic) {
-    console.log("Flipped " + basic);
-    if (basic) {
-        //flip tools header
-        document.getElementById("advanced").classList.remove("active");
-        document.getElementById("basic").classList.add("active");
-
-        //switch on div containing basic
-        document.getElementById("advanced_tools").style.display = "none";
-        document.getElementById("basic_tools").style.display = "block";
-
-        // Hide Angle Slider
-        document.getElementById("anglesliderlabel").style.display = "none";
-        document.getElementById("angleslidercontrol").style.display = "none";
-    } else {
-        //flip tools header
-        document.getElementById("basic").classList.remove("active");
-        document.getElementById("advanced").classList.add("active");
-
-        //switch on div containing advanced
-        document.getElementById("advanced_tools").style.display = "block";
-        document.getElementById("basic_tools").style.display = "none";
-
-        // Show Angle Slider
-        document.getElementById("anglesliderlabel").style.display = "";
-        document.getElementById("angleslidercontrol").style.display = "";
-    }
-}
-
 //add the current simulation to a map
 function add_expert_to_map(object) {
     //need to save first!
@@ -973,29 +831,90 @@ function add_expert_to_map(object) {
     });
 }
 
-function updateCatagory() {
-    document.getElementById("input_vf").value = "50.0"
+var app = new Vue({
+    delimiters: ['${', '}'],
+    el: '#stormParameters',
+    data: {
+        longitude: home_longitude,
+        latitude: home_latitude,
+        angle: 0.0,
+        model: {
+            type: "basic",
+            style: 1,
+            catagory: 1,
+            speed: 30.0,
+            pressure: 70,
+            radius: 62.5,
+            slr: 0.0,
+            protection: 1,
+            tide: 0.5,
+            analysis: 0.0,
+            landfall: 48
+        }
+    },
+    created: function () {
+        
+    },
+    methods: {
+        setSimulationType: function(type){
+            this.model.type = type;
+        },
+        setStormValues: function(){
+            this.model.speed = 50.0;
+            switch( this.model.catagory ) {
+                case 1:
+                    this.model.pressure = 25.0;
+                    this.model.radius = 33.0;
+                    break;
+                case 2:
+                    this.model.pressure = 40.0;
+                    this.model.radius = 37.0;
+                    break;
+                case 3:
+                    this.model.pressure = 55.0;
+                    this.model.radius = 50.0;
+                    break;
+                case 4:
+                    this.model.pressure = 70.0;
+                    this.model.radius = 50.0;
+                    break;
+                case 5:
+                    this.model.pressure = 85.0;
+                    this.model.radius = 40.0;
+                    break;
+            }
+        },
+        startSimulation: function(){
+            var data = {
+                "index_SLT": [1,1],
+                "index_W": 1,
+                "indicator": 1,
+                "SLR": this.model.slr * 0.3048,
+                "tide": this.model.tide,
+                "sim_type": this.model.style,
+                "surge_file": "heatmap.json",
+                "wind_file": "wind_heatmap.json",
+                "runup_file":"transect_line.json",
+                "workspace_file": ""
+            }
 
-    switch ($('input[name=intensity]:checked').val()) {
-        case "1":
-            document.getElementById("input_cp").value = "25.0";
-            document.getElementById("input_rm").value = "33.0";
-            break;
-        case "2":
-            document.getElementById("input_cp").value = "40.0";
-            document.getElementById("input_rm").value = "37.0";
-            break;
-        case "3":
-            document.getElementById("input_cp").value = "55.0";
-            document.getElementById("input_rm").value = "50.0";
-            break;
-        case "4":
-            document.getElementById("input_cp").value = "70.0";
-            document.getElementById("input_rm").value = "50.0";
-            break;
-        case "5":
-            document.getElementById("input_cp").value = "85.0";
-            document.getElementById("input_rm").value = "40.0";
-            break;
+            if( this.model.style === 2 ){
+                data.ne_strength = this.model.catagory;
+            }else{
+                const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
+                const long_past_point = this.longitude - Math.sin(this.angle * Math.PI / 180) * 0.015;
+
+                data.param = [
+                    this.latitude, this.longitude, 90.0, this.model.pressure, this.model.speed * 1.852001, this.model.radius * 1.609344
+                ]
+                data.timeMC = this.model.landfall;
+                data.lat_track = [lat_past_point, this.latitude];
+                data.long_track = [long_past_point, this.longitude];
+                data.protection = this.model.protection;
+                data.index_prob = this.model.analysis;
+            }
+
+            console.log(JSON.stringify(data));
+        }
     }
-}
+}) 
