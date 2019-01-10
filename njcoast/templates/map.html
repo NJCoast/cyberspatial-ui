@@ -157,8 +157,11 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                                 <div class="collapse active_storm" v-if="!item.out_of_bounds" v-bind:id="item.name">
                                     <ul class="map-layers">
                                         <li><input type="checkbox" v-model="item.state.wind" v-on:change="toggle_wind(index)"> Wind Field </li>
+                                        <input v-if="item.state.wind" v-model.number="item.opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'wind')"/>
                                         <li><input type="checkbox" v-model="item.state.surge" v-on:change="toggle_surge(index)"> Surge </li>
+                                        <input v-if="item.state.surge" v-model.number="item.opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'surge')"/>
                                         <li><input type="checkbox" v-model="item.state.runup" v-on:change="toggle_runup(index)"> Total Run Up</li>
+                                        <input v-if="item.state.runup" v-model.number="item.opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'runup')"/>
                                     </ul>
                                     <div class="well plain orange scenarios">
                                         <h5>Explore Scenarios</h5>

@@ -83,17 +83,17 @@ js functions:
     <!-- Load Leaflet rotatedMarker code -->
     <script src="{% static "js/leaflet.rotatedMarker.js" %}"></script>-->
 
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 {% endblock extra_head %}
 
 
 {% block middle %}
-
 <div class="jumbotron njcoast-image slimmer"></div>
 
 <div class="container-fluid">
     <div class="page-header map-header"></div>
     <div class="row">
-
         <!-- Map area ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <div class="col-sm-8 col-lg-9 col-xl-10 leaflet-map">
             <div id="mapid" class="col-sm-8 col-lg-9 col-xl-10" style="width: 100%; height: 100%;"></div>
@@ -101,124 +101,145 @@ js functions:
         <!-- End map area ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
         <!-- Tools RHS menu -->
-        <div class="col-sm-4 col-lg-3 col-xl-2" id="tool-control-panel">
-            <!--<div class="map-control-item">
-                <p class="tool-heading">1. select storm type</p>
+        <div class="col-sm-4 col-lg-3 col-xl-2 tool-control-panel" id="stormParameters">
+            <div class="map-control-item">
+                <p class="tool-heading">Set storm type</p>
                 <div class="dropdown show">
                     <button class="btn btn-secondary btn-title btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span id="stormbadge"><div class="h-badge what-if">H</div>Hurricane</span>
+                        <div v-if="model.style == '1'"><div class="h-badge what-if">H</div>Hurricane</div>
+                        <div v-if="model.style == '2'"><div class="n-badge what-if">N</div>Nor'easter</div>
                     </button>
                     <div class="dropdown-menu choose-storm" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" onclick="document.getElementById('stormbadge').innerHTML=this.innerHTML;">
-                            <div class="h-badge what-if">H</div>Hurricane</a>
-                        <a class="dropdown-item" href="#" onclick="document.getElementById('stormbadge').innerHTML=this.innerHTML;">
-                            <div class="n-badge what-if">N</div>Nor'easter</a>
-                    </div>
-                </div>
-            </div>-->
-            <div class="map-control-item">
-                <p class="tool-heading">Set storm characteristics</p><!-- originally had '2. s' -->
-                <div class="well plain">
-                    <!--<p style="margin-top: 15px"><input type="checkbox" value="off" data-toggle="popover" data-placement="right" onclick="create_storm_track(this.checked);"> Draw Storm Track on Map</p>-->
-                    <!--<button id="cst" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="" onclick="create_storm_track();">Draw Storm Track on Map</button>-->
-                    <table class="table shp-table">
-                        <tr>
-                            <th>Latitude</th>
-                            <td><input type="text" id="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
-                            <td>&deg;</td>
-                        </tr>
-                        <tr>
-                            <th>Longitude</th>
-                            <td><input type="text" id="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
-                            <td>&deg;</td>
-                        </tr>
-                    </table>
-                    <p id="anglesliderlabel" class="slider-label" style="display:none">Storm Track Angle</p>
-                    <div id="angleslidercontrol" class="shp-controls" style="margin-bottom: 30px; display:none">
-                        <input id="angleslider" class="range-input" data-target="rm" min="-60" max="40" step="5" value="0" type="range" oninput="update_storm_track(this)" onchange="updateInput(this)">
-                        <input id="angle" class="num-input job-input" name="rm" value="0" type="text" onchange="update_storm_track(this);"> &deg;
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 1;">
+                            <div class="h-badge what-if">H</div>Hurricane
+                        </a>
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 2;">
+                            <div class="n-badge what-if">N</div>Nor'easter
+                        </a>
                     </div>
                 </div>
 
-                <!-- tabs for basic/advanced tools -->
-                <ul class="nav nav-tabs nav-justified shp-settings">
-                    <li id="basic" class="nav-item active">
-                        <a class="nav-link" href="#" onclick="tab_flip_tools(true);" >Basic</a>
-                    </li>
-                    <li id="advanced" class="nav-item">
-                        <a class="nav-link" href="#" onclick="tab_flip_tools(false);">Advanced</a>
-                    </li>
-                </ul>
+                <div v-if="model.style == '1'">
+                    <p class="tool-heading">Set storm characteristics</p>
+                    <div class="well plain">
+                        <table class="table shp-table">
+                            <tr>
+                                <th>Latitude</th>
+                                <td><input type="text" id="latitude" v-model="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
+                                <td>&deg;</td>
+                            </tr>
+                            <tr>
+                                <th>Longitude</th>
+                                <td><input type="text" id="longitude" v-model="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
+                                <td>&deg;</td>
+                            </tr>
+                        </table>
+                        <p id="anglesliderlabel" class="slider-label" style="display:none">Storm Track Angle</p>
+                        <div id="angleslidercontrol" class="shp-controls" style="margin-bottom: 30px; display:none">
+                            <input id="angleslider" class="range-input" data-target="rm" min="-60" max="40" step="5" v-model="angle" type="range" oninput="update_storm_track(this)" onchange="updateInput(this)">
+                            <input id="angle" class="num-input job-input" name="rm" v-model="angle" type="text" onchange="update_storm_track(this);"> &deg;
+                        </div>
+                    </div>
 
-                <!-- basic tools -->
-                <div id="basic_tools" style="display: block;">
+                    <p class="tool-heading">Describe scenario</p>
+                    <!-- tabs for basic/advanced tools -->
+                    <ul class="nav nav-tabs nav-justified shp-settings">
+                        <li id="basic" class="nav-item" v-bind:class="{ active: model.type == 'basic' }">
+                            <a class="nav-link" href="#" v-on:click="setSimulationType('basic')">Basic</a>
+                        </li>
+                        <li id="advanced" class="nav-item" v-bind:class="{ active: model.type == 'advanced' }">
+                            <a class="nav-link" href="#" v-on:click="setSimulationType('advanced')">Advanced</a>
+                        </li>
+                    </ul>
+
+                    <!-- basic tools -->
+                    <div id="basic_tools" class="map-control-item" v-bind:class="{ active: model.type == 'basic' }" v-if="model.type == 'basic'">
+                        <p class="slider-label">Storm Intensity</p>
+                        <ul class="shp-tool-radios one-line" style="margin-bottom: 30px">
+                            <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="1" v-on:change="setStormValues()"> Cat 1</li>
+                            <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="2" v-on:change="setStormValues()"> Cat 2</li>
+                            <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="3" v-on:change="setStormValues()"> Cat 3</li>
+                            <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="4" v-on:change="setStormValues()"> Cat 4</li>
+                            <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="5" v-on:change="setStormValues()"> Cat 5</li>
+                        </ul>
+                    </div>
+
+                    <!--Advanced tools -->
+                    <div id="advanced_tools" class="map-control-item" v-bind:class="{ active: model.type == 'advanced' }" v-if="model.type == 'advanced'">
+                        <p class="slider-label">Translational Speed</p>
+                        <div class="shp-controls">
+                            <input class="range-input" v-model.number="model.speed" data-target="vf" min="5.5" max="48.5" step="0.5" type="range">
+                            <input id="input_vf" class="num-input job-input" v-model.number="model.speed" name="vf" type="text"> kt
+                        </div>
+                        <p class="slider-label">Pressure Differential</p>
+                        <div class="shp-controls">
+                            <input class="range-input" v-model.number="model.pressure" data-target="cp" min="20" max="110" step="1" type="range">
+                            <input id="input_cp" class="num-input job-input" v-model.number="model.pressure" name="vf" type="text"> mbar
+                        </div>
+                        <p class="slider-label">Radius of Max Winds</p>
+                        <div class="shp-controls">
+                            <input class="range-input" v-model.number="model.radius" data-target="rm" min="12.5" max="125" step="0.5" type="range">
+                            <input id="input_rm" class="num-input job-input" v-model.number="model.radius" name="rm" type="text"> miles
+                        </div>
+                    </div>
+                    <div class="map-control-item">
+                        <p class="slider-label" style="margin-top:0">Sea Level Rise</p>
+                        <div class="shp-controls">
+                            <input class="range-input" v-model.number="model.slr" data-target="rm" min="0" max="5" step="0.5" type="range">
+                            <input id="input_slr" class="num-input job-input" v-model.number="model.slr" name="slr" type="text"> ft
+                        </div>
+                        <p class="slider-label">Coastal Protection <span class="qualifier">e.g. dunes</span></p>
+                        <ul class="shp-tool-radios one-line">
+                            <li><input type="radio" v-model="model.protection" name="protection" v-bind:value="1"> Current</li>
+                            <li><input type="radio" v-model="model.protection" name="protection" v-bind:value="2"> Degraded</li>
+                            <li><input type="radio" v-model="model.protection" name="protection" v-bind:value="3"> Compromised</li>
+                        </ul>
+                        <p class="slider-label">Tides</p>
+                        <ul class="shp-tool-radios one-line">
+                            <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="1">High</li>
+                            <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="0.5">Typical</li>
+                            <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="0">None</li>
+                        </ul>
+                        <p class="slider-label">Analysis Type</p>
+                        <ul class="shp-tool-radios">
+                            <li><input type="radio" v-model="model.analysis" name="analysis" v-bind:value="0.0" > Deterministic</li>
+                            <li><input type="radio" v-model="model.analysis" name="analysis" v-bind:value="0.5" > Probabilistic&nbsp;<span class="qualifier">expected</span></li>
+                            <li><input type="radio" v-model="model.analysis" name="analysis" v-bind:value="0.1" > Probabilistic&nbsp;<span class="qualifier">extreme</span></li>
+                        </ul>
+                        <p id="landfall-label" class="slider-label" v-if="model.analysis > 0.0">Time to Landfall</p>
+                        <div id="landfall-control" class="shp-controls" v-if="model.analysis > 0.0">
+                            <input class="range-input" data-target="ttl" v-model="model.landfall" min="0" max="96" step="1" type="range">
+                            <input id="input_ttl" class="num-input job-input" name="ttl" v-model="model.landfall" type="text"> hr
+                        </div>
+                    </div>
+            </div>
+            <div v-if="model.style == '2'">
+                <div class="map-control-item">
+                    <p class="tool-heading">Describe scenario</p>
+
                     <p class="slider-label">Storm Intensity</p>
                     <ul class="shp-tool-radios one-line" style="margin-bottom: 30px">
-                        <li><input type="radio" name="intensity" value="1" onchange="updateCatagory()" checked> Cat 1</li>
-                        <li><input type="radio" name="intensity" value="2" onchange="updateCatagory()"> Cat 2</li>
-                        <li><input type="radio" name="intensity" value="3" onchange="updateCatagory()"> Cat 3</li>
-                        <li><input type="radio" name="intensity" value="4" onchange="updateCatagory()"> Cat 4</li>
-                        <li><input type="radio" name="intensity" value="5" onchange="updateCatagory()"> Cat 5</li>
+                        <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="1" v-on:change="setStormValues()"> Strength 1</li>
+                        <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="2" v-on:change="setStormValues()"> Strength 2</li>
+                        <li><input type="radio" name="intensity" v-model.number="model.catagory" v-bind:value="3" v-on:change="setStormValues()"> Strength 3</li>
+                    </ul>
+
+                    <p class="slider-label">Sea Level Rise</p>
+                    <div class="shp-controls">
+                        <input class="range-input" v-model.number="model.slr" data-target="rm" min="0" max="5" step="0.5" type="range">
+                        <input id="input_slr" class="num-input job-input" v-model.number="model.slr" name="slr" type="text"> ft
+                    </div>
+
+                    <p class="slider-label">Tides</p>
+                    <ul class="shp-tool-radios one-line">
+                        <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="1">High</li>
+                        <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="0.5">Typical</li>
+                        <li><input type="radio" v-model="model.tide" name="tide" v-bind:value="0">None</li>
                     </ul>
                 </div>
-                <!-- end Basic tools -->
-
-                <!--Advanced tools -->
-                <div id="advanced_tools" style="display: none;">
-
-                    <p class="slider-label">Translational Speed</p>
-                    <div class="shp-controls">
-                        <input class="range-input" data-target="vf" min="5.5" max="48.5" step="0.5" value="30" type="range" oninput="updateInput(this)" onchange="updateInput(this)">
-                        <input id="input_vf" class="num-input job-input" name="vf" value="30" type="text" onchange="updateInput(this)"> kt
-                    </div>
-                    <p class="slider-label">Pressure Differential</p>
-                    <div class="shp-controls">
-                        <input class="range-input" data-target="cp" min="20" max="110" step="1" value="70" type="range" oninput="updateInput(this)" onchange="updateInput(this)">
-                        <input id="input_cp" class="num-input job-input" name="vf" value="70" type="text" onchange="updateInput(this)"> mbar
-                    </div>
-                    <p class="slider-label">Radius of Max Winds</p>
-                    <div class="shp-controls">
-                        <input class="range-input" data-target="rm" min="12.5" max="125" step="0.5" value="62.5" type="range" oninput="updateInput(this)" onchange="updateInput(this)">
-                        <input id="input_rm" class="num-input job-input" name="rm" value="62.5" type="text" onchange="updateInput(this)"> miles
-                    </div>
-                </div>
-                <!--End Advanced tools -->
-
             </div>
             <div class="map-control-item">
-                <p class="tool-heading">describe scenario</p>
-                <p class="slider-label" style="margin-top:0">Sea Level Rise</p>
-                <div class="shp-controls">
-                    <input class="range-input" data-target="rm" min="0" max="5" step="0.5" value="0" type="range" oninput="updateInput(this)" onchange="updateInput(this)">
-                    <input id="input_slr" class="num-input job-input" name="slr" value="0" type="text" onchange="updateInput(this)"> ft
-                </div>
-                <p class="slider-label">Coastal Protection <span class="qualifier">e.g. dunes</span></p>
-                <ul class="shp-tool-radios one-line">
-                    <li><input type="radio" name="protection" value="1" checked> Current</li>
-                    <li><input type="radio" name="protection" value="2"> Degraded</li>
-                    <li><input type="radio" name="protection" value="3"> Compromised</li>
-                </ul>
-                <p class="slider-label">Tides</p>
-                <ul class="shp-tool-radios one-line">
-                    <li><input type="radio" name="tide" value="1">High</li>
-                    <li><input type="radio" name="tide" value="0.5" checked>Typical</li>
-                    <li><input type="radio" name="tide" value="0">None</li>
-                </ul>
-                <p class="slider-label">Analysis Type</p>
-                <ul class="shp-tool-radios">
-                    <li><input type="radio" name="analysis" value="0.0" checked> Deterministic</li>
-                    <li><input type="radio" name="analysis" value="0.5" > Probabilistic&nbsp;<span class="qualifier">expected</span></li>
-                    <li><input type="radio" name="analysis" value="0.1" > Probabilistic&nbsp;<span class="qualifier">extreme</span></li>
-                </ul>
-                <p id="landfall-label" class="slider-label" style="display:none">Time to Landfall</p>
-                <div id="landfall-control" class="shp-controls" style="display:none">
-                    <input class="range-input" data-target="ttl" min="0" max="96" step="1" value="48" type="range" oninput="updateInput(this)" onchange="updateInput(this)">
-                    <input id="input_ttl" class="num-input job-input" name="ttl" value="48" type="text" onchange="updateInput(this)"> hr
-                </div>
-            </div>
-            <div class="map-control-item">
-
-                <button id="calculate" class="btn btn-primary btn-md btn-block" style="margin-top: 10px" onclick="start_expert_simulation();">Perform Calculation</button>
+                <button id="calculate" class="btn btn-primary btn-md btn-block" style="margin-top: 10px" v-on:click="startSimulation()">Perform Calculation</button>
                 <div id="spinner" style="display: none;">
                     <p></p>
                     <center><i class="fa fa-refresh fa-spin" style="font-size:24px"></i></center>
@@ -231,11 +252,11 @@ js functions:
                 <ul class="map-layers">
                     <li><input id="wind_checkbox" type="checkbox" name="wind" value="female" onchange="load_heatmap(this);"> Wind Field</li>
                     <li><input id="surge_checkbox" type="checkbox" name="surge" value="female" onchange="load_heatmap(this);" checked> Surge</li>
-                    <li><input id="runup_checkbox" type="checkbox" name="runup" value="female" onchange="load_heatmap(this);"> Total Run Up</li>
+                    <li v-if="model.style == '1'"><input id="runup_checkbox" type="checkbox" name="runup" value="female" onchange="load_heatmap(this);"> Total Run Up</li>
                 </ul>
             </div>
             <div class="map-control-item">
-                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block disabled" style="margin-top: 10px" onclick="save_simulation();" >Save Results</button><!-- disabled,data-toggle="modal" data-target="#saveSim-1", onclick="save_simulation();", simulation-->
+                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block disabled" style="margin-top: 10px" onclick="save_simulation();" >Save Results</button>
                 <div class="dropup show">
                     <button class="btn btn-block btn-secondary dropdown-toggle disabled" style="margin-top: 5px" id="dropdownMenuAddToMap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Results to Map ... <i class="fa fa-caret-up" style="margin-left: 10px" aria-hidden="true"></i>
@@ -243,15 +264,11 @@ js functions:
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuAddToMap">
                     {% for map in maps_for_user %}
                         <a class="dropdown-item" name="{{ map.id }}" href="#" onclick="add_expert_to_map(this);">{{ map.name }}</a>
-                        <!--<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="explore-maps.html">Browse All Maps</a>-->
                     {% endfor %}
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- close column -->
         <!-- Enf tools RHS menu -->
 
         <!-- Modal - Save changes button -->
@@ -329,8 +346,6 @@ $(document).ready(function() {
             'Imagery © <a href="http://mapbox.com">Mapbox</a>',
         id: 'mapbox.streets'
     }).addTo(mymap);
-
-    get_layers_from_server();
 
     //add annotation layer
     annotationLayer.addTo(mymap);

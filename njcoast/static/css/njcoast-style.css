@@ -336,7 +336,7 @@ ul.dashboard-list li span.status {
 }
 
 #map-control-panel,
-#tool-control-panel {
+.tool-control-panel {
   height: 80vh;
   overflow: scroll;
 }

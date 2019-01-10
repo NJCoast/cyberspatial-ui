@@ -395,6 +395,7 @@ $(document).ready(function () {
                     data.active_storms[i]['tides'] = '0.5';
                     data.active_storms[i]['analysis'] = '0.0';
                     data.active_storms[i]['state'] = { 'wind': false, 'surge': false, 'runup': false};
+                    data.active_storms[i]['opacity'] = { 'wind': 100.0, 'surge': 100.0, 'runup': 100.0};
                     data.active_storms[i]['following'] = false;
                     if( data.active_storms[i]['out_of_bounds'] == undefined ){
                         data.active_storms[i]['out_of_bounds'] = false;
@@ -625,6 +626,12 @@ $(document).ready(function () {
                     mymap.removeLayer(storm_layer_dict[path]);
                     del_runup_legend();
                 }
+            }
+          },
+          setOpacity: function(index, type){
+            var path = this.path_string(index, type + "_line");
+            if( path in storm_layer_dict ) {
+                storm_layer_dict[path].setOpacity(this.items[index].opacity[type]/100.0);
             }
           }
         }
