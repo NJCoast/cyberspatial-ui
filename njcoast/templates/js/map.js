@@ -1138,7 +1138,9 @@ function load_simulation_data(sim_id){
               var modified = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(result.data.modified));
 
               //generate html
-              var html =  `<div id='${sim_id}'>
+              var html = ``;
+              if( data.sim_type == 1 ){
+              html =  `<div id='${sim_id}'>
                       <div class="map-layer-group-heading what-if">
                         <a data-toggle="collapse" href="#storm-${sim_id}" aria-expanded="false" aria-controls="storm-${sim_id}">
                           <i class="fa fa-chevron-right" aria-hidden="true"></i> <div class="${badge}">${badge_text}</div>${sim_heading}<span><i class="fa fa-close" aria-hidden="true" onclick="remove_simulation('${sim_id}');"></i></span>
@@ -1149,9 +1151,34 @@ function load_simulation_data(sim_id){
                           <li><input id="${sim_id}_wind" name="${sim_id}" type="checkbox" value="${wind_file}" onchange="load_simulation(${result.user_id}, this);" ${wind}> Wind Field</li>
                           <li><input id="${sim_id}_surge" name="${sim_id}" type="checkbox" value="${surge_file}" onchange="load_simulation(${result.user_id}, this);" ${surge}> Surge</li>
                           <li><input id="${sim_id}_runup" name="${sim_id}" type="checkbox" value="${runup_file}" onchange="load_simulation(${result.user_id}, this);" ${runup}> Total Run Up</li>
-                          <li class="shp-scenario"><span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/><span>Coastal Protection:</span> ${data.protection}<br/><span>Tides:</span> ${data.tide_td}<br/><span>Analysis type:</span> ${data.analysis}<br/><span>Description:</span> ${result.data.description}</li>
+                          <li class="shp-scenario">
+                            <span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/>
+                            <span>Coastal Protection:</span> ${data.protection}<br/>
+                            <span>Tides:</span> ${data.tide_td}<br/>
+                            <span>Analysis type:</span> ${data.analysis}<br/>
+                            <span>Description:</span> ${result.data.description}
+                          </li>
                       </ul>
                   </div>`;
+              }else{
+                html =  `<div id='${sim_id}'>
+                        <div class="map-layer-group-heading what-if">
+                            <a data-toggle="collapse" href="#storm-${sim_id}" aria-expanded="false" aria-controls="storm-${sim_id}">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i> <div class="${badge}">${badge_text}</div>${sim_heading}<span><i class="fa fa-close" aria-hidden="true" onclick="remove_simulation('${sim_id}');"></i></span>
+                            </a>
+                        </div>
+                        <p class="follow-unfollow">by ${result.data.user_name} • ${modified}</p>
+                        <ul class="collapse map-layers" id="storm-${sim_id}">
+                            <li><input id="${sim_id}_wind" name="${sim_id}" type="checkbox" value="${wind_file}" onchange="load_simulation(${result.user_id}, this);" ${wind}> Wind Field</li>
+                            <li><input id="${sim_id}_surge" name="${sim_id}" type="checkbox" value="${surge_file}" onchange="load_simulation(${result.user_id}, this);" ${surge}> Surge</li>
+                            <li class="shp-scenario">
+                                <span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/>
+                                <span>Tides:</span> ${data.tide_td}<br/>
+                                <span>Description:</span> ${result.data.description}
+                            </li>
+                        </ul>
+                    </div>`;
+              }
 
               //add to page
               //create div
