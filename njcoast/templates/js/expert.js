@@ -135,289 +135,6 @@ var marker, polyline, arrow_length;
 //saved flag
 var sim_saved = false;
 
-//function to start simulation, POSTs input data to the server
-function start_expert_simulation() {
-
-    //load Latitude/Longitude
-    var latitude = parseFloat(document.getElementById("latitude").value);
-    var longitude = parseFloat(document.getElementById("longitude").value);
-
-    //test
-    if (isNaN(latitude) || isNaN(longitude)) {
-        alert("Please enter correct value for Latitude/Longitude.");
-        return;
-    }
-
-    //load Angle
-    var angle = parseFloat(document.getElementById("angle").value);
-
-    //load time to landfall
-    var input_ttl = parseFloat(document.getElementById("input_ttl").value);
-
-    //load pressure
-    var input_cp = parseFloat(document.getElementById("input_cp").value);
-
-    //load speed
-    var input_vf = parseFloat(document.getElementById("input_vf").value) * 1.852001;
-
-    //load radius
-    var input_rm = parseFloat(document.getElementById("input_rm").value) * 1.609344;
-
-    //load SLR
-    var input_slr = parseFloat(document.getElementById("input_slr").value) * 0.3048;
-
-    console.log("start sim with lat " + latitude.toString() + "long " + longitude.toString());
-
-    //disable button
-    document.getElementById("calculate").classList.add("disabled");
-    document.getElementById("spinner").style.display = "block";
-
-    //create unique id to tag socket comms
-    sim_id = Math.random().toString(36).substr(2, 9);
-
-    //get tide
-    var tide = document.querySelector('input[name="tide"]:checked');
-
-    //get protection
-    var protection = parseFloat(document.querySelector('input[name="protection"]:checked').value);
-
-    //get analysis
-    var analysis = document.querySelector('input[name="analysis"]:checked');
-
-    //get storm type
-    var storm_type = "Nor'easter";
-    //if (document.getElementById('stormbadge').innerHTML.indexOf("Hurricane") >= 0) {
-        storm_type = "Hurricane";
-    //}
-
-    //get point along path
-    var lat_past_point = latitude - Math.cos(angle * Math.PI / 180) * 0.015;
-    var long_past_point = longitude - Math.sin(angle * Math.PI / 180) * 0.015;
-
-    console.log("tide " + tide + ", protection " + protection + ", analysis " + analysis + ", storm " + storm_type);
-
-    data = {
-        "index_SLT": [1, 1],
-        "index_W": 1,
-        "index_prob": parseFloat(analysis.value),
-        "indicator": 1,
-        "param": [latitude, longitude, angle, input_cp, input_vf, input_rm],
-        "timeMC": input_ttl,
-        "lat_track": [lat_past_point, latitude],
-        "long_track": [long_past_point, longitude],
-        "SLR": parseFloat(input_slr),
-        "tide": parseFloat(tide.value),
-        "tide_td": tide.parentNode.innerText,
-        "protection": protection,
-        "analysis": analysis.parentNode.innerText,
-        "storm_type": storm_type,
-        "surge_file": "heatmap.json",
-        "wind_file": "wind_heatmap.json",
-        "runup_file":"transect_line.json",
-        "workspace_file": ""
-    };
-
-    console.log(JSON.stringify(data));
-
-    $.ajax({
-        type: "POST",
-        url: "/queue/single?name=" + owner.toString() + "&id=" + sim_id,
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        success: function (result) {
-            console.log("EXPERT SIMULATION -- SUCCESS!", result);
-            $.notify("Calculation running", "success");
-
-            //start checking
-            setTimeout(get_expert_data_to_server, 5000);
-            seconds_running = 0;
-
-            //disable save button? #TODO And Add to map?
-            document.getElementById("save_button").classList.add("disabled");
-            document.getElementById("dropdownMenuAddToMap").classList.add("disabled");
-
-            //flag that not saved
-            sim_saved = false;
-
-        },
-        error: function (result) {
-            console.log("EXPERT SIMULATION -- ERROR:", result)
-            $.notify("Error running calculation!", "error");
-
-            //re-enable if error
-            document.getElementById("calculate").classList.remove("disabled");
-            document.getElementById("spinner").style.display = "none";
-        }
-    });
-}
-
-//function to check status of simulation, GETs status (AJAX)
-function get_expert_data_to_server() {
-    $.ajax({
-        type: "GET",
-        url: "/queue/status?name=" + owner.toString() + "&id=" + sim_id,
-        //data: data,
-        dataType: "json",
-        //contentType: 'application/json',
-        success: function (result) {
-            console.log("EXPERT SIMULATION -- SUCCESS.", result);
-            //$.notify( result.annotations + " annotations saved", "success");
-            //data = JSON.parse(result);
-            if (result.complete == false) {
-                //update time
-                seconds_running += 1;
-                console.log("Complete FALSE, time " + seconds_running * 5 + " seconds.");
-
-                //timeout? Set to 3 minutes
-                if (seconds_running > 180) {
-                    $.notify("Calculation timed out.", "error");
-
-                    //re-enable button and remove spinner
-                    document.getElementById("calculate").classList.remove("disabled");
-                    document.getElementById("spinner").style.display = "none";
-                } else {
-                    //re-run if still waiting
-                    setTimeout(get_expert_data_to_server, 5000);
-                }
-
-            } else if (result.complete == true) {
-                console.log("Complete TRUE, time " + seconds_running + " seconds.");
-
-                //re-enable if complete
-                document.getElementById("calculate").classList.remove("disabled");
-                document.getElementById("spinner").style.display = "none";
-                $.notify("Calculation complete!", "success");
-
-                //load data via Ajax
-                //surge
-                if (document.getElementById("surge_checkbox").checked) {
-                    //load_expert_data_to_server(data.surge_file, "surge");
-                    load_expert_data_to_server( "surge_line.json", "srg_line");
-                }
-
-                //wind
-                if (document.getElementById("wind_checkbox").checked) {
-                    load_expert_data_to_server(data.wind_file, "wind");
-                }
-
-                if (document.getElementById("runup_checkbox").checked) {
-                    load_expert_data_to_server(data.runup_file, "runup");
-                }
-            }
-        },
-        error: function (result) {
-            console.log("EXPERT SIMULATION -- ERROR:", result)
-            $.notify("Error running calculation.", "error");
-
-            //re-enable if error
-            document.getElementById("calculate").classList.remove("disabled");
-            document.getElementById("spinner").style.display = "none";
-        }
-    });
-}
-
-//load/unload heatmap
-function load_heatmap(object) {
-    //normal code, has simulation run?
-    if (data != null) {
-        //if clicked, load
-        if (object.checked && !(object.name in heatmap)) {
-            //load it
-            if (object.name == "surge") {
-                //load_expert_data_to_server(data.surge_file, object.name);
-                load_expert_data_to_server( "surge_line.json", "srg_line");
-            } else if (object.name == "wind") {
-                load_expert_data_to_server(data.wind_file, object.name);
-            } else {
-                load_expert_data_to_server(data.runup_file, object.name);
-            }
-        } else if (!object.checked) {
-            if( object.name in heatmap ) {
-                mymap.removeLayer(heatmap[object.name]);
-                delete heatmap[object.name];
-            }
-
-            if (object.name == "surge") {
-                mymap.removeLayer(heatmap["srg_line"]);
-                delete heatmap["srg_line"];
-
-                del_surge_legend();
-            } else if (object.name == "wind") {
-                del_wind_legend();
-            } else if (object.name == "runup") {
-                del_runup_legend();
-            }
-        }
-    }
-}
-
-//AJAX function to get heatmap from S3 bucket
-function load_expert_data_to_server(file_name, json_tag) {
-    $.ajax({
-        type: "GET",
-        url: userSimulationPath + "/" + owner.toString() + "/" + sim_id + "/" + file_name,
-        //data: data,
-        dataType: "json",
-        //contentType: 'application/json',
-        success: function (data) {
-            console.log("EXPERT SIMULATION LOAD -- SUCCESS.", data);
-
-            //save data
-            addressPoints = data;
-
-            if (json_tag == "surge") {
-                //heatmap[json_tag] = create_surge_heatmap(addressPoints.surge, 'overlayPane').addTo(mymap);
-                add_surge_legend(mymap);
-            } else if (json_tag == "wind") {
-                heatmap[json_tag] = create_wind_heatmap(addressPoints.wind, 'overlayPane').addTo(mymap);
-                add_wind_legend(mymap);
-            } else if( json_tag.includes("srg")){
-                heatmap[json_tag] = L.geoJSON(addressPoints, {
-                    style: function(feature) {
-                        switch (feature.properties.height) {
-                            case 0: return {color: "black"};
-                            case 3: return {color: "yellow"};
-                            case 6: return {color: "orange"};
-                            case 9: return {color: "red"};
-                        }
-                    },
-                    filter: function(feature, layer) {
-                        return feature.properties.height <= 9;
-                    }
-                }).addTo(mymap);
-                add_surge_legend(mymap);
-            } else {
-                heatmap[json_tag] = L.geoJSON(addressPoints, {
-                    style: function(feature) {
-                        console.log(feature.properties.type)
-                        if( feature.properties.type.includes("Boundary") ) {
-                            return {color: "blue"};
-                        }else{
-                            return {color: "green"};
-                        }
-                    },
-                    filter: function(feature, layer){
-                        return feature.properties.type != "Transect";
-                    }
-                }).addTo(mymap);
-                add_runup_legend(mymap);
-            }
-
-            $.notify("Heatmap loaded", "success");
-
-            //enable save button? #TODO And Add to map?
-            document.getElementById("save_button").classList.remove("disabled");
-            document.getElementById("dropdownMenuAddToMap").classList.remove("disabled");
-        },
-        error: function (data) {
-            console.log("EXPERT SIMULATION LOAD -- ERROR:", data)
-            $.notify("Failed to load heatmap.", "error");
-        }
-    });
-}
-
-//auxiliary functions to link html input devices
-
 //slider text box updates
 function updateInput(e) {
     var sibling = e.previousElementSibling || e.nextElementSibling;
@@ -636,9 +353,6 @@ function create_storm_track(onOff) {
 
 //update marker if valid
 mymap.on('zoomend', function (event) {
-    //console.log("Zoomstart "+mymap.getZoom()+","+angle);
-    //console.log(event.target._animateToCenter.lat);
-
     //test if marker valid
     if (sat_marker == null) {
         return;
@@ -685,111 +399,10 @@ function save_simulation() {
         alert("This simulation has been saved!");
         return;
     }
-
-    //var sim_desc = prompt("Please enter a simulation description", "Simulation " + sim_id);
-
     //preset values and open modal
     document.getElementById("sim_description").value = "Simulation " + sim_id;
 
     $('#saveSim-1').modal('show');
-
-    /*if (sim_desc == null || sim_desc == "") {
-        console.log("User cancelled the prompt.");
-        return;
-    }
-
-    //do actual save if we get here
-    save_simulation_ajax(sim_desc, "");*/
-}
-
-//save expert simulation data to back end via ajax
-function save_simulation_ajax() {
-
-    //get inputs from Modal
-    var sim_desc = document.getElementById("sim_description").value;
-    var sim_name = document.getElementById("sim_name").value;
-
-    //test
-    /*//create unique id to tag socket comms
-    sim_id = Math.random().toString(36).substr(2, 9);
-
-    //preset data
-    data = {
-      "index_SLT": [1,1],
-      "index_W": 0,
-      "index_prob": 1,
-      "indicator": 1,
-      "param": [40.4417743, -74.1298643, 3, 75, 22, 5],
-      "timeMC": 23,
-      "lat_track": 41.000493,
-      "long_track": -72.610756,
-      "SLR": 1.0,
-      "tide": 0,
-      "surge_file": "heatmap.json",
-      "workspace_file": ""
-  };*/
-
-    //store data
-    $.ajax({
-        type: "POST",
-        url: "/store/",
-        data: {
-            'data': JSON.stringify(data),
-            'user_id': owner.toString(),
-            'sim_id': sim_id,
-            'description': sim_desc,
-            'sim_name': sim_name
-        },
-        //dataType: "json",
-        success: function (result) {
-            console.log("SIMULATION STORE -- SUCCESS!");
-
-            $('#saveSim-1').modal('hide');
-            $.notify("Simulation data saved", "success");
-
-            //flag saved
-            sim_saved = true
-        },
-        error: function (result) {
-            console.log("SIMULATION STORE ERROR:", result)
-
-            $('#saveSim-1').modal('hide');
-            $.notify("Simulation data was not saved", "error");
-        }
-    });
-
-}
-
-function latLngChange(object) {
-    console.log("LatLong " + object.id + "," + object.value);
-    var latlngvalue = parseFloat(object.value);
-
-    //test non numeric
-    if (isNaN(latlngvalue)) {
-        if (object.id == "latitude") {
-            object.value = "40.6848037";
-        } else {
-            object.value = "-73.9654541";
-        }
-    }
-
-    //test bounds
-    if (object.id == "latitude") {
-        if (latlngvalue > 45) {
-            object.value = "45.0000000";
-        } else if (latlngvalue < 34) {
-            object.value = "34.0000000";
-        }
-    } else {
-        if (latlngvalue > -63) {
-            object.value = "-63.0000000";
-        } else if (latlngvalue < -77) {
-            object.value = "-77.0000000";
-        }
-    }
-
-    //update widget
-    update_widget();
 }
 
 //add the current simulation to a map
@@ -838,6 +451,18 @@ var app = new Vue({
         longitude: home_longitude,
         latitude: home_latitude,
         angle: 0.0,
+        id: "",
+        simulation: {
+            running: false,
+            complete: false,
+            workers: -1,
+            position: -1,
+            initialEstimate: -1,
+            currentTime: 0,
+        },
+        state: { 'wind': false, 'surge': false, 'runup': false},
+        opacity: { 'wind': 100.0, 'surge': 100.0, 'runup': 100.0},
+        layer: {'wind': undefined, 'surge': undefined, 'runup': undefined},
         model: {
             type: "basic",
             style: 1,
@@ -853,11 +478,14 @@ var app = new Vue({
         }
     },
     created: function () {
-        
+        this.id = Math.random().toString(36).substr(2, 9);
     },
     methods: {
         setSimulationType: function(type){
             this.model.type = type;
+        },
+        getSimulationString: function(){
+            return this.model.style == 1 ? "Hurricane" : "Nor'easter";
         },
         setStormValues: function(){
             this.model.speed = 50.0;
@@ -884,7 +512,36 @@ var app = new Vue({
                     break;
             }
         },
+        latLngChange: function() {
+            //test non numeric
+            if (isNaN(this.latitude)) {
+                this.latitude = 40.6848037;
+            }
+
+            if( isNaN(this.longitude) ){
+                this.longitude = -73.9654541;
+            }
+        
+            //test bounds
+            if (this.latitude > 45) {
+                this.latitude = 45.0000000;
+            } else if (this.latitude < 34) {
+                this.latitude = 34.0000000;
+            }
+
+            if (this.longitude > -63) {
+                this.longitude = -63.0000000;
+            } else if (this.longitude < -77) {
+                this.longitude = -77.0000000;
+            }
+        
+            //update widget
+            //update_widget();
+        },
         startSimulation: function(){
+            const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
+            const long_past_point = this.longitude - Math.sin(this.angle * Math.PI / 180) * 0.015;
+
             var data = {
                 "index_SLT": [1,1],
                 "index_W": 1,
@@ -895,26 +552,311 @@ var app = new Vue({
                 "surge_file": "heatmap.json",
                 "wind_file": "wind_heatmap.json",
                 "runup_file":"transect_line.json",
-                "workspace_file": ""
-            }
+                "workspace_file": "",
 
-            if( this.model.style === 2 ){
-                data.ne_strength = this.model.catagory;
-            }else{
-                const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
-                const long_past_point = this.longitude - Math.sin(this.angle * Math.PI / 180) * 0.015;
+                // Nor'easter Only
+                "ne_strength": this.model.catagory,
 
-                data.param = [
+                // Hurricane Only
+                "timeMC": this.model.landfall,
+                "lat_track":  [lat_past_point, this.latitude],
+                "long_track": [long_past_point, this.longitude],
+                "protection": this.model.protection,
+                "index_prob": this.model.analysis,
+                "param": [
                     this.latitude, this.longitude, 90.0, this.model.pressure, this.model.speed * 1.852001, this.model.radius * 1.609344
                 ]
-                data.timeMC = this.model.landfall;
-                data.lat_track = [lat_past_point, this.latitude];
-                data.long_track = [long_past_point, this.longitude];
-                data.protection = this.model.protection;
-                data.index_prob = this.model.analysis;
+            }
+
+            if( this.model.style == 1 ){
+                data["storm_type"] = "Hurricane";
+            }else{
+                data["storm_type"] = "Nor'easter";
             }
 
             console.log(JSON.stringify(data));
-        }
+
+            fetch("/queue/single?name=" + owner.toString() + "&id=" + this.id, {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers:{
+                  'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                console.log('Success:', response);
+
+                this.simulation.running = true;
+                setTimeout(() => this.waitForCompletion(), 5000);
+                seconds_running = 0;
+
+                document.getElementById("save_button").classList.add("disabled");
+                document.getElementById("dropdownMenuAddToMap").classList.add("disabled");
+                sim_saved = false;
+            }).catch(error => {
+                this.simulation.running = false;
+                console.error('Error:', error);
+            });
+        },
+        waitForCompletion: function(){
+            fetch("/queue/status?name=" + owner.toString() + "&id=" + this.id, {
+                method: 'GET',
+                headers:{
+                  'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).then(response => {
+                console.log("EXPERT SIMULATION -- SUCCESS.", response);
+                this.simulation.workers = response.workers;
+                this.simulation.position = response.position;
+
+                if( this.simulation.initialEstimate == -1 ){
+                    this.simulation.initialEstimate = this.estimateRemaining();
+                }
+
+                if (response.complete == false) {
+                    this.simulation.currentTime += 5;
+                    setTimeout(() => this.waitForCompletion(), 5000);
+                } else if (response.complete == true) {
+                    $.notify("Calculation complete!", "success");
+    
+                    this.simulation.running = false;
+                    this.simulation.complete = true;
+                    this.update();
+                }
+            }).catch(error => {
+                this.simulation.running = false;
+                console.error('Error:', error);
+            });
+        },
+        estimateRemaining: function(){
+            return (300.0 + ((300.0 * (this.simulation.position.toFixed(2)-1.0)) / this.simulation.workers.toFixed(2))) - this.simulation.currentTime;
+        },
+        percentRemaining: function(){
+            return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0; 
+        },
+        saveSimulation: function(){
+            if( !this.simulation.complete ) {
+                alert("Plase run a sumulation before saving!");
+                return;
+            }
+
+            //check if sim saved
+            if (sim_saved) {
+                alert("This simulation has been saved!");
+                return;
+            }
+            //preset values and open modal
+            document.getElementById("sim_description").value = "Simulation " + this.id;
+
+            $('#saveSim-1').modal('show');
+        },
+        saveSimulationAJAX: function(){ 
+            //get inputs from Modal
+            var sim_desc = document.getElementById("sim_description").value;
+            var sim_name = document.getElementById("sim_name").value;
+
+            const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
+            const long_past_point = this.longitude - Math.sin(this.angle * Math.PI / 180) * 0.015;
+
+            var data = {
+                "index_SLT": [1,1],
+                "index_W": 1,
+                "indicator": 1,
+                "SLR": this.model.slr * 0.3048,
+                "tide": this.model.tide,
+                "sim_type": this.model.style,
+                "surge_file": "heatmap.json",
+                "wind_file": "wind_heatmap.json",
+                "runup_file":"transect_line.json",
+                "workspace_file": "",
+
+                // Nor'easter Only
+                "ne_strength": this.model.catagory,
+
+                // Hurricane Only
+                "timeMC": this.model.landfall,
+                "lat_track":  [lat_past_point, this.latitude],
+                "long_track": [long_past_point, this.longitude],
+                "protection": this.model.protection,
+                "index_prob": this.model.analysis,
+                "param": [
+                    this.latitude, this.longitude, 90.0, this.model.pressure, this.model.speed * 1.852001, this.model.radius * 1.609344
+                ]
+            };
+
+            if( this.model.style == 1 ){
+                data["storm_type"] = "Hurricane";
+            }else{
+                data["storm_type"] = "Nor'easter";
+            }
+
+            //store data
+            $.ajax({
+                type: "POST",
+                url: "/store/",
+                data: {
+                    'data': JSON.stringify(data),
+                    'user_id': owner.toString(),
+                    'sim_id': this.id,
+                    'description': sim_desc,
+                    'sim_name': sim_name
+                },
+                //dataType: "json",
+                success: function (result) {
+                    console.log("SIMULATION STORE -- SUCCESS!");
+
+                    $('#saveSim-1').modal('hide');
+                    $.notify("Simulation data saved", "success");
+
+                    //flag saved
+                    sim_saved = true
+                },
+                error: function (result) {
+                    console.log("SIMULATION STORE ERROR:", result)
+
+                    $('#saveSim-1').modal('hide');
+                    $.notify("Simulation data was not saved", "error");
+                }
+            });
+        },
+        addToMap: function(mapName){
+            //need to save first!
+            if (!sim_saved) {
+                this.saveSimulation();
+            }
+
+            //save map and sim data
+            var map_data = {
+                'sim_id': this.id,
+            };
+
+            console.log("Map clicked " + JSON.stringify(map_data) + "," + mapName);
+
+            //Do ajax
+            $.ajax({
+                type: "POST",
+                url: "/map/" + mapName + "/settings/",
+                data: {
+                    'sim_id': this.id,
+                    'action': 'add_simulation',
+                    'add_layer': this.id + "_surge"
+                },
+                dataType: "json",
+                success: function (result) {
+                    console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
+                    //now auto save so dont flag
+                    $.notify("Simulation saved to map " + mapName, "success");
+
+                    //jump to page
+                    window.location.href = "/map/" + mapName + "/";
+                },
+                error: function (result) {
+                    console.log("ERROR:", result)
+                    $.notify("Error saving simulation to map", "error");
+                }
+            });
+        },
+        update: function(){
+            this.update_wind();
+            this.update_surge();
+            this.update_runup();
+        },
+        update_wind: function(){
+            if( this.state.wind && this.simulation.complete ){
+                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/wind_heatmap.json"
+                fetch(path).then(res => res.json()).then(data => {
+                    if( this.layer.wind !== undefined ){
+                        mymap.removeLayer(this.layer.wind);
+                    }
+                    this.layer.wind = create_wind_heatmap(data.wind).addTo(mymap);
+                    add_wind_legend(mymap);
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+          },
+          update_surge: function(){
+            if( this.state.surge && this.simulation.complete ){
+                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge_line.json"
+                fetch(path).then(res => res.json()).then(data => {
+                    if( this.layer.surge !== undefined ){
+                        mymap.removeLayer(this.layer.surge);
+                    }
+                    this.layer.surge = L.geoJSON(data, {
+                        style: function(feature) {
+                            switch (feature.properties.height) {
+                                case 0: return {color: "black"};
+                                case 3: return {color: "yellow"};
+                                case 6: return {color: "orange"};
+                                case 9: return {color: "red"};
+                            }
+                        },
+                        filter: function(feature, layer) {
+                            return feature.properties.height <= 9;
+                        }
+                    }).addTo(mymap);
+
+                    add_surge_legend(mymap);
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+          },
+          update_runup: function(){
+            if( this.state.runup && this.simulation.complete ){
+                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/transect_line.json"
+                fetch(path).then(res => res.json()).then(data => {
+                    if( this.layer.runup !== undefined ){
+                        mymap.removeLayer(this.layer.runup);
+                    }
+                    this.layer.runup = L.geoJSON(data, {
+                        style: function(feature) {
+                            console.log(feature.properties.type)
+                            if( feature.properties.type.includes("Boundary") ) {
+                                return {color: "blue"};
+                            }else{
+                                return {color: "green"};
+                            }
+                        },
+                        filter: function(feature, layer){
+                            return feature.properties.type != "Transect";
+                        }
+                    }).addTo(mymap);
+
+                    add_runup_legend(mymap);
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+          },
+        toggle_wind: function(){
+            if(this.state.wind == true){
+                this.update_wind();
+            }else{
+                mymap.removeLayer(this.layer.wind);
+                this.layer.wind = undefined;
+                del_wind_legend();
+            }
+          },
+          toggle_surge: function(){
+            if(this.state.surge == true){
+                this.update_surge();
+            }else{
+                mymap.removeLayer(this.layer.surge);
+                this.layer.surge = undefined;
+                del_surge_legend();
+            }
+          },
+          toggle_runup: function(){
+            if(this.state.runup == true){
+                this.update_runup();
+            }else{
+                mymap.removeLayer(this.layer.runup);
+                this.layer.runup = undefined;
+                del_runup_legend();
+            }
+          },
+          setOpacity: function(type){
+            this.layer[type].setOpacity(this.opacity[type]/100.0);
+          }
     }
 }) 

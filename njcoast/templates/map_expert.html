@@ -125,12 +125,12 @@ js functions:
                         <table class="table shp-table">
                             <tr>
                                 <th>Latitude</th>
-                                <td><input type="text" id="latitude" v-model="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
+                                <td><input type="text" id="latitude" v-model="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                             <tr>
                                 <th>Longitude</th>
-                                <td><input type="text" id="longitude" v-model="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" onchange="latLngChange(this)"></td>
+                                <td><input type="text" id="longitude" v-model="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                         </table>
@@ -239,10 +239,12 @@ js functions:
                 </div>
             </div>
             <div class="map-control-item">
-                <button id="calculate" class="btn btn-primary btn-md btn-block" style="margin-top: 10px" v-on:click="startSimulation()">Perform Calculation</button>
-                <div id="spinner" style="display: none;">
-                    <p></p>
-                    <center><i class="fa fa-refresh fa-spin" style="font-size:24px"></i></center>
+                <button id="calculate" class="btn btn-primary btn-md btn-block" style="margin-top: 10px; margin-bottom: 10px" v-on:click="startSimulation()" v-bind:disabled="simulation.running">Perform Calculation</button>
+                <div>
+                    <div v-if="simulation.running" class="progress" style="width:70%; display:inline-block;">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" v-bind:aria-valuenow="estimateRemaining()" aria-valuemin="0" v-bind:aria-valuemax="simulation.initialEstimate" v-bind:style="'width: ' + percentRemaining() + '%'"></div>
+                    </div>
+                    <div v-if="simulation.running" style="width:24%; float: left">Est: ${estimateRemaining()}s</div>
                 </div>
             </div>
 
@@ -250,49 +252,54 @@ js functions:
             <div class="map-control-item">
                 <p class="tool-heading">View Results on Map</p>
                 <ul class="map-layers">
-                    <li><input id="wind_checkbox" type="checkbox" name="wind" value="female" onchange="load_heatmap(this);"> Wind Field</li>
-                    <li><input id="surge_checkbox" type="checkbox" name="surge" value="female" onchange="load_heatmap(this);" checked> Surge</li>
-                    <li v-if="model.style == '1'"><input id="runup_checkbox" type="checkbox" name="runup" value="female" onchange="load_heatmap(this);"> Total Run Up</li>
+                    <li><input type="checkbox" v-model="state.wind" v-on:change="toggle_wind()"> Wind Field </li>
+                    <input v-if="state.wind" v-model.number="opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity('wind')"/>
+                    <li><input type="checkbox" v-model="state.surge" v-on:change="toggle_surge()"> Surge </li>
+                    <input v-if="state.surge" v-model.number="opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity('surge')"/>
+                    <li v-if="model.style == '1'"><input type="checkbox" v-model="state.runup" v-on:change="toggle_runup()"> Total Run Up</li>
+                    <input v-if="state.runup" v-model.number="opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity('runup')"/>
                 </ul>
             </div>
             <div class="map-control-item">
-                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block disabled" style="margin-top: 10px" onclick="save_simulation();" >Save Results</button>
+                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block" v-bind:class="{ disabled: !simulation.complete }" style="margin-top: 10px" v-on:click="saveSimulation();" >Save Results</button>
                 <div class="dropup show">
-                    <button class="btn btn-block btn-secondary dropdown-toggle disabled" style="margin-top: 5px" id="dropdownMenuAddToMap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-block btn-secondary dropdown-toggle" v-bind:class="{ disabled: !simulation.complete }" style="margin-top: 5px" id="dropdownMenuAddToMap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Results to Map ... <i class="fa fa-caret-up" style="margin-left: 10px" aria-hidden="true"></i>
               </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuAddToMap">
                     {% for map in maps_for_user %}
-                        <a class="dropdown-item" name="{{ map.id }}" href="#" onclick="add_expert_to_map(this);">{{ map.name }}</a>
+                        <a class="dropdown-item" name="{{ map.id }}" href="#" v-on:click="addToMap('{{map.id}}');">{{ map.name }}</a>
                     {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal - Save changes button -->
+            <div class="modal fade" id="saveSim-1" tabindex="-1" role="dialog" aria-labelledby="saveSim">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="saveSim">Save simulation</h4>
+                        </div>
+                        <div id="editable_user_modal" class="modal-body">
+                            Please enter the following information:</br>
+                            <b>Simulation name</b></br>
+                            <input type="text" class="form-control" id="sim_name" v-bind:value="getSimulationString() + ' Run #{{ next_id }}'" ></br>
+                            <b>Simulation description</b></br>
+                            <input type="text" class="form-control" id="sim_description" value="Simulation" ></br>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="save_simulation_button" v-on:click="saveSimulationAJAX();" class="btn btn-primary" href="#">Save</a>
+                            <a onclick="$('#saveSim-1').modal('hide');" class="btn btn-default" href="#">Cancel</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Enf tools RHS menu -->
 
-        <!-- Modal - Save changes button -->
-        <div class="modal fade" id="saveSim-1" tabindex="-1" role="dialog" aria-labelledby="saveSim">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="saveSim">Save simulation</h4>
-                    </div>
-                    <div id="editable_user_modal" class="modal-body">
-                        Please enter the following information:</br>
-                        <b>Simulation name</b></br>
-                        <input type="text" class="form-control" id="sim_name" value="Hurricane Run #{{ next_id }}" ></br>
-                        <b>Simulation description</b></br>
-                        <input type="text" class="form-control" id="sim_description" value="Simulation" ></br>
-                    </div>
-                    <div class="modal-footer">
-                        <a id="save_simulation_button" onclick="save_simulation_ajax();" class="btn btn-primary" href="#">Save</a>
-                        <a onclick="$('#saveSim-1').modal('hide');" class="btn btn-default" href="#">Cancel</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
     </div>
 </div>
