@@ -113,12 +113,12 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                 <div class="collapse in" id="gisLayers">
                     <div v-for="(value, key) in group" id="layerGroup">
                         <p class="map-layer-group-heading">
-                            <a data-toggle="collapse" v-bind:href="'#'+key.toLowerCase()" aria-expanded="false" v-bind:aria-controls="key.toLowerCase()">
+                            <a data-toggle="collapse" v-bind:href="'#'+key.toLowerCase().replace(/\s+/g, '')" aria-expanded="false" v-bind:aria-controls="key.toLowerCase().replace(/\s+/g, '')">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                <span v-bind:id="key.toLowerCase()+'_name'">${key}</span>
+                                <span v-bind:id="key.toLowerCase().replace(/\s+/g, '')+'_name'">${key}</span>
                             </a>
                         </p>
-                        <ul class="map-layers collapse" v-bind:id="key.toLowerCase()" style="height: auto;">
+                        <ul class="map-layers collapse" v-bind:id="key.toLowerCase().replace(/\s+/g, '')" style="height: auto;">
                             <li v-for="(layer, index) in value">
                                 <input v-bind:id="layer.id" v-model="layer.enabled" type="checkbox" v-on:change="toggleLayer(key, layer.id)"> ${layer.name}</input>
                                 <input v-if="layer.enabled" v-model.number="layer.opacity" min="0" max="100" step="5" type="range" v-on:change="setOpacity(key, layer.id)"/>
