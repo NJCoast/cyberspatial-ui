@@ -327,7 +327,7 @@ $(document).ready(function () {
                 for( var i = 0; i < data.layers.length; i++){
                     data.layers[i].enabled = false;
                     data.layers[i].opacity = 100;
-                    if( data.layers[i].group.toLowerCase() == "imagerybasemapsearthcover" ) {
+                    if( data.layers[i].group.toLowerCase().replace(/\s+/g, '') == "imagerybasemapsearthcover" ) {
                         data.layers[i].maplayer = L.tileLayer.wms(data.layers[i].layer_link, {
                             layers: data.layers[i].layer, 
                             transparent: true, 
