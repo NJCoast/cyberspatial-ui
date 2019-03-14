@@ -132,260 +132,6 @@ var marker, polyline, arrow_length;
 //saved flag
 var sim_saved = false;
 
-//create storm track icons
-function create_storm_track(onOff) {
-
-    if (onOff) {
-        //get zoom
-        arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
-
-        //load Latitude/Longitude and angle
-        var latitude = parseFloat(document.getElementById("latitude").value);
-        var longitude = parseFloat(document.getElementById("longitude").value);
-        var angle = parseFloat("0.0") / 180 * Math.PI;
-
-        //test current inputs
-        if (isNaN(latitude) || isNaN(longitude) || isNaN(angle)) {
-            alert("Please enter correct value for Latitude/Longitude.");
-            return;
-        }
-
-        /*//disable button etc. if inputs OK
-        //document.getElementById("cst").classList.add("disabled");
-        document.getElementById("latitude").disabled = true;
-        document.getElementById("longitude").disabled = true;
-        document.getElementById("angle").disabled = true;
-        document.getElementById("angleslider").disabled = true;*/
-
-        // Add in a crosshair for the map
-        var crosshairIcon = L.icon({
-            iconUrl: '/static/images/icon_storm-dir-start.png',
-            iconSize:     [24, 24], // size of the icon
-            iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
-        });
-
-        // Add in a crosshair for the map
-        var arrowIcon = L.icon({
-            iconUrl: '/static/images/icon_storm-dir-arrow.png',
-            iconSize:     [20, 20], // size of the icon
-            iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
-        });
-
-        //create markers
-        //set offsets to current angle
-        //note 1 degree is different for Lat/Long so need to correct
-        //Latitude is fixed at around 69 miles/degree
-        //Longitude is cosine(Latitude) * miles/degree at equator
-        //so here cosine(40') * 69.172
-        //ratio is around 0.78
-        //Explaination: https://gis.stackexchange.com/questions/142326/calculating-longitude-length-in-miles
-        var sat_offset_y = Math.cos(angle) * arrow_length * 0.78; //
-        var sat_offset_x = Math.sin(angle) * arrow_length;
-
-        // create a polyline between markers
-        var latlngs = [
-            [latitude + sat_offset_y * 0.13, longitude + sat_offset_x * 0.13],
-            [latitude + sat_offset_y, longitude + sat_offset_x]
-        ];
-        polyline = L.polyline(latlngs, {color: '#eb6b00', weight: 3, opacity: 1.0 }).addTo(mymap);
-
-        //create landfall marker
-        marker = new L.marker([latitude, longitude], { draggable: 'true', icon: crosshairIcon });
-        marker.on('drag', function (event) {
-            //get pos
-            var marker = event.target;
-            var position = marker.getLatLng();
-
-            //bounds
-            var lat_lng_changed = false;
-
-            //check bounds lat
-            if (position.lat > 45) {
-                position.lat = 45;
-                lat_lng_changed = true;
-            } else if (position.lat < 34) {
-                position.lat = 34;
-                lat_lng_changed = true;
-            }
-
-            //check bounds long
-            if (position.lng > -63) {
-                position.lng = -63;
-                lat_lng_changed = true;
-            } else if (position.lng < -77) {
-                position.lng = -77;
-                lat_lng_changed = true;
-            }
-
-            //reset
-            if (lat_lng_changed) marker.setLatLng(position);
-
-            //fix for first use of angle
-            if(!sat_marker.angle){
-                sat_marker.angle = document.getElementById("angleslider").value * Math.PI / 180;
-            }
-
-            //get zoom
-            var arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
-
-            //load angle, calc position
-            var angle = sat_marker.angle;
-            sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
-            sat_offset_x = Math.sin(angle) * arrow_length;
-
-            //fix sat/line pos
-            sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng+sat_offset_x),{draggable:'true'});
-            polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng + sat_offset_x]]);
-
-            //update text boxes
-            document.getElementById("latitude").value = position.lat.toFixed(7).toString();
-            document.getElementById("longitude").value = position.lng.toFixed(7).toString();
-        });
-        mymap.addLayer(marker);
-
-        //create direction marker
-        sat_marker = new L.marker([latitude + sat_offset_y, longitude + sat_offset_x], { draggable: 'true', rotationAngle: angle * 180 / Math.PI, icon: arrowIcon });
-        sat_marker.on('drag', function (event) {
-            //get zoom
-            var arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
-
-            //get pos
-            var position = marker.getLatLng();
-            var sat_pos = sat_marker.getLatLng();
-
-            //find angle
-            var angle = Math.atan2(sat_pos.lng - position.lng, sat_pos.lat - position.lat);
-            if (angle < -1.047197551196598) angle = -1.047197551196598;
-            if (angle > 0.698131700797732) angle = 0.698131700797732;
-            sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
-            sat_offset_x = Math.sin(angle) * arrow_length;
-
-            //save angleslider
-            sat_marker.angle = angle;
-
-            //constrain to circle
-            sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng + sat_offset_x), { draggable: 'true' });
-
-            //rotate icon
-            sat_marker.setRotationAngle(angle * 180 / Math.PI);
-
-            //and line
-            polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng+sat_offset_x]]);
-
-            //update angle box
-            document.getElementById("angle").value = Math.round(angle * 180 / Math.PI);
-            document.getElementById("angleslider").value = Math.round(angle * 180 / Math.PI);
-
-        });
-        mymap.addLayer(sat_marker);
-    } else {
-        //if unchecked then remove and re-enable
-        document.getElementById("latitude").disabled = false;
-        document.getElementById("longitude").disabled = false;
-        document.getElementById("angle").disabled = false;
-        document.getElementById("angleslider").disabled = false;
-
-        //remove storm tract
-        mymap.removeLayer(sat_marker);
-        mymap.removeLayer(marker);
-        mymap.removeLayer(polyline);
-        sat_marker = null;
-    }
-}
-
-//update marker if valid
-mymap.on('zoomend', function (event) {
-    //test if marker valid
-    if (sat_marker == null) {
-        return;
-    }
-
-    //fix for first use of angle
-    if(!sat_marker.angle){
-        sat_marker.angle = document.getElementById("angleslider").value * Math.PI / 180;
-    }
-
-    //get zoom
-    arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
-
-    //get pos
-    var position = marker.getLatLng();
-    var sat_pos = sat_marker.getLatLng();
-
-    //load angle, calc position
-    var angle = sat_marker.angle;
-    var sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
-    var sat_offset_x = Math.sin(angle) * arrow_length;
-
-    //constrain to circle
-    sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng + sat_offset_x), { draggable: 'true' });
-
-    //rotate icon
-    sat_marker.setRotationAngle(angle * 180 / Math.PI);
-
-    //and line
-    polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng+sat_offset_x]]);
-    //}
-});
-
-//save expert simulation data
-function save_simulation() {
-    //normal code, has simulation run?
-    if (data == null) {//} || heatmap.length == 0){
-        alert("Plase run a sumulation before saving!");
-        return;
-    }
-
-    //check if sim saved
-    if (sim_saved) {
-        alert("This simulation has been saved!");
-        return;
-    }
-    //preset values and open modal
-    document.getElementById("sim_description").value = "Simulation " + sim_id;
-
-    $('#saveSim-1').modal('show');
-}
-
-//add the current simulation to a map
-function add_expert_to_map(object) {
-    //need to save first!
-    if (!sim_saved) {
-        save_simulation();
-    }
-
-    //save map and sim data
-    var map_data = {
-        'sim_id': sim_id,
-    };
-
-    console.log("Map clicked " + JSON.stringify(map_data) + "," + object.innerHTML);
-
-    //Do ajax
-    $.ajax({
-        type: "POST",
-        url: "/map/" + object.name + "/settings/",
-        data: {
-            'sim_id': sim_id,
-            'action': 'add_simulation',
-            'add_layer': sim_id + "_surge"
-        },
-        dataType: "json",
-        success: function (result) {
-            console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
-            //now auto save so dont flag
-            $.notify("Simulation saved to map " + object.innerHTML, "success");
-
-            //jump to page
-            window.location.href = "/map/" + object.name + "/";
-        },
-        error: function (result) {
-            console.log("ERROR:", result)
-            $.notify("Error saving simulation to map", "error");
-        }
-    });
-}
-
 var app = new Vue({
     delimiters: ['${', '}'],
     el: '#stormParameters',
@@ -817,3 +563,248 @@ var app = new Vue({
           }
     }
 }) 
+
+
+//create storm track icons
+function create_storm_track(onOff) {
+
+    if (onOff) {
+        //get zoom
+        arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
+
+        //load Latitude/Longitude and angle
+        var latitude = parseFloat(document.getElementById("latitude").value);
+        var longitude = parseFloat(document.getElementById("longitude").value);
+        var angle = parseFloat("0.0") / 180 * Math.PI;
+
+        //test current inputs
+        if (isNaN(latitude) || isNaN(longitude) || isNaN(angle)) {
+            alert("Please enter correct value for Latitude/Longitude.");
+            return;
+        }
+
+        /*//disable button etc. if inputs OK
+        //document.getElementById("cst").classList.add("disabled");
+        document.getElementById("latitude").disabled = true;
+        document.getElementById("longitude").disabled = true;
+        document.getElementById("angle").disabled = true;
+        document.getElementById("angleslider").disabled = true;*/
+
+        // Add in a crosshair for the map
+        var crosshairIcon = L.icon({
+            iconUrl: '/static/images/icon_storm-dir-start.png',
+            iconSize:     [24, 24], // size of the icon
+            iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+        });
+
+        // Add in a crosshair for the map
+        var arrowIcon = L.icon({
+            iconUrl: '/static/images/icon_storm-dir-arrow.png',
+            iconSize:     [20, 20], // size of the icon
+            iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+        });
+
+        //create markers
+        //set offsets to current angle
+        //note 1 degree is different for Lat/Long so need to correct
+        //Latitude is fixed at around 69 miles/degree
+        //Longitude is cosine(Latitude) * miles/degree at equator
+        //so here cosine(40') * 69.172
+        //ratio is around 0.78
+        //Explaination: https://gis.stackexchange.com/questions/142326/calculating-longitude-length-in-miles
+        var sat_offset_y = Math.cos(angle) * arrow_length * 0.78; //
+        var sat_offset_x = Math.sin(angle) * arrow_length;
+
+        // create a polyline between markers
+        var latlngs = [
+            [latitude + sat_offset_y * 0.13, longitude + sat_offset_x * 0.13],
+            [latitude + sat_offset_y, longitude + sat_offset_x]
+        ];
+        polyline = L.polyline(latlngs, {color: '#eb6b00', weight: 3, opacity: 1.0 }).addTo(mymap);
+
+        //create landfall marker
+        marker = new L.marker([latitude, longitude], { draggable: 'true', icon: crosshairIcon });
+        marker.on('drag', function (event) {
+            //get pos
+            var marker = event.target;
+            var position = marker.getLatLng();
+
+            //bounds
+            var lat_lng_changed = false;
+
+            //check bounds lat
+            if (position.lat > 45) {
+                position.lat = 45;
+                lat_lng_changed = true;
+            } else if (position.lat < 34) {
+                position.lat = 34;
+                lat_lng_changed = true;
+            }
+
+            //check bounds long
+            if (position.lng > -63) {
+                position.lng = -63;
+                lat_lng_changed = true;
+            } else if (position.lng < -77) {
+                position.lng = -77;
+                lat_lng_changed = true;
+            }
+
+            //reset
+            if (lat_lng_changed) marker.setLatLng(position);
+
+            //fix for first use of angle
+            if(!sat_marker.angle){
+                sat_marker.angle = document.getElementById("angleslider").value * Math.PI / 180;
+            }
+
+            //get zoom
+            var arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
+
+            //load angle, calc position
+            var angle = sat_marker.angle;
+            sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
+            sat_offset_x = Math.sin(angle) * arrow_length;
+
+            //fix sat/line pos
+            sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng+sat_offset_x),{draggable:'true'});
+            polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng + sat_offset_x]]);
+
+            //update text boxes
+            document.getElementById("latitude").value = position.lat.toFixed(7).toString();
+            document.getElementById("longitude").value = position.lng.toFixed(7).toString();
+        });
+        mymap.addLayer(marker);
+
+        //create direction marker
+        sat_marker = new L.marker([latitude + sat_offset_y, longitude + sat_offset_x], { draggable: 'true', rotationAngle: angle * 180 / Math.PI, icon: arrowIcon });
+        sat_marker.on('drag', function (event) {
+            //get zoom
+            var arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
+
+            //get pos
+            var position = marker.getLatLng();
+            var sat_pos = sat_marker.getLatLng();
+
+            //find angle
+            var angle = Math.atan2(sat_pos.lng - position.lng, sat_pos.lat - position.lat);
+            if (angle < -1.047197551196598) angle = -1.047197551196598;
+            if (angle > 0.698131700797732) angle = 0.698131700797732;
+            sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
+            sat_offset_x = Math.sin(angle) * arrow_length;
+
+            //save angleslider
+            sat_marker.angle = angle;
+
+            //constrain to circle
+            sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng + sat_offset_x), { draggable: 'true' });
+
+            //rotate icon
+            sat_marker.setRotationAngle(angle * 180 / Math.PI);
+
+            //and line
+            polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng+sat_offset_x]]);
+
+            //update angle box
+            document.getElementById("angle").value = Math.round(angle * 180 / Math.PI);
+            document.getElementById("angleslider").value = Math.round(angle * 180 / Math.PI);
+
+        });
+        mymap.addLayer(sat_marker);
+    } else {
+        //if unchecked then remove and re-enable
+        document.getElementById("latitude").disabled = false;
+        document.getElementById("longitude").disabled = false;
+        document.getElementById("angle").disabled = false;
+        document.getElementById("angleslider").disabled = false;
+
+        //remove storm tract
+        mymap.removeLayer(sat_marker);
+        mymap.removeLayer(marker);
+        mymap.removeLayer(polyline);
+        sat_marker = null;
+    }
+}
+
+//update marker if valid
+mymap.on('zoomend', function (event) {
+    //test if marker valid
+    if (sat_marker == null) {
+        return;
+    }
+
+    //fix for first use of angle
+    if(!sat_marker.angle){
+        sat_marker.angle = app.angle * Math.PI / 180;
+    }
+
+    arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
+
+    var angle = sat_marker.angle;
+    var sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
+    var sat_offset_x = Math.sin(angle) * arrow_length;
+
+    var position = marker.getLatLng();
+    sat_marker.setLatLng(new L.LatLng(position.lat + sat_offset_y, position.lng + sat_offset_x), { draggable: 'true' });
+    sat_marker.setRotationAngle(angle * 180 / Math.PI);
+
+    polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng+sat_offset_x]]);
+});
+
+//save expert simulation data
+function save_simulation() {
+    //normal code, has simulation run?
+    if (data == null) {//} || heatmap.length == 0){
+        alert("Plase run a sumulation before saving!");
+        return;
+    }
+
+    //check if sim saved
+    if (sim_saved) {
+        alert("This simulation has been saved!");
+        return;
+    }
+    //preset values and open modal
+    document.getElementById("sim_description").value = "Simulation " + sim_id;
+
+    $('#saveSim-1').modal('show');
+}
+
+//add the current simulation to a map
+function add_expert_to_map(object) {
+    //need to save first!
+    if (!sim_saved) {
+        save_simulation();
+    }
+
+    //save map and sim data
+    var map_data = {
+        'sim_id': sim_id,
+    };
+
+    console.log("Map clicked " + JSON.stringify(map_data) + "," + object.innerHTML);
+
+    //Do ajax
+    $.ajax({
+        type: "POST",
+        url: "/map/" + object.name + "/settings/",
+        data: {
+            'sim_id': sim_id,
+            'action': 'add_simulation',
+            'add_layer': sim_id + "_surge"
+        },
+        dataType: "json",
+        success: function (result) {
+            console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
+            //now auto save so dont flag
+            $.notify("Simulation saved to map " + object.innerHTML, "success");
+
+            //jump to page
+            window.location.href = "/map/" + object.name + "/";
+        },
+        error: function (result) {
+            console.log("ERROR:", result)
+            $.notify("Error saving simulation to map", "error");
+        }
+    });
+}
