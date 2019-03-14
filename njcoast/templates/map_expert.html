@@ -125,12 +125,12 @@ js functions:
                         <table class="table shp-table">
                             <tr>
                                 <th>Latitude</th>
-                                <td><input type="text" id="latitude" v-model="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
+                                <td><input type="text" id="latitude" v-model.number="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                             <tr>
                                 <th>Longitude</th>
-                                <td><input type="text" id="longitude" v-model="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
+                                <td><input type="text" id="longitude" v-model.number="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                         </table>
