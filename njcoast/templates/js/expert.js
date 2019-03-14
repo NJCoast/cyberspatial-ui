@@ -15,7 +15,6 @@
   *     load_expert_data_to_server  Get heatmap from S3 bucket.
   *     updateInput                 Links slider/text box values
   *     update_storm_track          Update arrow widget for storm landfall/direction
-  *     update_widget               Update arrow widget for user input
   *     create_storm_track          Create storm track icons
   *     save_simulation             Save the simulation once complete.
   *     save_simulation_ajax        AJAX for above function.
@@ -536,7 +535,20 @@ var app = new Vue({
             }
         
             //update widget
-            //update_widget();
+            var sat_offset_y = Math.cos(this.angle) * arrow_length * 0.78;
+            var sat_offset_x = Math.sin(this.angle) * arrow_length;
+
+            var latlngs = [
+                [this.latitude + sat_offset_y * 0.13, this.longitude + sat_offset_x * 0.13],
+                [this.latitude + sat_offset_y, this.longitude + sat_offset_x]
+            ];
+            polyline.setLatLngs(latlngs);
+
+            sat_marker.angle = this.angle;
+            sat_marker.setLatLng(new L.LatLng(this.latitude + sat_offset_y, this.longitude + sat_offset_x), { draggable: 'true' });
+            sat_marker.setRotationAngle(this.angle * 180 / Math.PI);
+
+            marker.setLatLng(new L.LatLng(this.latitude, this.longitude), { draggable: 'true' });
         },
         startSimulation: function(){
             const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
