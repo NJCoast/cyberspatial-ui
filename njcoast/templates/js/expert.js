@@ -13,8 +13,6 @@
   *     get_expert_data_to_server   Get status of simulation from back end server.
   *     load_heatmap                Load or unload a heatmap from the view.
   *     load_expert_data_to_server  Get heatmap from S3 bucket.
-  *     updateInput                 Links slider/text box values
-  *     update_storm_track          Update arrow widget for storm landfall/direction
   *     create_storm_track          Create storm track icons
   *     save_simulation             Save the simulation once complete.
   *     save_simulation_ajax        AJAX for above function.
@@ -134,61 +132,6 @@ var marker, polyline, arrow_length;
 //saved flag
 var sim_saved = false;
 
-//slider text box updates
-function updateInput(e) {
-    var sibling = e.previousElementSibling || e.nextElementSibling;
-    sibling.value = e.value;
-    e.value = sibling.value;
-}
-
-//update storm track arrow
-function update_storm_track(object){
-    //fix sibling
-    updateInput(object);
-
-    //angle?
-    if(object.id == 'angle' || object.id == 'angleslider'){
-        console.log("angle "+object.value);
-
-        //update tracker widget
-        update_widget();
-    }
-}
-
-//update widget if inputs change
-function update_widget(){
-    //load Latitude/Longitude and angle
-    var latitude = parseFloat(document.getElementById("latitude").value);
-    var longitude = parseFloat(document.getElementById("longitude").value);
-    var angle = parseFloat(document.getElementById("angle").value) / 180 * Math.PI;
-
-    //calc offset
-    var sat_offset_y = Math.cos(angle) * arrow_length * 0.78; //
-    var sat_offset_x = Math.sin(angle) * arrow_length;
-
-    // move polyline between markers
-    var latlngs = [
-        [latitude + sat_offset_y * 0.13, longitude + sat_offset_x * 0.13],
-        [latitude + sat_offset_y, longitude + sat_offset_x]
-    ];
-
-    //actually set
-    polyline.setLatLngs(latlngs);
-
-    //fix sat marker
-    sat_marker.angle = angle;
-
-    //constrain to circle
-    sat_marker.setLatLng(new L.LatLng(latitude + sat_offset_y, longitude + sat_offset_x), { draggable: 'true' });
-
-    //rotate icon
-    sat_marker.setRotationAngle(angle * 180 / Math.PI);
-
-    //fix marker
-    marker.setLatLng(new L.LatLng(latitude, longitude), { draggable: 'true' });
-
-}
-
 //create storm track icons
 function create_storm_track(onOff) {
 
@@ -199,7 +142,7 @@ function create_storm_track(onOff) {
         //load Latitude/Longitude and angle
         var latitude = parseFloat(document.getElementById("latitude").value);
         var longitude = parseFloat(document.getElementById("longitude").value);
-        var angle = parseFloat(document.getElementById("angle").value) / 180 * Math.PI;
+        var angle = parseFloat("0.0") / 180 * Math.PI;
 
         //test current inputs
         if (isNaN(latitude) || isNaN(longitude) || isNaN(angle)) {
@@ -535,8 +478,10 @@ var app = new Vue({
             }
         
             //update widget
-            var sat_offset_y = Math.cos(this.angle) * arrow_length * 0.78;
-            var sat_offset_x = Math.sin(this.angle) * arrow_length;
+            var angle = this.angle / 180 * Math.PI;
+    
+            var sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
+            var sat_offset_x = Math.sin(angle) * arrow_length;
 
             var latlngs = [
                 [this.latitude + sat_offset_y * 0.13, this.longitude + sat_offset_x * 0.13],
@@ -544,9 +489,9 @@ var app = new Vue({
             ];
             polyline.setLatLngs(latlngs);
 
-            sat_marker.angle = this.angle;
+            sat_marker.angle = angle;
             sat_marker.setLatLng(new L.LatLng(this.latitude + sat_offset_y, this.longitude + sat_offset_x), { draggable: 'true' });
-            sat_marker.setRotationAngle(this.angle * 180 / Math.PI);
+            sat_marker.setRotationAngle(angle * 180 / Math.PI);
 
             marker.setLatLng(new L.LatLng(this.latitude, this.longitude), { draggable: 'true' });
         },
