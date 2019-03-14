@@ -573,9 +573,9 @@ function create_storm_track(onOff) {
         arrow_length = 0.015 * Math.pow(2, 13 - mymap.getZoom());
 
         //load Latitude/Longitude and angle
-        var latitude = parseFloat(document.getElementById("latitude").value);
-        var longitude = parseFloat(document.getElementById("longitude").value);
-        var angle = parseFloat("0.0") / 180 * Math.PI;
+        var latitude = app.latitude;
+        var longitude = app.longitude;
+        var angle = app.angle / 180 * Math.PI;
 
         //test current inputs
         if (isNaN(latitude) || isNaN(longitude) || isNaN(angle)) {
@@ -621,7 +621,7 @@ function create_storm_track(onOff) {
             [latitude + sat_offset_y, longitude + sat_offset_x]
         ];
         polyline = L.polyline(latlngs, {color: '#eb6b00', weight: 3, opacity: 1.0 }).addTo(mymap);
-
+ 
         //create landfall marker
         marker = new L.marker([latitude, longitude], { draggable: 'true', icon: crosshairIcon });
         marker.on('drag', function (event) {
@@ -655,7 +655,7 @@ function create_storm_track(onOff) {
 
             //fix for first use of angle
             if(!sat_marker.angle){
-                sat_marker.angle = document.getElementById("angleslider").value * Math.PI / 180;
+                sat_marker.angle = app.angle * Math.PI / 180;
             }
 
             //get zoom
@@ -671,8 +671,8 @@ function create_storm_track(onOff) {
             polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng + sat_offset_x]]);
 
             //update text boxes
-            document.getElementById("latitude").value = position.lat.toFixed(7).toString();
-            document.getElementById("longitude").value = position.lng.toFixed(7).toString();
+            app.latitude = position.lat.toFixed(7);
+            app.longitude = position.lng.toFixed(7).toString();
         });
         mymap.addLayer(marker);
 
@@ -706,18 +706,11 @@ function create_storm_track(onOff) {
             polyline.setLatLngs([[position.lat + sat_offset_y * 0.13, position.lng + sat_offset_x * 0.13],[position.lat + sat_offset_y, position.lng+sat_offset_x]]);
 
             //update angle box
-            document.getElementById("angle").value = Math.round(angle * 180 / Math.PI);
-            document.getElementById("angleslider").value = Math.round(angle * 180 / Math.PI);
+            app.angle = Math.round(angle * 180 / Math.PI);
 
         });
         mymap.addLayer(sat_marker);
     } else {
-        //if unchecked then remove and re-enable
-        document.getElementById("latitude").disabled = false;
-        document.getElementById("longitude").disabled = false;
-        document.getElementById("angle").disabled = false;
-        document.getElementById("angleslider").disabled = false;
-
         //remove storm tract
         mymap.removeLayer(sat_marker);
         mymap.removeLayer(marker);
