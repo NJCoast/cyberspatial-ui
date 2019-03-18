@@ -125,19 +125,19 @@ js functions:
                         <table class="table shp-table">
                             <tr>
                                 <th>Latitude</th>
-                                <td><input type="text" id="latitude" v-model="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
+                                <td><input type="text" id="latitude" v-model.number="latitude" class="form-control" value={{ home_latitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                             <tr>
                                 <th>Longitude</th>
-                                <td><input type="text" id="longitude" v-model="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
+                                <td><input type="text" id="longitude" v-model.number="longitude" class="form-control" value={{ home_longitude }} aria-label="Username" aria-describedby="basic-addon1" v-on:change="latLngChange()"></td>
                                 <td>&deg;</td>
                             </tr>
                         </table>
-                        <p id="anglesliderlabel" class="slider-label" style="display:none">Storm Track Angle</p>
-                        <div id="angleslidercontrol" class="shp-controls" style="margin-bottom: 30px; display:none">
-                            <input id="angleslider" class="range-input" data-target="rm" min="-60" max="40" step="5" v-model="angle" type="range" oninput="update_storm_track(this)" onchange="updateInput(this)">
-                            <input id="angle" class="num-input job-input" name="rm" v-model="angle" type="text" onchange="update_storm_track(this);"> &deg;
+                        <p id="anglesliderlabel" class="slider-label" v-if="model.type == 'advanced'">Storm Track Angle</p>
+                        <div id="angleslidercontrol" class="shp-controls" style="margin-bottom: 30px;" v-if="model.type == 'advanced'">
+                            <input id="angleslider" class="range-input" data-target="rm" min="-60" max="40" step="5" v-model="angle" type="range" v-on:change="latLngChange()">
+                            <input id="angle" class="num-input job-input" name="rm" v-model="angle" type="text" v-on:change="latLngChange()"> &deg;
                         </div>
                     </div>
 

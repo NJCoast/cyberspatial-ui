@@ -1137,9 +1137,49 @@ function load_simulation_data(sim_id){
 
               var modified = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(result.data.modified));
 
+              var sTide = "";
+                switch( data.tide ){
+                case 1:
+                    sTide = "High";
+                    break;
+                case 0.5:
+                    sTide = "Typical";
+                    break;
+                case 0:
+                    sTide = "None";
+                    break;
+                }
+
+                
               //generate html
               var html = ``;
               if( data.sim_type == 1 ){
+                var sProtection = "";
+                switch( data.protection ){
+                    case 1:
+                        sProtection = "Current";
+                        break;
+                    case 2:
+                        sProtection = "Degraded";
+                        break;
+                    case 3:
+                        sProtection = "Compromised";
+                        break;
+                }
+                    
+                var sAnalysis = "";
+                switch( data.index_prob ){
+                    case 0:
+                        sAnalysis = "Deterministic";
+                        break;
+                    case 0.5:
+                        sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">expected</span>";
+                        break;
+                    case 0.1: 
+                        sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">extreme</span>";
+                        break;
+                }
+
               html =  `<div id='${sim_id}'>
                       <div class="map-layer-group-heading what-if">
                         <a data-toggle="collapse" href="#storm-${sim_id}" aria-expanded="false" aria-controls="storm-${sim_id}">
@@ -1153,9 +1193,9 @@ function load_simulation_data(sim_id){
                           <li><input id="${sim_id}_runup" name="${sim_id}" type="checkbox" value="${runup_file}" onchange="load_simulation(${result.user_id}, this);" ${runup}> Total Run Up</li>
                           <li class="shp-scenario">
                             <span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/>
-                            <span>Coastal Protection:</span> ${data.protection}<br/>
-                            <span>Tides:</span> ${data.tide_td}<br/>
-                            <span>Analysis type:</span> ${data.analysis}<br/>
+                            <span>Coastal Protection:</span> ${sProtection}<br/>
+                            <span>Tides:</span> ${sTide}<br/>
+                            <span>Analysis type:</span> ${sAnalysis}<br/>
                             <span>Description:</span> ${result.data.description}
                           </li>
                       </ul>
@@ -1173,7 +1213,7 @@ function load_simulation_data(sim_id){
                             <li><input id="${sim_id}_surge" name="${sim_id}" type="checkbox" value="${surge_file}" onchange="load_simulation(${result.user_id}, this);" ${surge}> Surge</li>
                             <li class="shp-scenario">
                                 <span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/>
-                                <span>Tides:</span> ${data.tide_td}<br/>
+                                <span>Tides:</span> ${sTide}<br/>
                                 <span>Description:</span> ${result.data.description}
                             </li>
                         </ul>
