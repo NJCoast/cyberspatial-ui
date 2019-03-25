@@ -262,8 +262,8 @@ var app = new Vue({
 
                 // Hurricane Only
                 "timeMC": this.model.landfall,
-                "lat_track":  [lat_past_point, this.latitude],
-                "long_track": [long_past_point, this.longitude],
+                "lat_track":  [lat_past_point, parseFloat(this.latitude)],
+                "long_track": [long_past_point, parseFloat(this.longitude)],
                 "protection": this.model.protection,
                 "index_prob": this.model.analysis,
                 "param": [
@@ -470,7 +470,7 @@ var app = new Vue({
                     if( this.layer.wind !== undefined ){
                         mymap.removeLayer(this.layer.wind);
                     }
-                    this.layer.wind = create_wind_heatmap(data.wind).addTo(mymap);
+                    this.layer.wind = create_wind_heatmap(data.wind, 'layer').addTo(mymap);
                     add_wind_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
@@ -559,13 +559,29 @@ var app = new Vue({
             }
           },
           setOpacity: function(type){
-            this.layer[type].setOpacity(this.opacity[type]/100.0);
+            if( type == "wind" ){
+                this.layer.wind._el.style["opacity"] = this.opacity[type]/100.0;
+                this.layer.wind._el.style["fillOpacity"] = this.opacity[type]/100.0;
+            }else{
+                this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
+            }
           }
     }
 }) 
 
 
 //create storm track icons
+function storm_track_visable(onOff){
+    if (onOff){
+        mymap.addLayer(sat_marker);
+        mymap.addLayer(marker);
+        mymap.addLayer(polyline);
+    }else{
+        mymap.removeLayer(sat_marker);
+        mymap.removeLayer(marker);
+        mymap.removeLayer(polyline);
+    }
+}
 function create_storm_track(onOff) {
 
     if (onOff) {

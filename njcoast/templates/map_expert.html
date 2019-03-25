@@ -110,10 +110,10 @@ js functions:
                         <div v-if="model.style == '2'"><div class="n-badge what-if">N</div>Nor'easter</div>
                     </button>
                     <div class="dropdown-menu choose-storm" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" v-on:click="model.style = 1;">
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 1;" onclick="storm_track_visable(true);">
                             <div class="h-badge what-if">H</div>Hurricane
                         </a>
-                        <a class="dropdown-item" href="#" v-on:click="model.style = 2;">
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 2;" onclick="storm_track_visable(false);">
                             <div class="n-badge what-if">N</div>Nor'easter
                         </a>
                     </div>
@@ -314,8 +314,8 @@ js functions:
     var marker_icon_image = "{% static "images/marker-icon-2x-red.png" %}";
     var marker_icon_shadow = "{% static "images/marker-shadow.png" %}";
     var owner = {{ user.id }};
-    var home_latitude = {{ home_latitude }};
-    var home_longitude = {{ home_longitude }};
+    var home_latitude = parseFloat({{ home_latitude }});
+    var home_longitude = parseFloat({{ home_longitude }});
     var home_zoom = {{ zoom_level }};
     var annotate_map_id = null;
     {% if map_id %}
@@ -356,6 +356,11 @@ $(document).ready(function() {
 
     //add annotation layer
     annotationLayer.addTo(mymap);
+
+    // Add Basemap Pane
+    mymap.createPane('layer');
+    mymap.getPane('layer').style.zIndex = 300;
+    mymap.getPane('layer').style.pointerEvents = 'none';
 
     //load current annotations
     if(annotate_map_id){
