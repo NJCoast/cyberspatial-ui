@@ -267,7 +267,7 @@ var app = new Vue({
                 "protection": this.model.protection,
                 "index_prob": this.model.analysis,
                 "param": [
-                    this.latitude, this.longitude, 90.0, this.model.pressure, this.model.speed * 1.852001, this.model.radius * 1.609344
+                    parseFloat(this.latitude), parseFloat(this.longitude), 90.0, this.model.pressure, this.model.speed * 1.852001, this.model.radius * 1.609344
                 ]
             }
 
