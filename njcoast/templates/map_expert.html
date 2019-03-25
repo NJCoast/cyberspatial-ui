@@ -314,8 +314,8 @@ js functions:
     var marker_icon_image = "{% static "images/marker-icon-2x-red.png" %}";
     var marker_icon_shadow = "{% static "images/marker-shadow.png" %}";
     var owner = {{ user.id }};
-    var home_latitude = {{ home_latitude }};
-    var home_longitude = {{ home_longitude }};
+    var home_latitude = parseFloat({{ home_latitude }});
+    var home_longitude = parseFloat({{ home_longitude }});
     var home_zoom = {{ zoom_level }};
     var annotate_map_id = null;
     {% if map_id %}
