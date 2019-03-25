@@ -507,7 +507,7 @@ $(document).ready(function () {
                     if( path in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict[path]);
                     }
-                    storm_layer_dict[path] = create_wind_heatmap(data.wind).addTo(mymap);
+                    storm_layer_dict[path] = create_wind_heatmap(data.wind, 'layer').addTo(mymap);
 
                     // Enable legend
                     add_wind_legend(mymap);

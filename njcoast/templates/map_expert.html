@@ -357,6 +357,11 @@ $(document).ready(function() {
     //add annotation layer
     annotationLayer.addTo(mymap);
 
+    // Add Basemap Pane
+    mymap.createPane('layer');
+    mymap.getPane('layer').style.zIndex = 300;
+    mymap.getPane('layer').style.pointerEvents = 'none';
+
     //load current annotations
     if(annotate_map_id){
         get_annotations_from_server();

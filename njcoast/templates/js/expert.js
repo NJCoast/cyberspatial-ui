@@ -470,7 +470,7 @@ var app = new Vue({
                     if( this.layer.wind !== undefined ){
                         mymap.removeLayer(this.layer.wind);
                     }
-                    this.layer.wind = create_wind_heatmap(data.wind).addTo(mymap);
+                    this.layer.wind = create_wind_heatmap(data.wind, 'layer').addTo(mymap);
                     add_wind_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
