@@ -262,8 +262,8 @@ var app = new Vue({
 
                 // Hurricane Only
                 "timeMC": this.model.landfall,
-                "lat_track":  [lat_past_point, this.latitude],
-                "long_track": [long_past_point, this.longitude],
+                "lat_track":  [lat_past_point, parseFloat(this.latitude)],
+                "long_track": [long_past_point, parseFloat(this.longitude)],
                 "protection": this.model.protection,
                 "index_prob": this.model.analysis,
                 "param": [
