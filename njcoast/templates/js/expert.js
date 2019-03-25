@@ -566,6 +566,17 @@ var app = new Vue({
 
 
 //create storm track icons
+function storm_track_visable(onOff){
+    if (onOff){
+        mymap.addLayer(sat_marker);
+        mymap.addLayer(marker);
+        mymap.addLayer(polyline);
+    }else{
+        mymap.removeLayer(sat_marker);
+        mymap.removeLayer(marker);
+        mymap.removeLayer(polyline);
+    }
+}
 function create_storm_track(onOff) {
 
     if (onOff) {

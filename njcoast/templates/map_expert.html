@@ -110,10 +110,10 @@ js functions:
                         <div v-if="model.style == '2'"><div class="n-badge what-if">N</div>Nor'easter</div>
                     </button>
                     <div class="dropdown-menu choose-storm" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" v-on:click="model.style = 1;">
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 1;" onclick="storm_track_visable(true);">
                             <div class="h-badge what-if">H</div>Hurricane
                         </a>
-                        <a class="dropdown-item" href="#" v-on:click="model.style = 2;">
+                        <a class="dropdown-item" href="#" v-on:click="model.style = 2;" onclick="storm_track_visable(false);">
                             <div class="n-badge what-if">N</div>Nor'easter
                         </a>
                     </div>
