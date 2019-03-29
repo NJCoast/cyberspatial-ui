@@ -106,3 +106,21 @@ services:
     env_file:
       - ./scripts/docker/docker-envs/production/django.env
 
+  geonode:
+    image: nginx:alpine
+    restart: unless-stopped
+    container_name: nginx4${COMPOSE_PROJECT_NAME}
+    stdin_open: true
+    volumes:
+    - ./scripts/docker/docker-envs/production/nginx.conf:/etc/nginx/nginx.conf:ro
+    # tty: true
+    labels:
+        org.geonode.component: nginx
+        org.geonode.instance.name: geonode
+    depends_on:
+      - django
+      # - celery
+      - geoserver
+    ports:
+      - "127.0.0.1:80:80"
+
