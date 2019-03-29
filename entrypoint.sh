@@ -26,5 +26,20 @@ done
 
 >&2 echo "Postgres is up - continuing..."
 python /app/manage.py migrate --noinput
-daphne -b 0.0.0.0 -p 8000 njcoast.asgi:channel_layer
+
+
+python manage.py loaddata sample_admin
+python manage.py loaddata default_oauth_apps_docker
+python manage.py loaddata initial_data
+python manage.py loaddata roles
+python manage.py loaddata regionlevels
+python manage.py loaddata counties
+python manage.py loaddata municipalities
+python manage.py loaddata admingroups
+python manage.py loaddata geonodegroupprofiles
+python manage.py loaddata usermeta
+
+
+exec "$@"
+#daphne -b 0.0.0.0 -p 8000 njcoast.asgi:channel_layer
 #exec python manage.py runserver 0.0.0.0:8000
