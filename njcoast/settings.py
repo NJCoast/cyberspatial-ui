@@ -138,3 +138,7 @@ LAYER_PREVIEW_LIBRARY = 'leaflet'
 # GeoNode Security
 OGC_SERVER['default']['USER'] = os.getenv('GEOSERVER_ADMIN_USER', 'admin')
 OGC_SERVER['default']['PASSWORD'] = os.getenv('GEOSERVER_ADMIN_PASSWORD', 'geoserver')
+
+STATICFILES_DIRS.append(
+    ("js/template_js", os.path.join(LOCAL_ROOT, "templates/js"))
+)
