@@ -261,14 +261,14 @@ js functions:
                 </ul>
             </div>
             <div class="map-control-item">
-                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block" v-bind:class="{ disabled: !simulation.complete }" style="margin-top: 10px" v-on:click="saveSimulation();" >Save Results</button>
+                <button id="save_button" href="#" class="btn btn-primary btn-md btn-block" v-bind:class="{ disabled: !simulation.complete }" style="margin-top: 10px" v-on:click="saveSimulation('');" >Save Results</button>
                 <div class="dropup show">
                     <button class="btn btn-block btn-secondary dropdown-toggle" v-bind:class="{ disabled: !simulation.complete }" style="margin-top: 5px" id="dropdownMenuAddToMap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Results to Map ... <i class="fa fa-caret-up" style="margin-left: 10px" aria-hidden="true"></i>
               </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuAddToMap">
                     {% for map in maps_for_user %}
-                        <a class="dropdown-item" name="{{ map.id }}" href="#" v-on:click="addToMap('{{map.id}}');">{{ map.name }}</a>
+                        <a class="dropdown-item" name="{{ map.id }}" href="#" v-on:click="saveSimulation('{{map.id}}');">{{ map.name }}</a>
                     {% endfor %}
                     </div>
                 </div>
