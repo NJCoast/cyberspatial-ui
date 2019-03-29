@@ -163,7 +163,8 @@ var app = new Vue({
             tide: 0.5,
             analysis: 0.0,
             landfall: 48
-        }
+        },
+        mapName: ""
     },
     created: function () {
         this.id = Math.random().toString(36).substr(2, 9);
@@ -336,23 +337,49 @@ var app = new Vue({
         percentRemaining: function(){
             return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0; 
         },
-        saveSimulation: function(){
+        saveSimulation: function(mapName){
             if( !this.simulation.complete ) {
                 alert("Plase run a sumulation before saving!");
                 return;
             }
 
-            //check if sim saved
-            if (sim_saved) {
-                alert("This simulation has been saved!");
-                return;
-            }
-            //preset values and open modal
+            this.mapName = mapName;
             document.getElementById("sim_description").value = "Simulation " + this.id;
+            
+            if( !sim_saved ){
+                $('#saveSim-1').modal('show');
+            }else{
+                var map_data = {
+                    'sim_id': this.id,
+                };
+                console.log("Map clicked " + JSON.stringify(map_data) + "," + this.mapName);
 
-            $('#saveSim-1').modal('show');
+                //Do ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/map/" + this.mapName + "/settings/",
+                    data: {
+                        'sim_id': this.id,
+                        'action': 'add_simulation',
+                        'add_layer': this.id + "_surge"
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
+                        //now auto save so dont flag
+                        $.notify("Simulation saved to map " + this.mapName, "success");
+
+                        //jump to page
+                        window.location.href = "/map/" + this.mapName + "/";
+                    },
+                    error: function (result) {
+                        console.log("ERROR:", result)
+                        $.notify("Error saving simulation to map", "error");
+                    }
+                });
+            }
         },
-        saveSimulationAJAX: function(){ 
+        saveSimulationAJAX: function(){
             //get inputs from Modal
             var sim_desc = document.getElementById("sim_description").value;
             var sim_name = document.getElementById("sim_name").value;
@@ -420,43 +447,35 @@ var app = new Vue({
                     $.notify("Simulation data was not saved", "error");
                 }
             });
-        },
-        addToMap: function(mapName){
-            //need to save first!
-            if (!sim_saved) {
-                this.saveSimulation();
-            }
 
-            //save map and sim data
-            var map_data = {
-                'sim_id': this.id,
-            };
-
-            console.log("Map clicked " + JSON.stringify(map_data) + "," + mapName);
-
-            //Do ajax
-            $.ajax({
-                type: "POST",
-                url: "/map/" + mapName + "/settings/",
-                data: {
+            if( this.mapName ) {
+                var map_data = {
                     'sim_id': this.id,
-                    'action': 'add_simulation',
-                    'add_layer': this.id + "_surge"
-                },
-                dataType: "json",
-                success: function (result) {
-                    console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
-                    //now auto save so dont flag
-                    $.notify("Simulation saved to map " + mapName, "success");
+                };
+                console.log("Map clicked " + JSON.stringify(map_data) + "," + this.mapName);
 
-                    //jump to page
-                    window.location.href = "/map/" + mapName + "/";
-                },
-                error: function (result) {
-                    console.log("ERROR:", result)
-                    $.notify("Error saving simulation to map", "error");
-                }
-            });
+                var mapName = this.mapName;
+                //Do ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/map/" + this.mapName + "/settings/",
+                    data: {
+                        'sim_id': this.id,
+                        'action': 'add_simulation',
+                        'add_layer': this.id + "_surge"
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
+                        $.notify("Simulation saved to map " + mapName, "success");
+                        window.location.href = "/map/" + mapName + "/";
+                    },
+                    error: function (result) {
+                        console.log("ERROR:", result)
+                        $.notify("Error saving simulation to map", "error");
+                    }
+                });
+            }
         },
         update: function(){
             this.update_wind();
