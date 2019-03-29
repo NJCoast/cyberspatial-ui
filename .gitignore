@@ -166,3 +166,4 @@ node_modules
 
 # Generated files
 njcoast/static/js/template_js
+.DS_Store
