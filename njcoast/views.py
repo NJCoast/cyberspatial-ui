@@ -1854,7 +1854,7 @@ def user_approval(request):
                 return JsonResponse({'updated': False, 'error': 'user exists'})
 
             #check email exists
-            exist_count = Profile.objects.filter(email = request.POST['email']).count()
+            exist_count = Profile.objects.filter(email__iexact = request.POST['email']).count()
             if exist_count >= 1:
                 return JsonResponse({'updated': False, 'error': 'email exists'})
 
