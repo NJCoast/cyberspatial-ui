@@ -494,8 +494,7 @@ var app = new Vue({
                             return {
                                 fillColor: feature.properties['fill'],
                                 fillOpacity: feature.properties['fill-opacity'],
-                                color: feature.properties['stroke'],
-                                width: feature.properties['stroke-width'],
+                                stroke: false,
                                 opacity: feature.properties['opacity']
                             };
                         }
@@ -518,8 +517,7 @@ var app = new Vue({
                             return {
                                 fillColor: feature.properties['fill'],
                                 fillOpacity: feature.properties['fill-opacity'],
-                                color: feature.properties['stroke'],
-                                width: feature.properties['stroke-width'],
+                                stroke: false,
                                 opacity: feature.properties['opacity']
                             };
                         }
