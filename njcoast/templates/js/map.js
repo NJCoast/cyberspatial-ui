@@ -791,7 +791,7 @@ function load_simulation(user_id, object){
 
       if( object.id.includes("surge") ){
         var objid = object.id.replace("surge", "srg_line");
-        load_heatmap_from_s3(user_id, object.name, "surge_line.json", objid)
+        load_heatmap_from_s3(user_id, object.name, "surge.geojson", objid)
         if (layers_selected.indexOf(objid) == -1){
             layers_selected.push(objid);
             if(!initial_load) map_changed();
@@ -850,26 +850,34 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
         //get correct
         if(sim_type.includes("surge")){
             //heatmap[sim_type] = create_surge_heatmap(addressPoints.surge,'layer').addTo(mymap);
-            add_surge_legend(mymap);
+            //add_surge_legend(mymap);
         }else if(sim_type.includes("wind")){
-            heatmap[sim_type] = create_wind_heatmap(addressPoints.wind, 'layer').addTo(mymap);
-            add_wind_legend(mymap);
-        }else if( sim_type.includes("srg")){
+            heatmap[sim_type] = //create_wind_heatmap(addressPoints.wind, 'layer').addTo(mymap);
             heatmap[sim_type] = L.geoJSON(addressPoints, {
                 style: function(feature) {
-                    switch (feature.properties.height) {
-                        case 0: return {color: "black"};
-                        case 3: return {color: "yellow"};
-                        case 6: return {color: "orange"};
-                        case 9: return {color: "red"};
-                    }
-                },
-                filter: function(feature, layer) {
-                    return feature.properties.height <= 9;
+                    return {
+                        fillColor: feature.properties['fill'],
+                        fillOpacity: feature.properties['fill-opacity'],
+                        stroke: false,
+                        opacity: feature.properties['opacity']
+                    };
                 },
                 pane: 'layer'
             }).addTo(mymap);
-            add_surge_legend(mymap);
+            //add_wind_legend(mymap);
+        }else if( sim_type.includes("srg")){
+            heatmap[sim_type] = L.geoJSON(addressPoints, {
+                style: function(feature) {
+                    return {
+                        fillColor: feature.properties['fill'],
+                        fillOpacity: feature.properties['fill-opacity'],
+                        stroke: false,
+                        opacity: feature.properties['opacity']
+                    };
+                },
+                pane: 'layer'
+            }).addTo(mymap);
+            //add_surge_legend(mymap);
         }else{
             heatmap[sim_type] = L.geoJSON(addressPoints, {
                 style: function(feature) {
@@ -1119,14 +1127,16 @@ function load_simulation_data(sim_id){
               var surge_file = "";
               if(data.surge_file){
                   surge = "";
-                  surge_file = data.surge_file;
+                  //surge_file = data.surge_file;
+                  surge_file = "surge.geojson";
               }
 
               var wind = "disabled";
               var wind_file = "";
               if(data.wind_file){
                   wind = "";
-                  wind_file = data.wind_file;
+                  //wind_file = data.wind_file;
+                  wind_file = "wind.geojson";
               }
               var runup = "disabled";
               var runup_file = "";
