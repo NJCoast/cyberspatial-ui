@@ -288,6 +288,7 @@ js functions:
                             <input type="text" class="form-control" id="sim_name" v-bind:value="getSimulationString() + ' Run #{{ next_id }}'" ></br>
                             <b>Simulation description</b></br>
                             <input type="text" class="form-control" id="sim_description" value="Simulation" ></br>
+                            {% csrf_token %}
                         </div>
                         <div class="modal-footer">
                             <a id="save_simulation_button" v-on:click="saveSimulationAJAX();" class="btn btn-primary" href="#">Save</a>
