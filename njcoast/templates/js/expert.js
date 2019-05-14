@@ -484,13 +484,23 @@ var app = new Vue({
         },
         update_wind: function(){
             if( this.state.wind && this.simulation.complete ){
-                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/wind_heatmap.json"
+                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/wind.geojson"
                 fetch(path).then(res => res.json()).then(data => {
                     if( this.layer.wind !== undefined ){
                         mymap.removeLayer(this.layer.wind);
                     }
-                    this.layer.wind = create_wind_heatmap(data.wind, 'layer').addTo(mymap);
-                    add_wind_legend(mymap);
+                    this.layer.wind = L.geoJSON(data, {
+                        style: function(feature) {
+                            return {
+                                fillColor: feature.properties['fill'],
+                                fillOpacity: feature.properties['fill-opacity'],
+                                color: feature.properties['stroke'],
+                                width: feature.properties['stroke-width'],
+                                opacity: feature.properties['opacity']
+                            };
+                        }
+                    }).addTo(mymap);
+                    //add_wind_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -498,26 +508,23 @@ var app = new Vue({
           },
           update_surge: function(){
             if( this.state.surge && this.simulation.complete ){
-                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge_line.json"
+                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge.geojson"
                 fetch(path).then(res => res.json()).then(data => {
                     if( this.layer.surge !== undefined ){
                         mymap.removeLayer(this.layer.surge);
                     }
                     this.layer.surge = L.geoJSON(data, {
                         style: function(feature) {
-                            switch (feature.properties.height) {
-                                case 0: return {color: "black"};
-                                case 3: return {color: "yellow"};
-                                case 6: return {color: "orange"};
-                                case 9: return {color: "red"};
-                            }
-                        },
-                        filter: function(feature, layer) {
-                            return feature.properties.height <= 9;
+                            return {
+                                fillColor: feature.properties['fill'],
+                                fillOpacity: feature.properties['fill-opacity'],
+                                color: feature.properties['stroke'],
+                                width: feature.properties['stroke-width'],
+                                opacity: feature.properties['opacity']
+                            };
                         }
                     }).addTo(mymap);
-
-                    add_surge_legend(mymap);
+                    //add_surge_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
