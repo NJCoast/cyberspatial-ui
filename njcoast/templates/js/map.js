@@ -1125,19 +1125,40 @@ function load_simulation_data(sim_id){
               //files available to enable checkboxes
               var surge = "disabled";
               var surge_file = "";
-              if(data.surge_file){
-                  surge = "";
-                  //surge_file = data.surge_file;
-                  surge_file = "surge.geojson";
+              if( data.surge_file ){
+                surge = "";
+
+                var request = new XMLHttpRequest();
+                request.open('HEAD', userSimulationPath + "/" + result.user_id + "/" + sim_id + "/surge.geojson", false);  // `false` makes the request synchronous
+                request.send(null);
+
+                if (request.status === 200) {
+                    if( request.status == 200 ){
+                        surge_file = "surge.geojson"
+                    }else{
+                        surge_file = "surge_line.json"
+                    }
+                }
               }
 
               var wind = "disabled";
               var wind_file = "";
-              if(data.wind_file){
-                  wind = "";
-                  //wind_file = data.wind_file;
-                  wind_file = "wind.geojson";
+              if( data.wind_file ){
+                wind = "";
+
+                var request = new XMLHttpRequest();
+                request.open('HEAD', userSimulationPath + "/" + result.user_id + "/" + sim_id + "/wind.geojson", false);
+                request.send(null);
+
+                if (request.status === 200) {
+                    if( request.status == 200 ){
+                        wind_file = "wind.geojson"
+                    }else{
+                        wind_file = "wind_heatmap.json"
+                    }
+                }
               }
+              
               var runup = "disabled";
               var runup_file = "";
               if(data.runup_file){
