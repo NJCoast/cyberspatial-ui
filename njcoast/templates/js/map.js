@@ -1133,11 +1133,9 @@ function load_simulation_data(sim_id){
                 request.send(null);
 
                 if (request.status === 200) {
-                    if( request.status == 200 ){
-                        surge_file = "surge.geojson"
-                    }else{
-                        surge_file = "surge_line.json"
-                    }
+                    surge_file = "surge.geojson"
+                }else{
+                    surge_file = "surge_line.json"
                 }
               }
 
@@ -1151,11 +1149,9 @@ function load_simulation_data(sim_id){
                 request.send(null);
 
                 if (request.status === 200) {
-                    if( request.status == 200 ){
-                        wind_file = "wind.geojson"
-                    }else{
-                        wind_file = "wind_heatmap.json"
-                    }
+                    wind_file = "wind.geojson"
+                }else{
+                    wind_file = "wind_heatmap.json"
                 }
               }
               
