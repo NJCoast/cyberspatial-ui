@@ -822,7 +822,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
         var addressPoints = data;
 
         //get correct
-        switch( sim_type ){
+        switch( filename ){
             case "surge.geojson":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
                     style: function(feature) {
