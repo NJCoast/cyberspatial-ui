@@ -867,7 +867,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                 }).addTo(mymap);
                 break;
             case "wind_heatmap.json":  
-                heatmap[sim_type] = create_surge_heatmap(addressPoints.surge,'layer').addTo(mymap);
+                heatmap[sim_type] = create_surge_heatmap(addressPoints.wind,'layer').addTo(mymap);
                 add_surge_legend(mymap);
                 break;
             default:
