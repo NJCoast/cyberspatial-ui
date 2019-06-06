@@ -366,12 +366,9 @@ var app = new Vue({
                     dataType: "json",
                     success: function (result) {
                         console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
-                        //now auto save so dont flag
                         $.notify("Simulation saved to map " + this.mapName, "success");
-
-                        //jump to page
                         window.location.href = "/map/" + this.mapName + "/";
-                    },
+                    }.bind(this),
                     error: function (result) {
                         console.log("ERROR:", result)
                         $.notify("Error saving simulation to map", "error");
@@ -454,7 +451,6 @@ var app = new Vue({
                 };
                 console.log("Map clicked " + JSON.stringify(map_data) + "," + this.mapName);
 
-                var mapName = this.mapName;
                 //Do ajax
                 $.ajax({
                     type: "POST",
@@ -467,9 +463,9 @@ var app = new Vue({
                     dataType: "json",
                     success: function (result) {
                         console.log("SAVING TO MAP -- SUCCESS!" + result.saved);
-                        $.notify("Simulation saved to map " + mapName, "success");
-                        window.location.href = "/map/" + mapName + "/";
-                    },
+                        $.notify("Simulation saved to map " + this.mapName, "success");
+                        window.location.href = "/map/" + this.mapName + "/";
+                    }.bind(this),
                     error: function (result) {
                         console.log("ERROR:", result)
                         $.notify("Error saving simulation to map", "error");
