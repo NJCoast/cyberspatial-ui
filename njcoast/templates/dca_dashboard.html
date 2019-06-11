@@ -500,7 +500,7 @@ Description:        Provides DCA and Municipality dashboards where all users, mu
                                     <td>
                                         <select id="edit_role_selector" class="form-control">
                                             {% for role in roles %}
-                                            <option value="{{ role.name }}">{{ role.name }}</option>
+                                            <option value="{{ role.name }}"  {% ifequal role.name "None" %}selected{% endifequal %}>{{ role.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </td>

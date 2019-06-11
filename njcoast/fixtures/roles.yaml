@@ -13,3 +13,8 @@
   fields:
     name: "First Responder"
     group_name: "fr"
+- model: njcoast.njcrole
+  pk: 4
+  fields:
+    name: "None"
+    group_name: "none"

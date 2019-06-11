@@ -133,7 +133,7 @@ LOGGING = {
 }
 
 # Layer Preview
-LAYER_PREVIEW_LIBRARY = 'leaflet'
+# LAYER_PREVIEW_LIBRARY = 'leaflet'
 
 # GeoNode Security
 OGC_SERVER['default']['USER'] = os.getenv('GEOSERVER_ADMIN_USER', 'admin')
