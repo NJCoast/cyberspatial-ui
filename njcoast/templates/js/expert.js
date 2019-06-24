@@ -577,12 +577,7 @@ var app = new Vue({
             }
           },
           setOpacity: function(type){
-            if( type == "wind" ){
-                this.layer.wind._el.style["opacity"] = this.opacity[type]/100.0;
-                this.layer.wind._el.style["fillOpacity"] = this.opacity[type]/100.0;
-            }else{
-                this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
-            }
+            this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
           }
     }
 }) 

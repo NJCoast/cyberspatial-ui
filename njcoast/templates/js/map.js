@@ -595,43 +595,93 @@ $(document).ready(function () {
             }
             return path + ".json";
           },
-          toggle_wind: function(index){
-            if(this.items[index]['state']['wind'] == true){
-                this.update_wind(index);
-            }else{
-                var path = this.path_string(index, "wind_heatmap");
+          update_wind: function(index){
+            const path = this.path_string(index, "wind").replace('.json', '.geojson');
+            fetch(path).then(res => res.json()).then(data => {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
-                    del_wind_legend();
                 }
-            }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            fillColor: feature.properties['fill'],
+                            fillOpacity: feature.properties['fill-opacity'],
+                            stroke: false,
+                            opacity: feature.properties['opacity']
+                        };
+                    }
+                }).addTo(mymap);
+                //add_wind_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
           },
-          toggle_surge: function(index){
-            if(this.items[index]['state']['surge'] == true){
-                this.update_surge(index);
-            }else{
-                var path = this.path_string(index, "surge_line");
+          update_surge: function(index){
+            const path = this.path_string(index, "surge").replace('.json', '.geojson');
+            fetch(path).then(res => res.json()).then(data => {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
-                    del_surge_legend();
                 }
-            }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            fillColor: feature.properties['fill'],
+                            fillOpacity: feature.properties['fill-opacity'],
+                            stroke: false,
+                            opacity: feature.properties['opacity']
+                        };
+                    }
+                }).addTo(mymap);
+                //add_surge_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
           },
-          toggle_runup: function(index){
-            if(this.items[index]['state']['runup'] == true){
-                this.update_runup(index);
-            }else{
-                var path = this.path_string(index, "transect_line");
+          update_runup: function(index){
+            const path = this.path_string(index, "transect_line");
+            fetch(path).then(res => res.json()).then(data => {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
-                    del_runup_legend();
                 }
-            }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        console.log(feature.properties.type)
+                        if( feature.properties.type.includes("Boundary") ) {
+                            return {color: "blue"};
+                        }else{
+                            return {color: "green"};
+                        }
+                    },
+                    filter: function(feature, layer){
+                        return feature.properties.type != "Transect";
+                    }
+                }).addTo(mymap);
+
+                add_runup_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
           },
           setOpacity: function(index, type){
-            var path = this.path_string(index, type + "_line");
+            var path = ""
+            switch( type ){
+                case 'wind':
+                    path = this.path_string(index, "wind").replace('.json', '.geojson');
+                    break;
+                case 'surge':
+                    path = this.path_string(index, "surge").replace('.json', '.geojson');
+                    break;
+                case 'runup':
+                    path = this.path_string(index, "transect_line");
+                    break;
+            }
             if( path in storm_layer_dict ) {
-                storm_layer_dict[path].setOpacity(this.items[index].opacity[type]/100.0);
+                const percent = this.items[index].opacity[type]/100.0;
+                if( path.includes('.geojson') ){
+                    storm_layer_dict[path].setStyle({'opacity' : percent, 'fillOpacity': percent });
+                }else{
+                    storm_layer_dict[path].setOpacity(percent);
+                }
             }
           }
         }
