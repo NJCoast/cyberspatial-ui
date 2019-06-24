@@ -249,10 +249,9 @@ var app = new Vue({
             var data = {
                 "index_SLT": [1,1],
                 "index_W": 1,
-                "indicator": 1,
+                "indicator": this.model.style,
                 "SLR": this.model.slr * 0.3048,
                 "tide": this.model.tide,
-                "sim_type": this.model.style,
                 "surge_file": "heatmap.json",
                 "wind_file": "wind_heatmap.json",
                 "runup_file":"transect_line.json",
@@ -387,10 +386,9 @@ var app = new Vue({
             var data = {
                 "index_SLT": [1,1],
                 "index_W": 1,
-                "indicator": 1,
+                "indicator": this.model.style,
                 "SLR": this.model.slr * 0.3048,
                 "tide": this.model.tide,
-                "sim_type": this.model.style,
                 "surge_file": "heatmap.json",
                 "wind_file": "wind_heatmap.json",
                 "runup_file":"transect_line.json",
@@ -579,12 +577,7 @@ var app = new Vue({
             }
           },
           setOpacity: function(type){
-            if( type == "wind" ){
-                this.layer.wind._el.style["opacity"] = this.opacity[type]/100.0;
-                this.layer.wind._el.style["fillOpacity"] = this.opacity[type]/100.0;
-            }else{
-                this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
-            }
+            this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
           }
     }
 }) 
