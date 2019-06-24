@@ -637,8 +637,282 @@ $(document).ready(function () {
         }
     })
 
+    var historic = new Vue({ 
+        delimiters: ['${', '}'],
+        el: '#historicStormGroup',
+        data: {
+            items: []
+        },
+        created: function () {
+            this.fetchData();
+        },
+        methods: {
+          fetchData: function () {
+            var path = (userSimulationPath + "/historic_metadata.json").replace("/simulation/", "/");
+            $.get(path, (data) => {
+                for(var i = 0; i < data.active_storms.length; i++ ){
+                    data.active_storms[i]['protection'] = '1';
+                    data.active_storms[i]['tides'] = '0.5';
+                    data.active_storms[i]['analysis'] = '0.0';
+                    data.active_storms[i]['state'] = { 'wind': false, 'surge': false, 'runup': false};
+                    data.active_storms[i]['opacity'] = { 'wind': 100.0, 'surge': 100.0, 'runup': 100.0};
+                    data.active_storms[i]['following'] = false;
+                    if( data.active_storms[i]['out_of_bounds'] == undefined ){
+                        data.active_storms[i]['out_of_bounds'] = false;
+                    }
+                    data.active_storms[i]['name'] = toTitleCase(data.active_storms[i]['name']);
+                }
+
+                // Sort Data
+                data.active_storms.sort(function(a, b) {
+                    if( a.out_of_bounds && !b.out_of_bounds ){
+                        return 1;
+                    }
+
+                    if( !a.out_of_bounds && b.out_of_bounds ){
+                        return -1;
+                    }
+
+                    if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
+                        return 1;
+                    }
+                    
+                    if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
+                        return -1;
+                    }
+
+                    return 0;
+                });
+
+                // Insert
+                for(var i = 0; i < data.active_storms.length; i++ ){
+                    this.items.push(data.active_storms[i]);
+                }
+            });
+          },
+          dateString: function(last_updated){
+            var result = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(last_updated));
+            return result.toString();
+          },
+          setFollow: function(index, value){
+            this.items[index].following = value;
+            if( value == true ){
+                var path = this.items[index].s3_base_path + "cone.json";
+                $.get(path, (data) => {
+                    if (data) {
+                        if( path in storm_layer_dict ) {
+                            mymap.removeLayer(storm_layer_dict[path]);
+                        }
+                        storm_layer_dict[path] = L.geoJSON(data, {
+                            style: function(feature) {
+                                if( feature.properties.radius != undefined ){
+                                    return {fillColor:"red"};
+                                }
+                            },
+                            pointToLayer: function (feature, latlng) {
+                                var options = {
+                                    radius: 8,
+                                    fillColor: "blue",
+                                    color: "#000",
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                };
+                                return L.circleMarker(latlng, options);
+                            },
+                            onEachFeature: function (featureData, featureLayer) {
+                                featureLayer.on('click', function () {
+                                  var result = "<table class=\"table\">";
+                                  var keys = Object.keys(featureData.properties);
+                                  for( var i = 0; i < keys.length; i++ ){
+                                    var value = featureData.properties[keys[i]];
+                                    if( typeof value === 'string' ){
+                                        value = titleCase(value);
+                                    }
+
+                                    if( value != "" ){
+                                        result += "<tr><td>" + titleCase(keys[i]) +"</td><td>" + value +"</td></tr>";
+                                    }
+                                  }
+                                  result += "</table>"
+                                
+                                  // Otherwise show the content in a popup, or something.
+                                  L.popup({maxWidth: 800, maxHeight: window.innerHeight * 0.4})
+                                    .setLatLng(featureLayer._latlng)
+                                    .setContent(result)
+                                    .openOn(this._map);
+                                });
+                              }
+                        }).addTo(mymap);
+                    }
+                });
+            }else{
+                var path = this.items[index].s3_base_path + "input.geojson";
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                }
+            }
+          },
+          update: function(index){
+              console.log(JSON.stringify(this.items[index], null, 2));
+              this.update_wind(index);
+              this.update_surge(index);
+              this.update_runup(index);
+          },
+          update_wind: function(index){
+            const path = this.path_string(index, "wind").replace('.json', '.geojson');
+            fetch(path).then(res => res.json()).then(data => {
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            fillColor: feature.properties['fill'],
+                            fillOpacity: feature.properties['fill-opacity'],
+                            stroke: false,
+                            opacity: feature.properties['opacity']
+                        };
+                    }
+                }).addTo(mymap);
+                //add_wind_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+          },
+          update_surge: function(index){
+            const path = this.path_string(index, "surge").replace('.json', '.geojson');
+            fetch(path).then(res => res.json()).then(data => {
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            fillColor: feature.properties['fill'],
+                            fillOpacity: feature.properties['fill-opacity'],
+                            stroke: false,
+                            opacity: feature.properties['opacity']
+                        };
+                    }
+                }).addTo(mymap);
+                //add_surge_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+          },
+          update_runup: function(index){
+            const path = this.path_string(index, "transect_line");
+            fetch(path).then(res => res.json()).then(data => {
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                }
+                storm_layer_dict[path] = L.geoJSON(data, {
+                    style: function(feature) {
+                        console.log(feature.properties.type)
+                        if( feature.properties.type.includes("Boundary") ) {
+                            return {color: "blue"};
+                        }else{
+                            return {color: "green"};
+                        }
+                    },
+                    filter: function(feature, layer){
+                        return feature.properties.type != "Transect";
+                    }
+                }).addTo(mymap);
+
+                add_runup_legend(mymap);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+          },
+          path_string: function(index, data_type) {
+            var path = this.items[index].s3_base_path + data_type + "__slr_" + parseInt(1 * 10) + "__tide_";
+            switch( this.items[index].tides ){
+                case '0.0':
+                    path += 'zero';
+                break;
+                case '0.5':
+                    path += 'low';
+                break;
+                case '1.0':
+                    path += 'high';
+                break;
+            }
+            path += "__analysis_";
+            switch( this.items[index].analysis ){
+                case '0.0':
+                    path += 'deterministic';
+                break;
+                case '0.5':
+                    path += 'expected';
+                break;
+                case '0.1':
+                    path += 'extreme';
+                break;
+            }
+            return path + ".json";
+          },
+          toggle_wind: function(index){
+            if(this.items[index]['state']['wind'] == true){
+                this.update_wind(index);
+            }else{
+                const path = this.path_string(index, "wind").replace('.json', '.geojson');
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                    del_wind_legend();
+                }
+            }
+          },
+          toggle_surge: function(index){
+            if(this.items[index]['state']['surge'] == true){
+                this.update_surge(index);
+            }else{
+                var path = this.path_string(index, "surge").replace('.json', '.geojson');
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                    del_surge_legend();
+                }
+            }
+          },
+          toggle_runup: function(index){
+            if(this.items[index]['state']['runup'] == true){
+                this.update_runup(index);
+            }else{
+                var path = this.path_string(index, "transect_line");
+                if( path in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict[path]);
+                    del_runup_legend();
+                }
+            }
+          },
+          setOpacity: function(index, type){
+            var path = ""
+            switch( type ){
+                case 'wind':
+                    path = this.path_string(index, "wind").replace('.json', '.geojson');
+                    break;
+                case 'surge':
+                    path = this.path_string(index, "surge").replace('.json', '.geojson');
+                    break;
+                case 'runup':
+                    path = this.path_string(index, "transect_line");
+                    break;
+            }
+            if( path in storm_layer_dict ) {
+                const percent = this.items[index].opacity[type]/100.0;
+                if( path.includes('.geojson') ){
+                    storm_layer_dict[path].setStyle({'opacity' : percent, 'fillOpacity': percent });
+                }else{
+                    storm_layer_dict[path].setOpacity(percent);
+                }
+            }
+          }
+        }
+    })
+
     if( annotate_map_id != null ){
-        load_map();
+        load_map(); 
     }
 });
 
@@ -1169,7 +1443,7 @@ function load_simulation_data(sim_id){
                 
               //generate html
               var html = ``;
-              if( data.sim_type == 1 ){
+              if( data.indicator == 1 ){
                 var sProtection = "";
                 switch( data.protection ){
                     case 1:

@@ -136,7 +136,7 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                 </a>
                 <div class="collapse in" id="shpLayers">
                     <div class="well rss-auto">
-                        <div class="shp-cat-title auto">Active Storms
+                        <div class="shp-cat-title auto">Storms
                             <div class="shp-cat" title="Based on latest track from NHC/NWS">active</div>
                         </div>
                        
@@ -209,8 +209,85 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                         </div>
                     </div>
 
+                    <div class="well historic">
+                        <div class="shp-cat-title historic">Storms
+                            <div class="shp-cat" title="Based on latest track from NHC/NWS">historic</div>
+                        </div>
+
+                        <div id="historicStormGroup">
+                            <div v-for="(item, index) in items" id="historicStorm" v-if="item.following" v-bind:class="item.name">
+                                <div id="storm_heading" class="map-layer-group-heading historic">
+                                    <a id="storm_link" data-toggle="collapse" aria-expanded="false" v-bind:aria-controls="item.name" v-bind:href="'#'+item.name">
+                                        <i class="fa fa-chevron-right" aria-hidden="true" ></i>
+                                        <div id="storm_type" class="storm_badge h-badge" v-if="item.type == 'H'">H</div>
+                                        <div id="storm_type" class="storm_badge n-badge" v-if="item.type == 'N'">N</div>
+                                        ${ item.name }
+                                        <span title="Unfollow">
+                                            <i class="fa fa-minus-circle" aria-hidden="true" v-on:click="setFollow(index, false)"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                                <p id="last_updated" class="follow-unfollow">${dateString(item.last_updated)}</p>
+                                <div class="collapse active_storm" v-if="!item.out_of_bounds" v-bind:id="item.name">
+                                    <ul class="map-layers">
+                                        <li><input type="checkbox" v-model="item.state.wind" v-on:change="toggle_wind(index)"> Wind Field </li>
+                                        <input v-if="item.state.wind" v-model.number="item.opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'wind')"/>
+                                        <li><input type="checkbox" v-model="item.state.surge" v-on:change="toggle_surge(index)"> Surge </li>
+                                        <input v-if="item.state.surge" v-model.number="item.opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'surge')"/>
+                                        <li><input type="checkbox" v-model="item.state.runup" v-on:change="toggle_runup(index)"> Total Run Up</li>
+                                        <input v-if="item.state.runup" v-model.number="item.opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, 'runup')"/>
+                                    </ul>
+                                    <div class="well plain historic scenarios">
+                                        <h5>Explore Scenarios</h5>
+                                        <ul class="map-layers">
+                                            <li class="explore-scenario-controls">
+                                                <p>Coastal Protection (e.g. dunes)</p>
+                                                <ul class="one-line">
+                                                    <li><input type="radio" value="1" v-model="item.protection"> Current </li>
+                                                    <li><input type="radio" value="2" v-model="item.protection"> Degraded </li>
+                                                    <li><input type="radio" value="3" v-model="item.protection"> Compromised </li>
+                                                </ul>
+                                            </li>
+                                            <li class="explore-scenario-controls">
+                                                <p>Tides</p>
+                                                <ul class="one-line">
+                                                    <li><input type="radio" value="1.0" v-model="item.tides"> High </li>
+                                                    <li><input type="radio" value="0.5" v-model="item.tides"> Typical </li>
+                                                    <li><input type="radio" value="0.0" v-model="item.tides"> None </li>
+                                                </ul>
+                                            </li>
+                                            <li class="explore-scenario-controls">
+                                                <p>Analysis Type</p>
+                                                <ul>
+                                                    <li><input type="radio" value="0.0" v-model="item.analysis"> Deterministic</li>
+                                                    <li><input type="radio" value="0.5" v-model="item.analysis"> Probabilistic <span>expected</span></li>
+                                                    <li><input type="radio" value="0.1" v-model="item.analysis"> Probabilistic <span>extreme</span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <a class="btn btn-primary btn-md btn-block" v-on:click="update(index)" style="margin-top: 30px">Update Map</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-for="(item, index) in items" id="unfollowActiveStorm" v-if="!item.following" class="map-layer-group-heading historic not-following" v-bind:class="item.name">
+                                <i class="fa fa-chevron-right invisible" aria-hidden="true"></i>
+                                <div id="unfollow-badge" class="storm_badge h-badge" v-if="item.type == 'H'">H</div>
+                                <div id="unfollow-badge" class="storm_badge n-badge" v-if="item.type == 'N'">N</div>
+                                ${ item.name }
+                                <span title="Follow">
+                                    <i class="fa fa-plus-circle" aria-hidden="true" v-on:click="setFollow(index, true)"></i>
+                                </span>
+                                <p class="follow-unfollow">${dateString(item.last_updated)}</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Current simulations in database -->
-                    <div class="shp-cat-title what-if" style="margin-top: 30px">User-specified Scenarios <div class="shp-cat" title="Based on user-specified scenarios from manual SHP Tool runs">what-if</div></div>
+                    <div class="shp-cat-title what-if" style="margin-top: 30px">
+                        User-specified Scenarios 
+                        <div class="shp-cat" title="Based on user-specified scenarios from manual SHP Tool runs">what-if</div>
+                    </div>
                     <div id="simulation_container">
                     </div>
                         
@@ -227,7 +304,7 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                     <p class="qualifier" style="margin-bottom: 0">write or draw on the map</p>
                 </a>
                 <div class="collapse" id="annotations">
-                    <!--Checkbox to toggle annotation layer and functions-->
+                    <!--Checkbox to toggle annotation layer and functions--> 
                     <p style="margin-top: 15px"><input type="checkbox" name="annotations" value="on" data-toggle="popover" data-placement="right" onclick="toggle_annotation_layer(this.checked)" checked> Annotation layer</p>
                     <!--<p style="margin-top: 15px"><input type="checkbox" name="annotate" id="annotate" value="on" data-toggle="popover" data-placement="right" onclick="toggle_annotate(this.checked)"> Annotate</p>-->
                     <a id="show_annotate" class="btn btn-primary btn-md btn-block" data-toggle="popover" href="#" aria-expanded="false" aria-controls="annotationTools" onclick="toggle_annotate();">Show Annotation Tools</a>

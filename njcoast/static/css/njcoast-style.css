@@ -441,6 +441,28 @@ p.rss-auto-title span {
   float: right;
 }
 
+.well.historic {
+  border: 3px solid rgba(0, 180, 235, 0.6);
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+  margin: 25px -10px 30px;
+  background: rgba(0, 180, 235, 0.05)
+}
+.list-group-item .well.historic {
+  margin: 20px 0 20px;
+}
+
+p.historic-title {
+  color: #666;
+  font-size: 12px;
+}
+p.historic-title span {
+  text-transform: uppercase;
+  float: right;
+}
+
 div.shp-cat-title {
   font-size: 12px;
   font-weight: 600;
@@ -476,15 +498,15 @@ div.h-badge.auto,
 div.n-badge.auto {
   background: #eb6b00;
 }
-div.shp-cat-title.historical {
-  color: #666;
+div.shp-cat-title.historic {
+  color: rgba(0, 180, 235, 0.6);
 }
-div.shp-cat-title.historical div.shp-cat,
-div.map-layer-group-heading.historical div.h-badge,
-div.map-layer-group-heading.historical div.n-badge,
-div.h-badge.historical,
-div.n-badge.historical {
-  background: #666;
+div.shp-cat-title.historic div.shp-cat,
+div.map-layer-group-heading.historic div.h-badge,
+div.map-layer-group-heading.historic div.n-badge,
+div.h-badge.historic,
+div.n-badge.historic {
+  background: rgba(0, 180, 235, 0.6);
 }
 div.shp-cat-title.what-if {
   color: #3d9bb4;
@@ -703,6 +725,21 @@ p.equation {
 .well.plain.orange ul.map-layers {
   padding: 0;
   margin: 0;
+}
+
+.well.plain.historic {
+  background: rgba(0, 180, 235, 0.05);
+  border: 1px solid rgba(0, 180, 235, 0.2);
+  padding: 19px 24px;
+  margin-top: 20px;
+}
+.well.plain.historic h5 {
+  margin-top: 0;
+  color: rgba(0, 180, 235, 0.7);
+}
+.well.plain.historic ul.map-layers {
+  padding: 0;
+  margin: 0; 
 }
 
 p.slider-label {
