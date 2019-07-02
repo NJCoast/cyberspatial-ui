@@ -826,7 +826,34 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'wind');
-                    //add_wind_legend(mymap);
+                    
+                    if( legend['wind'] == null ){
+                        var lData = []
+                        for( var i = 0; i < data.features.length; i++ ){
+                            lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+                        }
+                        lData = lData.sort((a, b) => a.height > b.height).filter((e,i) => i % 5 === 0);
+
+                        var wLegend = L.control({position: 'bottomleft'});
+                        wLegend.onAdd = function (map) {
+                            var div = L.DomUtil.create('div', 'info legend');
+                            div.innerHTML = "Wind :<br>";
+                            for (var i = 0; i < lData.length; i++) {
+                                div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+                                if( lData[i+1] ){
+                                    div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+                                }else{
+                                    div.innerHTML += '+' ;
+                                }
+                            }
+                            return div;
+                        };
+                        
+                        legend_count['wind'] = 1; 
+                        legend['wind'] = wLegend.addTo(mymap); 
+                    }else{
+                        legend_count['wind'] += 1;
+                    } 
                 }).catch(error => {
                     console.error('Error:', error);
                 });
