@@ -1,6 +1,11 @@
 sudo: required
 services:
 - docker
+git:
+  depth: 3
+branches:
+  except:
+  - development
 addons:
   apt:
     packages:
@@ -11,7 +16,7 @@ before_install:
 - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 - chmod +x ./kubectl
 - mv ./kubectl $HOME/kubectl
-- openssl aes-256-cbc -K $encrypted_da1d79c22a97_key -iv $encrypted_da1d79c22a97_iv -in kube.config.enc -out kube.config -d
+- openssl aes-256-cbc -K $encrypted_e7d081e9e2df_key -iv $encrypted_e7d081e9e2df_iv -in kube.config.enc -out kube.config -d
 - mkdir -p $HOME/.kube/ && mv kube.config $HOME/.kube/config
 script:
 - docker build -t 234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT .
@@ -19,11 +24,10 @@ script:
 - docker push 234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT
 - docker push 234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH
 after_success:
-- echo $VPNPASS | sudo openconnect vpnaccess.nd.edu/mfa -b --user=$VPNUSER --passwd-on-stdin
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then echo $VPNPASS | sudo openconnect vpnaccess.nd.edu/mfa -b --user=$VPNUSER --passwd-on-stdin; fi
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then $HOME/kubectl -n staging set image deployment/staging-cyberspatial-celery celery=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then $HOME/kubectl -n staging set image deployment/staging-cyberspatial-django django=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then $HOME/kubectl -n staging set image deployment/staging-cyberspatial-worker celery=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
-- if [ "$TRAVIS_BRANCH" = "development" ]; then $HOME/kubectl -n development set image deployment/development-cyberspatial-django django=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
-- if [ "$TRAVIS_BRANCH" = "development" ]; then $HOME/kubectl -n development set image deployment/development-cyberspatial-worker celery=234514569215.dkr.ecr.us-east-1.amazonaws.com/njcoast:$TRAVIS_BRANCH-$TRAVIS_COMMIT; fi
 env:
   global:
   - secure: rqGztuhDW2lod+UgGuIoVLi2BGX/4ma0809O4gsD6bKqIEi3eW0ucob8d/aPTo2GnjfJWdWiXeDhO1bfGzNuq+REqT0rPvqOAUm5ufymur6GQKhwKjapcfObSObaszUKbQRH8E4R9yDNh/GN58gnp/WZq+MQtTQTWGbLlLfG4lxu0dH90ZMM0jC8HuK85F+q6EkXGJn/ldjnrVsgTyftRgvARUQJWyquh+67ZtP/gVtKNG+8fj4X4+dlBJd6q13ia7yInGc4FkODz5xaR/lDc4ZSTMnq7QAjy2c63SKziFaqmfzTWe35DsaA8FonAqK7rQVbFKQNjNUjOMGTwmsDdVcRndUegwDhFYvxryWKFlBtpnS+hHg/aP5nKzzkBIDKT6gha8nl9yC/aK9y+hs+NPYzXOVbFCHQuFh8Khv2FX5+DsB2ayTqQ68X0cmYIAd63HcV0IsNAYY7TtdUdgf7/O17RfUcaGoO2XKj9DiX3e7a9yeCw2Wiq/KaRph0c/GRqaoEKCB+F1snvhk+FYPxLq1yckSErltEjboBxfovv5pBhaBLaKIOQake5ViJRXtELh7eHf0e6IGkzbCJSmKUE3GuW8H+4Drt6WtdRstHFHSin3v1Ch/gywqPohzxp1FhVnLoycXpBgW9kA5YrevsTc3fLugN3C6WLnTl6+2E8Pg=
