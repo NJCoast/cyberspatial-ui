@@ -611,7 +611,7 @@ $(document).ready(function () {
                         };
                     }
                 }).addTo(mymap);
-                //add_wind_legend(mymap);
+                add_wind_legend(mymap, true, data);
             }).catch(error => {
                 console.error('Error:', error);
             });
@@ -632,7 +632,7 @@ $(document).ready(function () {
                         };
                     }
                 }).addTo(mymap);
-                //add_surge_legend(mymap);
+                add_surge_legend(mymap, true, data);
             }).catch(error => {
                 console.error('Error:', error);
             });
@@ -826,7 +826,8 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'wind');
-                    //add_wind_legend(mymap);
+                    
+                    add_wind_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -850,7 +851,8 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'surge');
-                    //add_surge_legend(mymap);
+
+                    add_surge_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -878,7 +880,7 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'runup');
 
-                    add_runup_legend(mymap);
+                    add_runup_legend(mymap); 
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -916,9 +918,8 @@ $(document).ready(function () {
                 this.state.wind = true;
                 this.update_wind(index);
             }else{
-                const path = this.path_string(index, "wind").replace('.json', '.geojson');
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'wind' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['wind']);
                     del_wind_legend();
                 }
                 this.state.wind = false;
@@ -929,9 +930,8 @@ $(document).ready(function () {
                 this.state.surge = true;
                 this.update_surge(index);
             }else{
-                var path = this.path_string(index, "surge").replace('.json', '.geojson');
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'surge' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['surge']);
                     del_surge_legend();
                 }
                 this.state.surge = false;
@@ -942,9 +942,8 @@ $(document).ready(function () {
                 this.state.runup = true;
                 this.update_runup(index);
             }else{
-                var path = this.path_string(index, "transect_line");
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'runup' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['runup']);
                     del_runup_legend();
                 }
                 this.state.runup = false;
@@ -1161,6 +1160,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
+                add_surge_legend(mymap, true, addressPoints);
                 break;
             case "surge_line.json":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
@@ -1177,7 +1177,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
-                add_surge_legend(mymap);
+                add_surge_legend(mymap, false, null);
                 break;
             case "wind.geojson":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
@@ -1191,10 +1191,11 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
+                add_wind_legend(mymap, true, addressPoints);
                 break;
             case "wind_heatmap.json":  
                 heatmap[sim_type] = create_surge_heatmap(addressPoints.wind,'layer').addTo(mymap);
-                add_surge_legend(mymap);
+                add_wind_legend(mymap, false, null);
                 break;
             default:
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
