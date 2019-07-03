@@ -943,9 +943,8 @@ $(document).ready(function () {
                 this.state.wind = true;
                 this.update_wind(index);
             }else{
-                const path = this.path_string(index, "wind").replace('.json', '.geojson');
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'wind' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['wind']);
                     del_wind_legend();
                 }
                 this.state.wind = false;
@@ -956,9 +955,8 @@ $(document).ready(function () {
                 this.state.surge = true;
                 this.update_surge(index);
             }else{
-                var path = this.path_string(index, "surge").replace('.json', '.geojson');
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'surge' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['surge']);
                     del_surge_legend();
                 }
                 this.state.surge = false;
@@ -969,9 +967,8 @@ $(document).ready(function () {
                 this.state.runup = true;
                 this.update_runup(index);
             }else{
-                var path = this.path_string(index, "transect_line");
-                if( path in storm_layer_dict ) {
-                    mymap.removeLayer(storm_layer_dict[path]);
+                if( 'runup' in storm_layer_dict ) {
+                    mymap.removeLayer(storm_layer_dict['runup']);
                     del_runup_legend();
                 }
                 this.state.runup = false;
