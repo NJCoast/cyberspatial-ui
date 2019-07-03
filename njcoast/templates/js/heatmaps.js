@@ -141,16 +141,46 @@ function create_surge_legend(){
     return legend;
 }
 
-function add_surge_legend(mymap){
+function create_surge_legend_new(data){
+    var lData = []
+    for( var i = 0; i < data.features.length; i++ ){ 
+        lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+    }
+    bracket = Math.round(lData.length / 5.0)
+    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0); 
+
+    var sLegend = L.control({position: 'bottomleft'});
+    sLegend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend');
+        div.innerHTML = "Surge :<br>";
+        for (var i = 0; i < lData.length; i++) {
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+            if( lData[i+1] ){
+                div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+            }else{
+                div.innerHTML += '+' ;
+            }
+        }
+        return div;
+    };
+
+    return sLegend;
+}
+
+function add_surge_legend(mymap, new_style, data){
     if( legend['surge'] == null ){
         legend_count['surge'] = 1;
-        legend['surge'] = create_surge_legend(L).addTo(mymap);
+        if( new_style ){
+            legend['surge'] = create_surge_legend_new(data).addTo(mymap);
+        }else{
+            legend['surge'] = create_surge_legend().addTo(mymap);
+        }
     }else{
         legend_count['surge'] += 1;
     }
 }
 
-function del_surge_legend(mymap){
+function del_surge_legend(mymap){ 
     legend_count['surge'] -= 1;
     if( legend_count['surge'] <= 0 ){
         legend['surge'].remove();
@@ -185,10 +215,40 @@ function create_wind_legend(L){
     return legend;
 }
 
-function add_wind_legend(mymap){
+function create_wind_legend_new(data){
+    var lData = []
+    for( var i = 0; i < data.features.length; i++ ){
+        lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+    }
+    bracket = Math.round(lData.length / 5.0)
+    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
+
+    var wLegend = L.control({position: 'bottomleft'});
+    wLegend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend');
+        div.innerHTML = "Wind :<br>";
+        for (var i = 0; i < lData.length; i++) {
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+            if( lData[i+1] ){
+                div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+            }else{
+                div.innerHTML += '+' ;
+            }
+        }
+        return div;
+    };
+
+    return wLegend;
+}
+
+function add_wind_legend(mymap, new_style, data){
     if( legend['wind'] == null ){
         legend_count['wind'] = 1;
-        legend['wind'] = create_wind_legend(L).addTo(mymap);
+        if( new_style ){
+            legend['wind'] = create_wind_legend_new(data).addTo(mymap);
+        }else{
+            legend['wind'] = create_wind_legend().addTo(mymap);
+        }
     }else{
         legend_count['wind'] += 1;
     }

@@ -611,7 +611,7 @@ $(document).ready(function () {
                         };
                     }
                 }).addTo(mymap);
-                //add_wind_legend(mymap);
+                add_wind_legend(mymap, true, data);
             }).catch(error => {
                 console.error('Error:', error);
             });
@@ -632,7 +632,7 @@ $(document).ready(function () {
                         };
                     }
                 }).addTo(mymap);
-                //add_surge_legend(mymap);
+                add_surge_legend(mymap, true, data);
             }).catch(error => {
                 console.error('Error:', error);
             });
@@ -827,34 +827,7 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'wind');
                     
-                    if( legend['wind'] == null ){
-                        var lData = []
-                        for( var i = 0; i < data.features.length; i++ ){
-                            lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
-                        }
-                        bracket = Math.round(lData.length / 5.0)
-                        lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
-
-                        var wLegend = L.control({position: 'bottomleft'});
-                        wLegend.onAdd = function (map) {
-                            var div = L.DomUtil.create('div', 'info legend');
-                            div.innerHTML = "Wind :<br>";
-                            for (var i = 0; i < lData.length; i++) {
-                                div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
-                                if( lData[i+1] ){
-                                    div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
-                                }else{
-                                    div.innerHTML += '+' ;
-                                }
-                            }
-                            return div;
-                        };
-                        
-                        legend_count['wind'] = 1; 
-                        legend['wind'] = wLegend.addTo(mymap); 
-                    }else{
-                        legend_count['wind'] += 1;
-                    } 
+                    add_wind_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -879,35 +852,7 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'surge');
 
-                    if( legend['surge'] == null ){
-                        var lData = []
-                        for( var i = 0; i < data.features.length; i++ ){ 
-                            lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
-                        }
-                        bracket = Math.round(lData.length / 5.0)
-                        lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0); 
-
-                        var sLegend = L.control({position: 'bottomleft'});
-                        sLegend.onAdd = function (map) {
-                            var div = L.DomUtil.create('div', 'info legend');
-                            div.innerHTML = "Surge :<br>";
-                            for (var i = 0; i < lData.length; i++) {
-                                div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
-                                if( lData[i+1] ){
-                                    div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
-                                }else{
-                                    div.innerHTML += '+' ;
-                                }
-                            }
-                            return div;
-                        };
-                        
-                        legend_count['surge'] = 1; 
-                        legend['surge'] = sLegend.addTo(mymap); 
-                    }else{
-                        legend_count['surge'] += 1;
-                    } 
-                    //add_surge_legend(mymap);
+                    add_surge_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -935,7 +880,7 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'runup');
 
-                    add_runup_legend(mymap);
+                    add_runup_legend(mymap); 
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -1215,6 +1160,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
+                add_surge_legend(mymap, true, addressPoints);
                 break;
             case "surge_line.json":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
@@ -1231,7 +1177,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
-                add_surge_legend(mymap);
+                add_surge_legend(mymap, false, null);
                 break;
             case "wind.geojson":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
@@ -1245,10 +1191,11 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                     },
                     pane: 'layer'
                 }).addTo(mymap);
+                add_wind_legend(mymap, true, addressPoints);
                 break;
             case "wind_heatmap.json":  
                 heatmap[sim_type] = create_surge_heatmap(addressPoints.wind,'layer').addTo(mymap);
-                add_surge_legend(mymap);
+                add_wind_legend(mymap, false, null);
                 break;
             default:
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
