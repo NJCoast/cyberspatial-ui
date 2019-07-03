@@ -832,7 +832,8 @@ $(document).ready(function () {
                         for( var i = 0; i < data.features.length; i++ ){
                             lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
                         }
-                        lData = lData.sort((a, b) => a.height > b.height).filter((e,i) => i % 5 === 0);
+                        bracket = Math.round(lData.length / 5.0)
+                        lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
                         var wLegend = L.control({position: 'bottomleft'});
                         wLegend.onAdd = function (map) {
@@ -877,6 +878,35 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'surge');
+
+                    if( legend['surge'] == null ){
+                        var lData = []
+                        for( var i = 0; i < data.features.length; i++ ){ 
+                            lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+                        }
+                        bracket = Math.round(lData.length / 5.0)
+                        lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0); 
+
+                        var sLegend = L.control({position: 'bottomleft'});
+                        sLegend.onAdd = function (map) {
+                            var div = L.DomUtil.create('div', 'info legend');
+                            div.innerHTML = "Surge :<br>";
+                            for (var i = 0; i < lData.length; i++) {
+                                div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+                                if( lData[i+1] ){
+                                    div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+                                }else{
+                                    div.innerHTML += '+' ;
+                                }
+                            }
+                            return div;
+                        };
+                        
+                        legend_count['surge'] = 1; 
+                        legend['surge'] = sLegend.addTo(mymap); 
+                    }else{
+                        legend_count['surge'] += 1;
+                    } 
                     //add_surge_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
