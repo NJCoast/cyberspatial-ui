@@ -1104,11 +1104,20 @@ function load_simulation(user_id, object){
   //if clicked, load
   if(object.checked && !(object.id in heatmap)){
     load_heatmap_from_s3(user_id, object.name, object.value, object.id);
-      var index = layers_selected.indexOf(object.id);
-      if (index == -1){
-          layers_selected.push(object.id);
-          if(!initial_load) map_changed();
-      }
+    if (layers_selected.indexOf(object.id) == -1){
+        layers_selected.push(object.id);
+        if(!initial_load) map_changed();
+    }
+
+    // Load track
+    const track_name = object.name + "_track";
+    if(!(track_name in heatmap)){
+      load_heatmap_from_s3(user_id, object.name, "track.geojson", track_name)
+    }
+    if (layers_selected.indexOf(track_name) == -1){
+        layers_selected.push(track_name);
+        if(!initial_load) map_changed();
+    }
   }
 
     if(!object.checked){
@@ -1126,10 +1135,23 @@ function load_simulation(user_id, object){
         }
 
         //remove from layers
-        if (layers_selected.indexOf(object.id) !== -1){
+        var index = layers_selected.indexOf(object.id);
+        if (index !== -1){
             layers_selected.splice(index, 1);
             if(!initial_load) map_changed();
             console.log("Removed "+object.name+","+object.id);
+        }
+
+        const track_name = object.name + "_track";
+        if( Object.keys(heatmap).length == 1 && track_name in heatmap ) {
+          mymap.removeLayer(heatmap[track_name]);
+          delete heatmap[track_name];
+
+          var index = layers_selected.indexOf(track_name);
+          if (index !== -1){
+            layers_selected.splice(index, 1);
+            if(!initial_load) map_changed();
+          }
         }
     }
 }
@@ -1148,6 +1170,14 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
 
         //get correct
         switch( filename ){
+          case "track.geojson":
+                heatmap[sim_type] = L.geoJSON(addressPoints, { 
+                  style: function(feature) {
+                    return {color: 'black'};
+                  },
+                  pane: 'layer' 
+                }).addTo(mymap);
+                break;
             case "surge.geojson":
                 heatmap[sim_type] = L.geoJSON(addressPoints, {
                     style: function(feature) {
