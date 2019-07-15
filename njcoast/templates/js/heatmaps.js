@@ -1,6 +1,6 @@
 /*
  * Purpose:            js file for creating heatmaps for maps.html and map_expert.html.
- * @author             James Sweet <csweet1@nd.edu>
+ * @author             James Sweet <jsweet@nd.edu>
  * Org:                CRC at Notre Dame
  * Date:               05/01/2018
  *
@@ -11,6 +11,11 @@
  *
  */
 
+ /*
+    This function takes a set of data and a string to define the plane of the map that
+    the surge heatmap should be added to. It visualizes the first version of the surge
+    data.
+*/
 function create_surge_heatmap(data, lpane){
     var heatData = {
         max: 10.00,
@@ -61,6 +66,11 @@ function create_surge_heatmap(data, lpane){
     return hLayer;
 }
 
+/*
+    This function takes a set of data and a string to define the plane of the map that
+    the wind heatmap should be added to. It visualizes the first version of the wind
+    data.
+*/
 function create_wind_heatmap(data, lpane){
     var heatData = {
         max: 200.00,
@@ -114,6 +124,7 @@ function create_wind_heatmap(data, lpane){
 var legend = {}
 var legend_count = {}
 
+// This function generates a legend bar for the first version of the surge data
 function create_surge_legend(){
     function getColor(d) {
         return d > 9 ? 'red' : d > 6  ? 'orange' : d > 3  ? 'yellow' :  'black';
@@ -141,20 +152,22 @@ function create_surge_legend(){
     return legend;
 }
 
+// This function takes the data for a second version surge layer and creates a legend based
+// on the data.
 function create_surge_legend_new(data){
     var lData = []
-    for( var i = 0; i < data.features.length; i++ ){ 
+    for( var i = 0; i < data.features.length; i++ ){
         lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
     }
     bracket = Math.round(lData.length / 5.0)
-    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0); 
+    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
     var sLegend = L.control({position: 'bottomleft'});
     sLegend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend');
         div.innerHTML = "Surge :<br>";
         for (var i = 0; i < lData.length; i++) {
-            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height
             if( lData[i+1] ){
                 div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
             }else{
@@ -167,6 +180,9 @@ function create_surge_legend_new(data){
     return sLegend;
 }
 
+// This function adds a generated surge legend to the specified map, checking
+// to see if it has already been added. It sets up a reference counter for the
+// number of layers using this legend.
 function add_surge_legend(mymap, new_style, data){
     if( legend['surge'] == null ){
         legend_count['surge'] = 1;
@@ -180,7 +196,9 @@ function add_surge_legend(mymap, new_style, data){
     }
 }
 
-function del_surge_legend(mymap){ 
+// This function removes a count from the surge layer and if it determines
+// that no more layers require the legend it destroys the legend itself.
+function del_surge_legend(mymap){
     legend_count['surge'] -= 1;
     if( legend_count['surge'] <= 0 ){
         legend['surge'].remove();
@@ -189,6 +207,7 @@ function del_surge_legend(mymap){
     }
 }
 
+// This function generates a legend bar for the first version of the wind data
 function create_wind_legend(L){
     function getColor(d) {
         return d > 78.5 ? '#ff6060' : d > 65  ? '#ff8f20' : d > 55.5  ? '#ffc140' : d > 47.5  ? '#ffe775' : '#ffffcc';
@@ -215,6 +234,8 @@ function create_wind_legend(L){
     return legend;
 }
 
+// This function takes the data for a second version wind layer and creates a legend based
+// on the data.
 function create_wind_legend_new(data){
     var lData = []
     for( var i = 0; i < data.features.length; i++ ){
@@ -228,7 +249,7 @@ function create_wind_legend_new(data){
         var div = L.DomUtil.create('div', 'info legend');
         div.innerHTML = "Wind :<br>";
         for (var i = 0; i < lData.length; i++) {
-            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height 
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height
             if( lData[i+1] ){
                 div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
             }else{
@@ -241,6 +262,9 @@ function create_wind_legend_new(data){
     return wLegend;
 }
 
+// This function adds a generated wind legend to the specified map, checking
+// to see if it has already been added. It sets up a reference counter for the
+// number of layers using this legend.
 function add_wind_legend(mymap, new_style, data){
     if( legend['wind'] == null ){
         legend_count['wind'] = 1;
@@ -254,6 +278,8 @@ function add_wind_legend(mymap, new_style, data){
     }
 }
 
+// This function removes a count from the wind layer and if it determines
+// that no more layers require the legend it destroys the legend itself.
 function del_wind_legend(){
     legend_count['wind'] -= 1;
     if( legend_count['wind'] <= 0 ){
@@ -263,6 +289,7 @@ function del_wind_legend(){
     }
 }
 
+// This function generates a legend bar for the runup data
 function create_runup_legend(L){
     var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
@@ -277,6 +304,9 @@ function create_runup_legend(L){
     return legend;
 }
 
+// This function adds a generated runup legend to the specified map, checking
+// to see if it has already been added. It sets up a reference counter for the
+// number of layers using this legend.
 function add_runup_legend(mymap){
     if( legend['runup'] == null ){
         legend_count['runup'] = 1;
@@ -286,6 +316,8 @@ function add_runup_legend(mymap){
     }
 }
 
+// This function removes a count from the wind layer and if it determines
+// that no more layers require the legend it destroys the legend itself.
 function del_runup_legend(){
     legend_count['runup'] -= 1;
     if( legend_count['runup'] <= 0 ){
