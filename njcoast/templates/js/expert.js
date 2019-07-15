@@ -210,7 +210,7 @@ var app = new Vue({
             if( isNaN(this.longitude) ){
                 this.longitude = -73.9654541;
             }
-        
+
             //test bounds
             if (this.latitude > 45) {
                 this.latitude = 45.0000000;
@@ -223,10 +223,10 @@ var app = new Vue({
             } else if (this.longitude < -77) {
                 this.longitude = -77.0000000;
             }
-        
+
             //update widget
             var angle = this.angle / 180 * Math.PI;
-    
+
             var sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
             var sat_offset_x = Math.sin(angle) * arrow_length;
 
@@ -320,7 +320,7 @@ var app = new Vue({
                     setTimeout(() => this.waitForCompletion(), 5000);
                 } else if (response.complete == true) {
                     $.notify("Calculation complete!", "success");
-    
+
                     this.simulation.running = false;
                     this.simulation.complete = true;
                     this.update();
@@ -334,7 +334,7 @@ var app = new Vue({
             return (300.0 + ((300.0 * (this.simulation.position.toFixed(2)-1.0)) / this.simulation.workers.toFixed(2))) - this.simulation.currentTime;
         },
         percentRemaining: function(){
-            return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0; 
+            return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0;
         },
         saveSimulation: function(mapName){
             if( !this.simulation.complete ) {
@@ -344,7 +344,7 @@ var app = new Vue({
 
             this.mapName = mapName;
             document.getElementById("sim_description").value = "Simulation " + this.id;
-            
+
             if( !sim_saved ){
                 $('#saveSim-1').modal('show');
             }else{
@@ -580,7 +580,7 @@ var app = new Vue({
             this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
           }
     }
-}) 
+})
 
 
 //create storm track icons
@@ -650,7 +650,7 @@ function create_storm_track(onOff) {
             [latitude + sat_offset_y, longitude + sat_offset_x]
         ];
         polyline = L.polyline(latlngs, {color: '#eb6b00', weight: 3, opacity: 1.0 }).addTo(mymap);
- 
+
         //create landfall marker
         marker = new L.marker([latitude, longitude], { draggable: 'true', icon: crosshairIcon });
         marker.on('drag', function (event) {

@@ -329,16 +329,16 @@ $(document).ready(function () {
                     data.layers[i].opacity = 100;
                     if( data.layers[i].group.toLowerCase().replace(/\s+/g, '') == "imagerybasemapsearthcover" ) {
                         data.layers[i].maplayer = L.tileLayer.wms(data.layers[i].layer_link, {
-                            layers: data.layers[i].layer, 
-                            transparent: true, 
+                            layers: data.layers[i].layer,
+                            transparent: true,
                             format: 'image/png',
                             tiled: true
                         });
                         layer_list.push(data.layers[i]);
                     }else {
                         data.layers[i].maplayer = L.tileLayer.betterWms(data.layers[i].layer_link, {
-                            layers: data.layers[i].layer, 
-                            transparent: true, 
+                            layers: data.layers[i].layer,
+                            transparent: true,
                             format: 'image/png',
                             pane: 'layer',
                             tiled: true
@@ -416,7 +416,7 @@ $(document).ready(function () {
                     if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
                         return 1;
                     }
-                    
+
                     if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
                         return -1;
                     }
@@ -475,7 +475,7 @@ $(document).ready(function () {
                                     }
                                   }
                                   result += "</table>"
-                                
+
                                   // Otherwise show the content in a popup, or something.
                                   L.popup({maxWidth: 800, maxHeight: window.innerHeight * 0.4})
                                     .setLatLng(featureLayer._latlng)
@@ -687,7 +687,7 @@ $(document).ready(function () {
         }
     })
 
-    var historic = new Vue({ 
+    var historic = new Vue({
         delimiters: ['${', '}'],
         el: '#historicStormGroup',
         data: {
@@ -727,7 +727,7 @@ $(document).ready(function () {
                     if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
                         return 1;
                     }
-                    
+
                     if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
                         return -1;
                     }
@@ -786,7 +786,7 @@ $(document).ready(function () {
                                     }
                                   }
                                   result += "</table>"
-                                
+
                                   // Otherwise show the content in a popup, or something.
                                   L.popup({maxWidth: 800, maxHeight: window.innerHeight * 0.4})
                                     .setLatLng(featureLayer._latlng)
@@ -826,7 +826,7 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'wind');
-                    
+
                     add_wind_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
@@ -880,7 +880,7 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'runup');
 
-                    add_runup_legend(mymap); 
+                    add_runup_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -963,7 +963,7 @@ $(document).ready(function () {
     })
 
     if( annotate_map_id != null ){
-        load_map(); 
+        load_map();
     }
 });
 
@@ -1171,11 +1171,11 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
         //get correct
         switch( filename ){
           case "track.geojson":
-                heatmap[sim_type] = L.geoJSON(addressPoints, { 
+                heatmap[sim_type] = L.geoJSON(addressPoints, {
                   style: function(feature) {
                     return {color: 'black'};
                   },
-                  pane: 'layer' 
+                  pane: 'layer'
                 }).addTo(mymap);
                 break;
             case "surge.geojson":
@@ -1223,7 +1223,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                 }).addTo(mymap);
                 add_wind_legend(mymap, true, addressPoints);
                 break;
-            case "wind_heatmap.json":  
+            case "wind_heatmap.json":
                 heatmap[sim_type] = create_surge_heatmap(addressPoints.wind,'layer').addTo(mymap);
                 add_wind_legend(mymap, false, null);
                 break;
@@ -1500,7 +1500,7 @@ function load_simulation_data(sim_id){
                     wind_file = "wind_heatmap.json"
                 }
               }
-              
+
               var runup = "disabled";
               var runup_file = "";
               if(data.runup_file){
@@ -1523,7 +1523,7 @@ function load_simulation_data(sim_id){
                     break;
                 }
 
-                
+
               //generate html
               var html = ``;
               if( data.indicator == 1 ){
@@ -1539,7 +1539,7 @@ function load_simulation_data(sim_id){
                         sProtection = "Compromised";
                         break;
                 }
-                    
+
                 var sAnalysis = "";
                 switch( data.index_prob ){
                     case 0:
@@ -1548,7 +1548,7 @@ function load_simulation_data(sim_id){
                     case 0.5:
                         sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">expected</span>";
                         break;
-                    case 0.1: 
+                    case 0.1:
                         sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">extreme</span>";
                         break;
                 }
