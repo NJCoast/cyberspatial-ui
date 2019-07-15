@@ -201,6 +201,7 @@ function titleCase(str) {
     }).join(' ');
 }
 
+// This code allows for clicking on elements within the map to produce a table containing its parameters
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
       onAdd: function (map) {
         // Triggered when the layer is added to a map.
@@ -319,6 +320,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download the gis layers and save it within the control
           fetchData: function () {
             $.get("/api/my_layers/", (data) => {
                 for( var i = 0; i < data.layers.length; i++){
@@ -350,6 +352,7 @@ $(document).ready(function () {
                 };
             });
           },
+          // Function to toggle the state of a layer
           toggleLayer: function(group, layer){
             for(var i = 0 ; i < this.group[group].length; i++) {
                 if( this.group[group][i].id == layer ){
@@ -366,6 +369,7 @@ $(document).ready(function () {
                 }
             }
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(group, layer){
             for(var i = 0 ; i < this.group[group].length; i++) {
                 if( this.group[group][i].id == layer ){
@@ -377,6 +381,7 @@ $(document).ready(function () {
         }
     })
 
+    // VueJS Control to handle detected storms
     var app = new Vue({
         delimiters: ['${', '}'],
         el: '#activeStormGroup',
@@ -387,6 +392,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download metadata and save it within the control
           fetchData: function () {
             var path = (userSimulationPath + "/metadata.json").replace("/simulation/", "/");
             $.get(path, (data) => {
@@ -430,10 +436,12 @@ $(document).ready(function () {
                 }
             });
           },
+          // Converts a last updated date into a string
           dateString: function(last_updated){
             var result = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(last_updated));
             return result.toString();
           },
+          // Toggles following a storm on the map adding the cone and allowing parameters to be specified
           setFollow: function(index, value){
             this.items[index].following = value;
             if( value == true ){
@@ -493,12 +501,14 @@ $(document).ready(function () {
                 }
             }
           },
+          // Helper function to update all data for each layer
           update: function(index){
               console.log(JSON.stringify(this.items[index], null, 2));
               this.update_wind(index);
               this.update_surge(index);
               this.update_runup(index);
           },
+          // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
           update_wind: function(index){
             var path = this.path_string(index, "wind_heatmap");
             $.get(path, (data) => {
@@ -514,6 +524,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(index){
             var path = this.path_string(index, "surge_line");
             $.get(path, (data) => {
@@ -541,6 +552,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
           update_runup: function(index){
             var path = this.path_string(index, "transect_line");
             $.get(path, (data) => {
@@ -568,6 +580,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // String to convert an item and its properties into a filename to be used to retrieve the data
           path_string: function(index, data_type) {
             var path = this.items[index].s3_base_path + data_type + "__slr_" + parseInt(0 * 10) + "__tide_";
             switch( this.items[index].tides ){
@@ -595,6 +608,7 @@ $(document).ready(function () {
             }
             return path + ".json";
           },
+          // Function to toggle the state of the storm's wind layer
           update_wind: function(index){
             const path = this.path_string(index, "wind").replace('.json', '.geojson');
             fetch(path).then(res => res.json()).then(data => {
@@ -616,6 +630,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // Function to toggle the state of the storm's surge layer
           update_surge: function(index){
             const path = this.path_string(index, "surge").replace('.json', '.geojson');
             fetch(path).then(res => res.json()).then(data => {
@@ -637,6 +652,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // Function to toggle the state of the storm's runup layer
           update_runup: function(index){
             const path = this.path_string(index, "transect_line");
             fetch(path).then(res => res.json()).then(data => {
@@ -662,6 +678,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(index, type){
             var path = ""
             switch( type ){
@@ -687,6 +704,7 @@ $(document).ready(function () {
         }
     })
 
+    // VueJS Control to handle historic storms
     var historic = new Vue({
         delimiters: ['${', '}'],
         el: '#historicStormGroup',
@@ -698,6 +716,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download metadata and save it within the control
           fetchData: function () {
             var path = (userSimulationPath + "/historic_metadata.json").replace("/simulation/", "/");
             $.get(path, (data) => {
@@ -741,10 +760,12 @@ $(document).ready(function () {
                 }
             });
           },
+          // Converts a last updated date into a string
           dateString: function(last_updated){
             var result = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(last_updated));
             return result.toString();
           },
+          // Toggles following a storm on the map adding the cone and allowing parameters to be specified
           setFollow: function(index, value){
             this.items[index].following = value;
             if( value == true ){
@@ -803,11 +824,13 @@ $(document).ready(function () {
                 }
             }
           },
+          // Helper function to update all data for each layer
           update: function(index){
               this.update_wind(index);
               this.update_surge(index);
               this.update_runup(index);
           },
+          // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
           update_wind: function(index){
             if( this.state.wind == true ){
                 const path = this.path_string(index, "wind").replace('.json', '.geojson');
@@ -833,6 +856,7 @@ $(document).ready(function () {
                 });
             }
           },
+          // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(index){
             if( this.state.surge == true ){
                 const path = this.path_string(index, "surge").replace('.json', '.geojson');
@@ -858,6 +882,7 @@ $(document).ready(function () {
                 });
             }
           },
+          // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
           update_runup: function(index){
             if( this.state.runup == true ){
                 const path = this.path_string(index, "transect_line");
@@ -886,6 +911,7 @@ $(document).ready(function () {
                 });
             }
           },
+          // String to convert an item and its properties into a filename to be used to retrieve the data
           path_string: function(index, data_type) {
             var path = this.items[index].s3_base_path + data_type + "__slr_" + parseInt(1 * 10) + "__tide_";
             switch( this.items[index].tides ){
@@ -913,6 +939,7 @@ $(document).ready(function () {
             }
             return path + ".json";
           },
+          // Function to toggle the state of the storm's wind layer
           toggle_wind: function(index){
             if(this.items[index]['state']['wind'] == true){
                 this.state.wind = true;
@@ -925,6 +952,7 @@ $(document).ready(function () {
                 this.state.wind = false;
             }
           },
+          // Function to toggle the state of the storm's surge layer
           toggle_surge: function(index){
             if(this.items[index]['state']['surge'] == true){
                 this.state.surge = true;
@@ -937,6 +965,7 @@ $(document).ready(function () {
                 this.state.surge = false;
             }
           },
+          // Function to toggle the state of the storm's runup layer
           toggle_runup: function(index){
             if(this.items[index]['state']['runup'] == true){
                 this.state.runup = true;
@@ -949,6 +978,7 @@ $(document).ready(function () {
                 this.state.runup = false;
             }
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(index, type){
             if( type in storm_layer_dict ) {
                 const percent = this.items[index].opacity[type]/100.0;
