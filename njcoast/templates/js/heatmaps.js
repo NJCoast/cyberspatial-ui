@@ -11,6 +11,12 @@
  *
  */
 
+ // Utility Function
+ function round_to_precision(x, precision) {
+    var y = +x + (precision === undefined ? 0.5 : precision/2);
+    return y - (y % (precision === undefined ? 1 : +precision));
+}
+
  /*
     This function takes a set of data and a string to define the plane of the map that
     the surge heatmap should be added to. It visualizes the first version of the surge
@@ -140,7 +146,7 @@ function create_surge_legend(){
         // loop through our density intervals and generate a label with a colored square for each interval
         div.innerHTML = "Surge (ft):<br>";
         for (var i = 0; i < heights.length; i++) {
-            div.innerHTML += '<i style="background:' + getColor(heights[i] + 1) + '"></i> ' + heights[i];
+            div.innerHTML += '<i style="background:' + getColor(heights[i] + 1) + '"></i> ' + round_to_precision(heights[i],0.5);
             if(heights[i + 1]){
                 div.innerHTML += '<br>';
             }
@@ -167,9 +173,9 @@ function create_surge_legend_new(data){
         var div = L.DomUtil.create('div', 'info legend');
         div.innerHTML = "Surge :<br>";
         for (var i = 0; i < lData.length; i++) {
-            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + round_to_precision(lData[i].height,0.5)
             if( lData[i+1] ){
-                div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+                div.innerHTML += '&ndash;' + round_to_precision(lData[i+1].height,0.5) + '<br>';
             }else{
                 div.innerHTML += '+' ;
             }
@@ -225,7 +231,7 @@ function create_wind_legend(L){
         for (var i = 0; i < heights.length; i++) {
             div.innerHTML +=
                 '<i style="background:' + getColor(heights[i] + 1) + '"></i> ' +
-                heights[i] + (heights[i + 1] ? '&ndash;' + heights[i + 1] + '<br>' : '+');
+                round_to_precision(heights[i], 0.5) + (round_to_precision(heights[i + 1],0.5) ? '&ndash;' + round_to_precision(heights[i + 1],0.5) + '<br>' : '+');
         }
 
         return div;
@@ -249,9 +255,9 @@ function create_wind_legend_new(data){
         var div = L.DomUtil.create('div', 'info legend');
         div.innerHTML = "Wind :<br>";
         for (var i = 0; i < lData.length; i++) {
-            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + lData[i].height
+            div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + round_to_precision(lData[i].height, 0.5)
             if( lData[i+1] ){
-                div.innerHTML += '&ndash;' + lData[i+1].height + '<br>';
+                div.innerHTML += '&ndash;' + round_to_precision(lData[i+1].height,0.5) + '<br>';
             }else{
                 div.innerHTML += '+' ;
             }
