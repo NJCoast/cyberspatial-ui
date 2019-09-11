@@ -149,7 +149,7 @@ var app = new Vue({
             initialEstimate: -1,
             currentTime: 0,
         },
-        state: { 'wind': false, 'surge': false, 'runup': false},
+        state: { 'wind': false, 'surge': false, 'surgeType': 0, 'runup': false},
         opacity: { 'wind': 100.0, 'surge': 100.0, 'runup': 100.0},
         layer: {'wind': undefined, 'surge': undefined, 'runup': undefined},
         model: {
@@ -514,22 +514,48 @@ var app = new Vue({
           // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(){
             if( this.state.surge && this.simulation.complete ){
-                const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge.geojson"
+                var path = ""
+                if( this.state.surgeType == 0 ){
+                    path =  userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge.geojson"; 
+                }else{
+                    path =  userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge_line.json";
+                }
+
                 fetch(path).then(res => res.json()).then(data => {
-                    if( this.layer.surge !== undefined ){
+                    if( this.layer.surge !== undefined ) {
                         mymap.removeLayer(this.layer.surge);
+                        del_surge_legend();
                     }
-                    this.layer.surge = L.geoJSON(data, {
-                        style: function(feature) {
-                            return {
-                                fillColor: feature.properties['fill'],
-                                fillOpacity: feature.properties['fill-opacity'],
-                                stroke: false,
-                                opacity: feature.properties['opacity']
-                            };
-                        }
-                    }).addTo(mymap);
-                    //add_surge_legend(mymap);
+                    if( this.state.surgeType == 0 ){
+                        this.layer.surge = L.geoJSON(data, {
+                            style: function(feature) {
+                                return {
+                                    fillColor: feature.properties['fill'],
+                                    fillOpacity: feature.properties['fill-opacity'],
+                                    stroke: false,
+                                    opacity: feature.properties['opacity']
+                                };
+                            }
+                        }).addTo(mymap);
+                        add_surge_legend(mymap, true, data);
+                    }else{
+                        this.layer.surge = L.geoJSON(data, {
+                            style: function(feature) {
+                                switch (feature.properties.height) {
+                                    case 0: return {color: "black"};
+                                    case 3: return {color: "yellow"};
+                                    case 6: return {color: "orange"};
+                                    case 9: return {color: "red"};
+                                }
+                            },
+                            filter: function(feature, layer) {
+                                return feature.properties.height <= 9;
+                            },
+                            pane: 'layer'
+                        }).addTo(mymap);
+                        add_surge_legend(mymap, false, null);
+                    }
+                    this.setOpacity('surge');
                 }).catch(error => {
                     console.error('Error:', error);
                 });
