@@ -171,7 +171,7 @@ function create_surge_legend_new(data){
     var sLegend = L.control({position: 'bottomleft'});
     sLegend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = "Surge :<br>";
+        div.innerHTML = "Surge (ft):<br>";
         for (var i = 0; i < lData.length; i++) {
             div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + round_to_precision(lData[i].height,0.5)
             if( lData[i+1] ){
@@ -253,7 +253,7 @@ function create_wind_legend_new(data){
     var wLegend = L.control({position: 'bottomleft'});
     wLegend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = "Wind :<br>";
+        div.innerHTML = "Wind (mph):<br>";
         for (var i = 0; i < lData.length; i++) {
             div.innerHTML += '<i style="background:' + lData[i].color + '"></i> ' + round_to_precision(lData[i].height, 0.5)
             if( lData[i+1] ){
