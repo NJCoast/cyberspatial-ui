@@ -254,8 +254,15 @@ js functions:
                 <ul class="map-layers">
                     <li><input type="checkbox" v-model="state.wind" v-on:change="toggle_wind()"> Wind Field </li>
                     <input v-if="state.wind" v-model.number="opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity('wind')"/>
+                    
                     <li><input type="checkbox" v-model="state.surge" v-on:change="toggle_surge()"> Surge </li>
                     <input v-if="state.surge" v-model.number="opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity('surge')"/>
+                    <li v-if="state.surge">
+                        &nbsp;&nbsp;<input type="radio" name="surge_type'" value="0" v-model.number="state.surgeType" v-on:change="toggle_surge();"> Heatmap </input>
+                        </br>
+                        &nbsp;&nbsp;<input type="radio" name="surge_type'" value="1" v-model.number="state.surgeType" v-on:change="toggle_surge();"> Contour </input>
+                    </li>
+
                     <li v-if="model.style == '1'"><input type="checkbox" v-model="state.runup" v-on:change="toggle_runup()"> Total Run Up</li>
                     <input v-if="state.runup" v-model.number="opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity('runup')"/>
                 </ul>
