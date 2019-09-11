@@ -132,6 +132,7 @@ var marker, polyline, arrow_length;
 //saved flag
 var sim_saved = false;
 
+// VueJS control to handle storm parameters as well as submission of simulation
 var app = new Vue({
     delimiters: ['${', '}'],
     el: '#stormParameters',
@@ -166,6 +167,7 @@ var app = new Vue({
         },
         mapName: ""
     },
+    // Generate a random ID on creation
     created: function () {
         this.id = Math.random().toString(36).substr(2, 9);
     },
@@ -176,6 +178,7 @@ var app = new Vue({
         getSimulationString: function(){
             return this.model.style == 1 ? "Hurricane" : "Nor'easter";
         },
+        // Set storm values based off of the basic storm catagory
         setStormValues: function(){
             this.model.speed = 50.0;
             switch( this.model.catagory ) {
@@ -201,6 +204,7 @@ var app = new Vue({
                     break;
             }
         },
+        // Update the arrow and parameters on latlong change and keep it within bounds
         latLngChange: function() {
             //test non numeric
             if (isNaN(this.latitude)) {
@@ -210,7 +214,7 @@ var app = new Vue({
             if( isNaN(this.longitude) ){
                 this.longitude = -73.9654541;
             }
-        
+
             //test bounds
             if (this.latitude > 45) {
                 this.latitude = 45.0000000;
@@ -223,10 +227,10 @@ var app = new Vue({
             } else if (this.longitude < -77) {
                 this.longitude = -77.0000000;
             }
-        
+
             //update widget
             var angle = this.angle / 180 * Math.PI;
-    
+
             var sat_offset_y = Math.cos(angle) * arrow_length * 0.78;
             var sat_offset_x = Math.sin(angle) * arrow_length;
 
@@ -242,6 +246,7 @@ var app = new Vue({
 
             marker.setLatLng(new L.LatLng(this.latitude, this.longitude), { draggable: 'true' });
         },
+        // Initiate a simulation with the requested parameters
         startSimulation: function(){
             const lat_past_point = this.latitude - Math.cos(this.angle * Math.PI / 180) * 0.015;
             const long_past_point = this.longitude - Math.sin(this.angle * Math.PI / 180) * 0.015;
@@ -300,6 +305,7 @@ var app = new Vue({
                 console.error('Error:', error);
             });
         },
+        // This function sends a request to ask the queue master for the status of the specified simulation
         waitForCompletion: function(){
             fetch("/queue/status?name=" + owner.toString() + "&id=" + this.id, {
                 method: 'GET',
@@ -320,7 +326,7 @@ var app = new Vue({
                     setTimeout(() => this.waitForCompletion(), 5000);
                 } else if (response.complete == true) {
                     $.notify("Calculation complete!", "success");
-    
+
                     this.simulation.running = false;
                     this.simulation.complete = true;
                     this.update();
@@ -330,12 +336,15 @@ var app = new Vue({
                 console.error('Error:', error);
             });
         },
+        // This function attempts to provide an estimate of the time remaining before the simulation is complete
         estimateRemaining: function(){
             return (300.0 + ((300.0 * (this.simulation.position.toFixed(2)-1.0)) / this.simulation.workers.toFixed(2))) - this.simulation.currentTime;
         },
+        // This function converts the time remaining to a percentage based off of the original estimate
         percentRemaining: function(){
-            return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0; 
+            return ((this.simulation.initialEstimate.toFixed(2) - this.estimateRemaining().toFixed(2)) / this.simulation.initialEstimate.toFixed(2)) * 100.0;
         },
+        // This function creates a dialog to save a simulation once it has been finished
         saveSimulation: function(mapName){
             if( !this.simulation.complete ) {
                 alert("Plase run a sumulation before saving!");
@@ -344,7 +353,7 @@ var app = new Vue({
 
             this.mapName = mapName;
             document.getElementById("sim_description").value = "Simulation " + this.id;
-            
+
             if( !sim_saved ){
                 $('#saveSim-1').modal('show');
             }else{
@@ -375,6 +384,7 @@ var app = new Vue({
                 });
             }
         },
+        // This function actually saves the data for the simulation
         saveSimulationAJAX: function(){
             //get inputs from Modal
             var sim_desc = document.getElementById("sim_description").value;
@@ -471,11 +481,13 @@ var app = new Vue({
                 });
             }
         },
+        // Helper function to update all data for each layer
         update: function(){
             this.update_wind();
             this.update_surge();
             this.update_runup();
         },
+        // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
         update_wind: function(){
             if( this.state.wind && this.simulation.complete ){
                 const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/wind.geojson"
@@ -499,6 +511,7 @@ var app = new Vue({
                 });
             }
           },
+          // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(){
             if( this.state.surge && this.simulation.complete ){
                 const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/surge.geojson"
@@ -522,6 +535,7 @@ var app = new Vue({
                 });
             }
           },
+          // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
           update_runup: function(){
             if( this.state.runup && this.simulation.complete ){
                 const path = userSimulationPath + "/" + owner.toString() + "/" + this.id + "/transect_line.json"
@@ -549,7 +563,8 @@ var app = new Vue({
                 });
             }
           },
-        toggle_wind: function(){
+          // Function to toggle the state of the storm's wind layer
+          toggle_wind: function(){
             if(this.state.wind == true){
                 this.update_wind();
             }else{
@@ -558,6 +573,7 @@ var app = new Vue({
                 del_wind_legend();
             }
           },
+          // Function to toggle the state of the storm's surge layer
           toggle_surge: function(){
             if(this.state.surge == true){
                 this.update_surge();
@@ -567,6 +583,7 @@ var app = new Vue({
                 del_surge_legend();
             }
           },
+          // Function to toggle the state of the storm's runup layer
           toggle_runup: function(){
             if(this.state.runup == true){
                 this.update_runup();
@@ -576,11 +593,12 @@ var app = new Vue({
                 del_runup_legend();
             }
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(type){
             this.layer[type].setStyle({opacity: this.opacity[type]/100.0, fillOpacity: this.opacity[type]/100.0});
           }
     }
-}) 
+})
 
 
 //create storm track icons
@@ -650,7 +668,7 @@ function create_storm_track(onOff) {
             [latitude + sat_offset_y, longitude + sat_offset_x]
         ];
         polyline = L.polyline(latlngs, {color: '#eb6b00', weight: 3, opacity: 1.0 }).addTo(mymap);
- 
+
         //create landfall marker
         marker = new L.marker([latitude, longitude], { draggable: 'true', icon: crosshairIcon });
         marker.on('drag', function (event) {

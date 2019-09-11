@@ -1,0 +1,46 @@
+- fields:
+    additional_muni_approved: null
+    additional_muni_request: null
+    address_line_1: null
+    address_line_2: null
+    city: null
+    county: null
+    dca_approval_date: null
+    dca_approver: null
+    is_dca_approved: false
+    is_muni_approved: false
+    justification: null
+    muni_approval_date: null
+    muni_approver: null
+    municipality: null
+    notes: null
+    position: null
+    region_level: null
+    role: null
+    user: [AnonymousUser]
+    zip: null
+  model: njcoast.njcusermeta
+  pk: 1
+- fields:
+    additional_muni_approved: ''
+    additional_muni_request: ''
+    address_line_1: ''
+    address_line_2: ''
+    city: ''
+    county: 10
+    dca_approval_date: 2018-08-16 11:06:21
+    dca_approver: ''
+    is_dca_approved: true
+    is_muni_approved: true
+    justification: ''
+    muni_approval_date: 2018-08-16 11:06:23
+    muni_approver: ''
+    municipality: 1
+    notes: ''
+    position: ''
+    region_level: 2
+    role: 1
+    user: [admin]
+    zip: ''
+  model: njcoast.njcusermeta
+  pk: 2

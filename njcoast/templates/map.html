@@ -288,6 +288,9 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                         User-specified Scenarios 
                         <div class="shp-cat" title="Based on user-specified scenarios from manual SHP Tool runs">what-if</div>
                     </div>
+                    <div id="usersims">
+                        <simulation v-for="item in items"  v-bind:key="item" v-bind:id="item"></simulation>
+                    </div>
                     <div id="simulation_container">
                     </div>
                         

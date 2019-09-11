@@ -201,6 +201,7 @@ function titleCase(str) {
     }).join(' ');
 }
 
+// This code allows for clicking on elements within the map to produce a table containing its parameters
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
       onAdd: function (map) {
         // Triggered when the layer is added to a map.
@@ -319,6 +320,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download the gis layers and save it within the control
           fetchData: function () {
             $.get("/api/my_layers/", (data) => {
                 for( var i = 0; i < data.layers.length; i++){
@@ -329,16 +331,16 @@ $(document).ready(function () {
                     data.layers[i].opacity = 100;
                     if( data.layers[i].group.toLowerCase().replace(/\s+/g, '') == "imagerybasemapsearthcover" ) {
                         data.layers[i].maplayer = L.tileLayer.wms(data.layers[i].layer_link, {
-                            layers: data.layers[i].layer, 
-                            transparent: true, 
+                            layers: data.layers[i].layer,
+                            transparent: true,
                             format: 'image/png',
                             tiled: true
                         });
                         layer_list.push(data.layers[i]);
                     }else {
                         data.layers[i].maplayer = L.tileLayer.betterWms(data.layers[i].layer_link, {
-                            layers: data.layers[i].layer, 
-                            transparent: true, 
+                            layers: data.layers[i].layer,
+                            transparent: true,
                             format: 'image/png',
                             pane: 'layer',
                             tiled: true
@@ -350,6 +352,7 @@ $(document).ready(function () {
                 };
             });
           },
+          // Function to toggle the state of a layer
           toggleLayer: function(group, layer){
             for(var i = 0 ; i < this.group[group].length; i++) {
                 if( this.group[group][i].id == layer ){
@@ -366,6 +369,7 @@ $(document).ready(function () {
                 }
             }
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(group, layer){
             for(var i = 0 ; i < this.group[group].length; i++) {
                 if( this.group[group][i].id == layer ){
@@ -377,6 +381,7 @@ $(document).ready(function () {
         }
     })
 
+    // VueJS Control to handle detected storms
     var app = new Vue({
         delimiters: ['${', '}'],
         el: '#activeStormGroup',
@@ -387,6 +392,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download metadata and save it within the control
           fetchData: function () {
             var path = (userSimulationPath + "/metadata.json").replace("/simulation/", "/");
             $.get(path, (data) => {
@@ -416,7 +422,7 @@ $(document).ready(function () {
                     if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
                         return 1;
                     }
-                    
+
                     if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
                         return -1;
                     }
@@ -430,10 +436,12 @@ $(document).ready(function () {
                 }
             });
           },
+          // Converts a last updated date into a string
           dateString: function(last_updated){
             var result = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(last_updated));
             return result.toString();
           },
+          // Toggles following a storm on the map adding the cone and allowing parameters to be specified
           setFollow: function(index, value){
             this.items[index].following = value;
             if( value == true ){
@@ -475,7 +483,7 @@ $(document).ready(function () {
                                     }
                                   }
                                   result += "</table>"
-                                
+
                                   // Otherwise show the content in a popup, or something.
                                   L.popup({maxWidth: 800, maxHeight: window.innerHeight * 0.4})
                                     .setLatLng(featureLayer._latlng)
@@ -493,12 +501,14 @@ $(document).ready(function () {
                 }
             }
           },
+          // Helper function to update all data for each layer
           update: function(index){
               console.log(JSON.stringify(this.items[index], null, 2));
               this.update_wind(index);
               this.update_surge(index);
               this.update_runup(index);
           },
+          // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
           update_wind: function(index){
             var path = this.path_string(index, "wind_heatmap");
             $.get(path, (data) => {
@@ -514,6 +524,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(index){
             var path = this.path_string(index, "surge_line");
             $.get(path, (data) => {
@@ -541,6 +552,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
           update_runup: function(index){
             var path = this.path_string(index, "transect_line");
             $.get(path, (data) => {
@@ -568,6 +580,7 @@ $(document).ready(function () {
                 }
             });
           },
+          // String to convert an item and its properties into a filename to be used to retrieve the data
           path_string: function(index, data_type) {
             var path = this.items[index].s3_base_path + data_type + "__slr_" + parseInt(0 * 10) + "__tide_";
             switch( this.items[index].tides ){
@@ -595,6 +608,7 @@ $(document).ready(function () {
             }
             return path + ".json";
           },
+          // Function to toggle the state of the storm's wind layer
           update_wind: function(index){
             const path = this.path_string(index, "wind").replace('.json', '.geojson');
             fetch(path).then(res => res.json()).then(data => {
@@ -616,6 +630,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // Function to toggle the state of the storm's surge layer
           update_surge: function(index){
             const path = this.path_string(index, "surge").replace('.json', '.geojson');
             fetch(path).then(res => res.json()).then(data => {
@@ -637,6 +652,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // Function to toggle the state of the storm's runup layer
           update_runup: function(index){
             const path = this.path_string(index, "transect_line");
             fetch(path).then(res => res.json()).then(data => {
@@ -662,6 +678,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(index, type){
             var path = ""
             switch( type ){
@@ -687,7 +704,8 @@ $(document).ready(function () {
         }
     })
 
-    var historic = new Vue({ 
+    // VueJS Control to handle historic storms
+    var historic = new Vue({
         delimiters: ['${', '}'],
         el: '#historicStormGroup',
         data: {
@@ -698,6 +716,7 @@ $(document).ready(function () {
             this.fetchData();
         },
         methods: {
+          // Function to download metadata and save it within the control
           fetchData: function () {
             var path = (userSimulationPath + "/historic_metadata.json").replace("/simulation/", "/");
             $.get(path, (data) => {
@@ -727,7 +746,7 @@ $(document).ready(function () {
                     if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
                         return 1;
                     }
-                    
+
                     if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
                         return -1;
                     }
@@ -741,10 +760,12 @@ $(document).ready(function () {
                 }
             });
           },
+          // Converts a last updated date into a string
           dateString: function(last_updated){
             var result = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(Date.parse(last_updated));
             return result.toString();
           },
+          // Toggles following a storm on the map adding the cone and allowing parameters to be specified
           setFollow: function(index, value){
             this.items[index].following = value;
             if( value == true ){
@@ -786,7 +807,7 @@ $(document).ready(function () {
                                     }
                                   }
                                   result += "</table>"
-                                
+
                                   // Otherwise show the content in a popup, or something.
                                   L.popup({maxWidth: 800, maxHeight: window.innerHeight * 0.4})
                                     .setLatLng(featureLayer._latlng)
@@ -803,11 +824,13 @@ $(document).ready(function () {
                 }
             }
           },
+          // Helper function to update all data for each layer
           update: function(index){
               this.update_wind(index);
               this.update_surge(index);
               this.update_runup(index);
           },
+          // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
           update_wind: function(index){
             if( this.state.wind == true ){
                 const path = this.path_string(index, "wind").replace('.json', '.geojson');
@@ -826,13 +849,14 @@ $(document).ready(function () {
                         }
                     }).addTo(mymap);
                     this.setOpacity(index, 'wind');
-                    
+
                     add_wind_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
             }
           },
+          // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
           update_surge: function(index){
             if( this.state.surge == true ){
                 const path = this.path_string(index, "surge").replace('.json', '.geojson');
@@ -858,6 +882,7 @@ $(document).ready(function () {
                 });
             }
           },
+          // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
           update_runup: function(index){
             if( this.state.runup == true ){
                 const path = this.path_string(index, "transect_line");
@@ -880,12 +905,13 @@ $(document).ready(function () {
                     }).addTo(mymap);
                     this.setOpacity(index, 'runup');
 
-                    add_runup_legend(mymap); 
+                    add_runup_legend(mymap);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
             }
           },
+          // String to convert an item and its properties into a filename to be used to retrieve the data
           path_string: function(index, data_type) {
             var path = this.items[index].s3_base_path + data_type + "__slr_" + parseInt(1 * 10) + "__tide_";
             switch( this.items[index].tides ){
@@ -913,6 +939,7 @@ $(document).ready(function () {
             }
             return path + ".json";
           },
+          // Function to toggle the state of the storm's wind layer
           toggle_wind: function(index){
             if(this.items[index]['state']['wind'] == true){
                 this.state.wind = true;
@@ -925,6 +952,7 @@ $(document).ready(function () {
                 this.state.wind = false;
             }
           },
+          // Function to toggle the state of the storm's surge layer
           toggle_surge: function(index){
             if(this.items[index]['state']['surge'] == true){
                 this.state.surge = true;
@@ -937,6 +965,7 @@ $(document).ready(function () {
                 this.state.surge = false;
             }
           },
+          // Function to toggle the state of the storm's runup layer
           toggle_runup: function(index){
             if(this.items[index]['state']['runup'] == true){
                 this.state.runup = true;
@@ -949,6 +978,7 @@ $(document).ready(function () {
                 this.state.runup = false;
             }
           },
+          // This function allows for changing the opacity of the layers added to the map
           setOpacity: function(index, type){
             if( type in storm_layer_dict ) {
                 const percent = this.items[index].opacity[type]/100.0;
@@ -962,8 +992,355 @@ $(document).ready(function () {
         }
     })
 
+    Vue.component('simulation', {
+        props: ['id'],
+        template: `<div :id='id'>
+            <div class="map-layer-group-heading what-if">
+                <a :href="'#storm-'+id" aria-expanded="false" :aria-controls="'#storm-'+id" v-on:click="state.show = !state.show;">
+                    <i class="fa fa-chevron-right" v-if="state.show == 0" aria-hidden="true"/> 
+                    <i class="fa fa-chevron-down" v-if="state.show == 1" aria-hidden="true"/> 
+                    <div :class="stormBadge">{{stormType}}</div>{{meta.name}}<span><i class="fa fa-close" aria-hidden="true"></i></span>
+                </a>
+            </div>
+            <p class="follow-unfollow">by {{meta.user.name}} • {{meta.modified}}</p> 
+            <transition name="fadeDown">
+                <ul class="map-layers" :id="'#storm-'+id" v-if="state.show">
+                    <li>
+                        <input :id="id+'_wind'" :name="id" type="checkbox" value="wind.geojson" v-model="state.wind" v-on:change="toggle_wind();"> Wind Field </input>
+                    </li>
+                    <input v-if="state.wind" v-model.number="opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity('wind')"/>
+                    
+                    <li><input id="id+'_surge'" :name="id" type="checkbox" v-model="state.surge" v-on:change="toggle_surge();"> Surge</li>
+                    <input v-if="state.surge" v-model.number="opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity('surge')"/>
+                    <li v-if="state.surge">
+                    &nbsp;&nbsp;<input type="radio" :id="id+'_surge_type_heatmap'" :name="id+'_surge_type'" value="0" v-model.number="state.surgeType" v-on:change="toggle_surge();"> Heatmap </input>
+                    </br>
+                    &nbsp;&nbsp;<input type="radio" :id="id+'_surge_type_contour'" :name="id+'_surge_type'" value="1" v-model.number="state.surgeType" v-on:change="toggle_surge();"> Contour </input>
+                    </li>
+
+                    <li><input :id="id+'_runup'" :name="id" type="checkbox" value="transect_line.json" v-model="state.runup" v-on:change="toggle_runup();"> Total Run Up</li>
+                    <input v-if="state.runup" v-model.number="opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity('runup')"/>
+
+                    <li class="shp-scenario">  
+                    <span>Sea Level Rise:</span> {{simulation.slr}} ft<br/>
+                    <span>Coastal Protection:</span> {{protection}} <br/>
+                    <span>Tides:</span> {{tide}}<br/>
+                    <span>Analysis type:</span> {{analysisType}} <br/>
+                    <span>Description:</span> {{meta.description}}
+                    </li>
+                </ul>
+            </transition>
+        </div>` ,
+        data: function(){
+            return {
+                meta: {
+                    name: "",
+                    number: "", 
+                    modified: "",
+                    description: "",
+                    user: { id: 0, name: "" },
+                },
+                simulation: {
+                    slr: 0.0,
+                    protection: 0,
+                    tides: 0.0,
+                    analysis: 0,
+                    type: "",
+                },
+                state: { 
+                    show: false,
+                    wind: false, 
+                    surge: false,
+                    surgeType: 0, 
+                    runup: false
+                },
+                opacity: { 
+                    wind: 100.0, 
+                    surge: 100.0,
+                    runup: 100.0
+                },
+            }
+        },
+        computed: {
+            protection: function () {
+                switch( this.simulation.protection ){
+                    case 1:
+                        return "Current";
+                    case 2:
+                        return "Degraded";
+                    case 3:
+                        return "Compromised";
+                }
+            },
+            tide: function(){
+                switch( this.simulation.tides ){
+                    case 1:
+                        return "High";
+                    case 0.5:
+                        return "Typical";
+                    case 0:
+                        return "None";
+                }
+            },
+            analysisType: function(){
+                switch( this.simulation.analysis ){
+                    case 0:
+                        return "Deterministic";
+                    case 0.5:
+                        return "Probabilistic&nbsp;<span class=\"qualifier\">expected</span>";
+                    case 0.1:
+                        return "Probabilistic&nbsp;<span class=\"qualifier\">extreme</span>";
+                }
+            },
+            stormBadge: function() {
+                if ( this.simulation.type == "hurricane" ) {
+                    return 'h-badge';
+                }
+                return 'n-badge';
+            },
+            stormType: function(){
+                if ( this.simulation.type == "hurricane" ) {
+                    return 'H';
+                }
+                return 'N';
+            }
+        },
+        created: function () {
+            this.fetchData();
+        },
+        methods: {
+            fetchData: function () {
+                $.get("/store/?data="+this.id+"&action=get_sim_id_data", (result) => {
+                    this.meta.name = result.data.sim_name;
+                    this.meta.number = result.data.id;
+                    this.meta.modified = result.data.modified;
+                    this.meta.description = result.data.description;
+                    this.meta.user.id = result.data.user_id;
+                    this.meta.user.name = result.data.user_name;
+    
+                    simData = JSON.parse(result.data.data);
+
+                    this.simulation.slr = simData.SLR * 3.28084;
+                    this.simulation.tides = simData.tide;
+                    this.simulation.protection = simData.protection;
+                    this.simulation.analysis = simData.index_prob;
+                    this.simulation.type = simData.storm_type.toLowerCase();
+                });
+            },
+            pathFolder: function() {
+                return userSimulationPath + "/" + this.meta.user.id + "/" + this.id;
+            },
+            // Helper function to update all data for each layer
+            update: function(){
+                this.update_wind();
+                this.update_surge();
+                this.update_runup();
+            },
+            // Updates the wind layer if it is enabled by redownloading the data with the changed parameters
+            update_wind: function(){
+                if( this.state.wind == true ){
+                    const path = this.pathFolder() + "/wind.geojson"; 
+                    fetch(path).then(res => res.json()).then(data => {
+                        if( path in storm_layer_dict ) {
+                            mymap.removeLayer(storm_layer_dict['wind']);
+                        }
+                        storm_layer_dict['wind'] = L.geoJSON(data, {
+                            style: function(feature) {
+                                return {
+                                    fillColor: feature.properties['fill'],
+                                    fillOpacity: feature.properties['fill-opacity'],
+                                    stroke: false,
+                                    opacity: feature.properties['opacity']
+                                };
+                            }
+                        }).addTo(mymap);
+                        this.setOpacity('wind');
+
+                        add_wind_legend(mymap, true, data);
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            },
+            // Updates the surge layer if it is enabled by redownloading the data with the changed parameters
+            update_surge: function(){
+                if( this.state.surge == true ){
+                    var path = ""
+                    if( this.state.surgeType == 0 ){
+                        path = this.pathFolder() + "/surge.geojson"; 
+                    }else{
+                        path = this.pathFolder() + "/surge_line.json";
+                    }
+
+                    fetch(path).then(res => res.json()).then(data => {
+                        if( 'surge' in storm_layer_dict ) {
+                            mymap.removeLayer(storm_layer_dict['surge']);
+                            del_surge_legend();
+                        }
+                        if( this.state.surgeType == 0 ){
+                            storm_layer_dict['surge'] = L.geoJSON(data, {
+                                style: function(feature) {
+                                    return {
+                                        fillColor: feature.properties['fill'],
+                                        fillOpacity: feature.properties['fill-opacity'],
+                                        stroke: false,
+                                        opacity: feature.properties['opacity']
+                                    };
+                                }
+                            }).addTo(mymap);
+                            add_surge_legend(mymap, true, data);
+                        }else{
+                            storm_layer_dict['surge'] = L.geoJSON(data, {
+                                style: function(feature) {
+                                    switch (feature.properties.height) {
+                                        case 0: return {color: "black"};
+                                        case 3: return {color: "yellow"};
+                                        case 6: return {color: "orange"};
+                                        case 9: return {color: "red"};
+                                    }
+                                },
+                                filter: function(feature, layer) {
+                                    return feature.properties.height <= 9;
+                                },
+                                pane: 'layer'
+                            }).addTo(mymap);
+                            add_surge_legend(mymap, false, null);
+                        }
+                        this.setOpacity('surge');
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            },
+            // Updates the runup layer if it is enabled by redownloading the data with the changed parameters
+            update_runup: function(){
+                if( this.state.runup == true ){
+                    const path = this.pathFolder() + "/transect_line.json"; 
+                    fetch(path).then(res => res.json()).then(data => {
+                        if( 'runup' in storm_layer_dict ) {
+                            mymap.removeLayer(storm_layer_dict['runup']);
+                        }
+                        storm_layer_dict['runup'] = L.geoJSON(data, {
+                            style: function(feature) {
+                                console.log(feature.properties.type)
+                                if( feature.properties.type.includes("Boundary") ) {
+                                    return {color: "blue"};
+                                }else{
+                                    return {color: "green"};
+                                }
+                            },
+                            filter: function(feature, layer){
+                                return feature.properties.type != "Transect";
+                            }
+                        }).addTo(mymap);
+                        this.setOpacity('runup');
+
+                        add_runup_legend(mymap);
+                    }).catch(error => {
+                        console.error('Error:', error); 
+                    });
+                }
+            },
+            // Function to toggle the state of the storm's wind layer
+            toggle_wind: function(){
+                if(this.state.wind == true){
+                    this.state.wind = true;
+                    this.update_wind(index);
+                }else{
+                    if( 'wind' in storm_layer_dict ) {
+                        mymap.removeLayer(storm_layer_dict['wind']);
+                        del_wind_legend();
+                    }
+                    this.state.wind = false;
+                }
+            },
+            // Function to toggle the state of the storm's surge layer
+            toggle_surge: function(index){
+                if(this.state.surge == true){
+                    this.state.surge = true;
+                    this.update_surge(index);
+                }else{
+                    if( 'surge' in storm_layer_dict ) {
+                        mymap.removeLayer(storm_layer_dict['surge']);
+                        del_surge_legend();
+                    }
+                    this.state.surge = false;
+                }
+            },
+            // Function to toggle the state of the storm's runup layer
+            toggle_runup: function(index){
+                if(this.state.runup == true){
+                    this.state.runup = true;
+                    this.update_runup(index);
+                }else{
+                    if( 'runup' in storm_layer_dict ) {
+                        mymap.removeLayer(storm_layer_dict['runup']);
+                        del_runup_legend();
+                    }
+                    this.state.runup = false;
+                }
+            },
+            // This function allows for changing the opacity of the layers added to the map
+            setOpacity: function(type){
+                if( type in storm_layer_dict ) {
+                    const percent = this.opacity[type]/100.0;
+                    if( type == 'wind' || type == 'surge' ){
+                        storm_layer_dict[type].setStyle({'opacity' : percent, 'fillOpacity': percent });
+                    }else{
+                        storm_layer_dict[type].setOpacity(percent);
+                    }
+                }
+            }
+        }
+    })
+
+    var userSpecifiedSimulations = new Vue({
+        delimiters: ['${', '}'],
+        el: '#usersims',
+        data: {
+            items: [],
+        },
+        created: function () {
+            this.fetchData();
+        },
+        methods: {
+          fetchData: function () {
+            console.log("Loading Data");
+            if (annotate_map_id == null) {
+                return
+            }
+
+            $.get("/map/" + annotate_map_id + "/settings/", (data) => {
+                /*
+                {
+                    "map_id": 22,
+                    "description": "NJ Coast auto-generated map for admin",
+                    "zoom": 5,
+                    "longitude": -75.93750000000001,
+                    "layers_selected": [
+                        "layer__140",
+                        "layer__228",
+                        "9ckwqz18h_wind",
+                        "9ckwqz18h_track"
+                    ],
+                    "owner": "me",
+                    "simulations": [
+                        "9ckwqz18h"
+                    ],
+                    "latitude": 33.486435450999885,
+                    "shared_with": [],
+                    "name": "admin's Map #4"
+                }*/
+                for(var i = 0; i < data.simulations.length; i++ ){
+                    this.items.push(data.simulations[i]);
+                }
+            });
+          }
+        }
+    })
+
     if( annotate_map_id != null ){
-        load_map(); 
+        load_map();
     }
 });
 
@@ -1046,13 +1423,13 @@ function apply_settings(data){
       document.getElementById('simulation_container').innerHTML = "";
 
       //load sims
-      for(var i=0; i<data.simulations.length; i++){
+      /*for(var i=0; i<data.simulations.length; i++){
           console.log("sim "+data.simulations[i]);
 
           //load simulation
           load_simulation_data(data.simulations[i]);
 
-      }
+      }*/
   }
 
   //if map view then apply
@@ -1171,11 +1548,11 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
         //get correct
         switch( filename ){
           case "track.geojson":
-                heatmap[sim_type] = L.geoJSON(addressPoints, { 
+                heatmap[sim_type] = L.geoJSON(addressPoints, {
                   style: function(feature) {
                     return {color: 'black'};
                   },
-                  pane: 'layer' 
+                  pane: 'layer'
                 }).addTo(mymap);
                 break;
             case "surge.geojson":
@@ -1223,7 +1600,7 @@ function load_heatmap_from_s3(owner, simulation, filename, sim_type){
                 }).addTo(mymap);
                 add_wind_legend(mymap, true, addressPoints);
                 break;
-            case "wind_heatmap.json":  
+            case "wind_heatmap.json":
                 heatmap[sim_type] = create_surge_heatmap(addressPoints.wind,'layer').addTo(mymap);
                 add_wind_legend(mymap, false, null);
                 break;
@@ -1500,7 +1877,7 @@ function load_simulation_data(sim_id){
                     wind_file = "wind_heatmap.json"
                 }
               }
-              
+
               var runup = "disabled";
               var runup_file = "";
               if(data.runup_file){
@@ -1523,7 +1900,7 @@ function load_simulation_data(sim_id){
                     break;
                 }
 
-                
+
               //generate html
               var html = ``;
               if( data.indicator == 1 ){
@@ -1539,7 +1916,7 @@ function load_simulation_data(sim_id){
                         sProtection = "Compromised";
                         break;
                 }
-                    
+
                 var sAnalysis = "";
                 switch( data.index_prob ){
                     case 0:
@@ -1548,7 +1925,7 @@ function load_simulation_data(sim_id){
                     case 0.5:
                         sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">expected</span>";
                         break;
-                    case 0.1: 
+                    case 0.1:
                         sAnalysis = "Probabilistic&nbsp;<span class=\"qualifier\">extreme</span>";
                         break;
                 }
@@ -1561,8 +1938,17 @@ function load_simulation_data(sim_id){
                       </div>
                       <p class="follow-unfollow">by ${result.data.user_name} • ${modified}</p>
                       <ul class="collapse map-layers" id="storm-${sim_id}">
-                          <li><input id="${sim_id}_wind" name="${sim_id}" type="checkbox" value="${wind_file}" onchange="load_simulation(${result.user_id}, this);" ${wind}> Wind Field</li>
+                          <li>
+                            <input id="${sim_id}_wind" name="${sim_id}" type="checkbox" value="${wind_file}" onchange="load_simulation(${result.user_id}, this);" ${wind}> Wind Field </input>
+                          </li>
+                          
                           <li><input id="${sim_id}_surge" name="${sim_id}" type="checkbox" value="${surge_file}" onchange="load_simulation(${result.user_id}, this);" ${surge}> Surge</li>
+                          <li>
+                            &nbsp;&nbsp;<input type="radio" id="${sim_id}_surge_type_heatmap" name="${sim_id}_surge_type" value="${surge_file}" onchange="load_simulation(${result.user_id}, this);" checked> Heatmap </input>
+                            </br>
+                            &nbsp;&nbsp;<input type="radio" id="${sim_id}_surge_type_contour" name="${sim_id}_surge_type" value="surge_line.json" onchange="load_simulation(${result.user_id}, this);"> Contour </input>
+                          </li>
+
                           <li><input id="${sim_id}_runup" name="${sim_id}" type="checkbox" value="${runup_file}" onchange="load_simulation(${result.user_id}, this);" ${runup}> Total Run Up</li>
                           <li class="shp-scenario">
                             <span>Sea Level Rise:</span> ${data.SLR * 3.28084} ft<br/>

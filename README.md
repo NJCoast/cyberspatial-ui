@@ -29,6 +29,7 @@ The user can see a list of their maps (clickable) and create a new map.
 The user can run a new simulation.
 
 The user can navigate to the three explorer pages:
+
 - *explore_simulations.html*,	Browse, share or view simulation results.
 - *explore_maps.html*,	Browse, share or view maps user has created.
 - *explore_layers.html*,	Browse, share or view layers available to the user.

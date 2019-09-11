@@ -10,7 +10,7 @@
   *
   * Functions:
   *     $(document).ready   Load municipalities in county.
-  *     open_membership     Show mwmbers of a group I am in.
+  *     open_membership     Show members of a group I am in.
   *     flip_edit_main      Flip between main dashboard and edit user data.
   *     validateEmail       Check email input OK.
   *     save_changes        Save user profile changes.
@@ -102,7 +102,7 @@ $(document).ready(function() {
                     if( Date.parse(a.last_updated) < Date.parse(b.last_updated) ){
                         return 1;
                     }
-                    
+
                     if( Date.parse(a.last_updated) > Date.parse(b.last_updated) ){
                         return -1;
                     }
