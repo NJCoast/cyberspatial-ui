@@ -165,7 +165,7 @@ function create_surge_legend_new(data){
     for( var i = 0; i < data.features.length; i++ ){
         lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
     }
-    bracket = Math.round(lData.length / 5.0)
+    bracket = parseInt(lData.length/5.0);
     lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
     var sLegend = L.control({position: 'bottomleft'});
@@ -205,11 +205,16 @@ function add_surge_legend(mymap, new_style, data){
 // This function removes a count from the surge layer and if it determines
 // that no more layers require the legend it destroys the legend itself.
 function del_surge_legend(mymap){
-    legend_count['surge'] -= 1;
-    if( legend_count['surge'] <= 0 ){
-        legend['surge'].remove();
-        delete legend['surge'];
-        legend_count['surge'] = 0;
+    const type = 'surge';
+    if( legend[type] != null || legend[type] != undefined ){
+        legend_count[type] -= 1;
+        if( legend_count[type] <= 0 ){
+            legend[type].remove();
+            delete legend[type];
+            legend_count[type] = 0;
+        }
+    }else{
+        legend_count[type] = 0;
     }
 }
 
@@ -247,7 +252,7 @@ function create_wind_legend_new(data){
     for( var i = 0; i < data.features.length; i++ ){
         lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
     }
-    bracket = Math.round(lData.length / 5.0)
+    bracket = parseInt(lData.length/5.0);
     lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
     var wLegend = L.control({position: 'bottomleft'});
@@ -284,17 +289,6 @@ function add_wind_legend(mymap, new_style, data){
     }
 }
 
-// This function removes a count from the wind layer and if it determines
-// that no more layers require the legend it destroys the legend itself.
-function del_wind_legend(){
-    legend_count['wind'] -= 1;
-    if( legend_count['wind'] <= 0 ){
-        legend['wind'].remove();
-        delete legend['wind'];
-        legend_count['wind'] = 0;
-    }
-}
-
 // This function generates a legend bar for the runup data
 function create_runup_legend(L){
     var legend = L.control({position: 'bottomleft'});
@@ -322,13 +316,17 @@ function add_runup_legend(mymap){
     }
 }
 
-// This function removes a count from the wind layer and if it determines
+// This function removes a count from a layer and if it determines
 // that no more layers require the legend it destroys the legend itself.
-function del_runup_legend(){
-    legend_count['runup'] -= 1;
-    if( legend_count['runup'] <= 0 ){
-        legend['runup'].remove();
-        delete legend['runup'];
-        legend_count['runup'] = 0;
+function del_legend(type) {
+    if( legend[type] != null || legend[type] != undefined ){
+        legend_count[type] -= 1;
+        if( legend_count[type] <= 0 ){
+            legend[type].remove();
+            delete legend[type];
+            legend_count[type] = 0;
+        }
+    }else{
+        legend_count[type] = 0;
     }
 }
