@@ -1254,7 +1254,7 @@ $(document).ready(function () {
             toggle_wind: function(){
                 if(this.state.wind == true){
                     this.state.wind = true;
-                    this.update_wind(index);
+                    this.update_wind();
                 }else{
                     if( 'wind' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['wind']);
@@ -1264,10 +1264,10 @@ $(document).ready(function () {
                 }
             },
             // Function to toggle the state of the storm's surge layer
-            toggle_surge: function(index){
+            toggle_surge: function(){
                 if(this.state.surge == true){
                     this.state.surge = true;
-                    this.update_surge(index);
+                    this.update_surge();
                 }else{
                     if( 'surge' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['surge']);
@@ -1277,10 +1277,10 @@ $(document).ready(function () {
                 }
             },
             // Function to toggle the state of the storm's runup layer
-            toggle_runup: function(index){
+            toggle_runup: function(){
                 if(this.state.runup == true){
                     this.state.runup = true;
-                    this.update_runup(index);
+                    this.update_runup();
                 }else{
                     if( 'runup' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['runup']);
