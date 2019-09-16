@@ -1027,14 +1027,18 @@ $(document).ready(function () {
                     &nbsp;&nbsp;<input type="radio" :id="id+'_surge_type_contour'" :name="id+'_surge_type'" value="1" v-model.number="state.surgeType" v-on:change="toggle_surge();"> Contour </input>
                     </li>
 
-                    <li><input :id="id+'_runup'" :name="id" type="checkbox" value="transect_line.json" v-model="state.runup" v-on:change="toggle_runup();"> Total Run Up</li>
+                    <li v-if="isHurricane"><input :id="id+'_runup'" :name="id" type="checkbox" value="transect_line.json" v-model="state.runup" v-on:change="toggle_runup();"> Total Run Up</li>
                     <input v-if="state.runup" v-model.number="opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity('runup')"/>
 
                     <li class="shp-scenario">  
                     <span>Sea Level Rise:</span> {{simulation.slr}} ft<br/>
-                    <span>Coastal Protection:</span> {{protection}} <br/>
+                    <div v-if="isHurricane">
+                        <span>Coastal Protection:</span> {{protection}} <br/>
+                    </div>
                     <span>Tides:</span> {{tide}}<br/>
-                    <span>Analysis type:</span> {{analysisType}} <br/>
+                    <div v-if="isHurricane">
+                        <span>Analysis type:</span> {{analysisType}} <br/>
+                    </div>
                     <span>Description:</span> {{meta.description}}
                     </li>
                 </ul>
@@ -1071,6 +1075,9 @@ $(document).ready(function () {
             }
         },
         computed: {
+            isHurricane: function(){
+                return this.simulation.type == "hurricane";
+            },
             protection: function () {
                 switch( this.simulation.protection ){
                     case 1:
