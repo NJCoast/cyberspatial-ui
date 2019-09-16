@@ -234,6 +234,11 @@ Description:        Provides <div> to hold leaflet map, has LHS menu to allow th
                                         <input v-if="item.state.wind" v-model.number="item.opacity.wind" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, item.s3_base_path + 'wind', 'geojson')"/>
                                         <li><input type="checkbox" v-model="item.state.surge" v-on:change="toggle_surge(index)"> Surge </li>
                                         <input v-if="item.state.surge" v-model.number="item.opacity.surge" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, item.s3_base_path + 'surge', 'geojson')"/>
+                                        <li v-if="item.state.surge">
+                                            &nbsp;&nbsp;<input type="radio" :id="item.name+'_surge_type_heatmap'" :name="item.name+'_surge_type'" value="0" v-model.number="item.state.surgeType" v-on:change="toggle_surge(index);"> Heatmap </input>
+                                            </br>
+                                            &nbsp;&nbsp;<input type="radio" :id="item.name+'_surge_type_contour'" :name="item.name+'_surge_type'" value="1" v-model.number="item.state.surgeType" v-on:change="toggle_surge(index);"> Contour </input>
+                                        </li>
                                         <li><input type="checkbox" v-model="item.state.runup" v-on:change="toggle_runup(index)"> Total Run Up</li>
                                         <input v-if="item.state.runup" v-model.number="item.opacity.runup" min="0" max="100" step="5" type="range" v-on:change="setOpacity(index, item.s3_base_path + 'runup', 'geojson')"/>
                                     </ul>
