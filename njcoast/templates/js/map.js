@@ -837,6 +837,7 @@ $(document).ready(function () {
                 fetch(path).then(res => res.json()).then(data => {
                     if( path in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['wind']);
+                        storm_layer_dict['wind'] = null;
                     }
                     storm_layer_dict['wind'] = L.geoJSON(data, {
                         style: function(feature) {
@@ -848,9 +849,10 @@ $(document).ready(function () {
                             };
                         }
                     }).addTo(mymap);
-                    this.setOpacity(index, 'wind');
 
                     add_wind_legend(mymap, true, data);
+
+                    this.setOpacity(index, 'wind', 'geojson');
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -863,6 +865,7 @@ $(document).ready(function () {
                 fetch(path).then(res => res.json()).then(data => {
                     if( 'surge' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['surge']);
+                        storm_layer_dict['surge'] = null;
                     }
                     storm_layer_dict['surge'] = L.geoJSON(data, {
                         style: function(feature) {
@@ -874,9 +877,10 @@ $(document).ready(function () {
                             };
                         }
                     }).addTo(mymap);
-                    this.setOpacity(index, 'surge');
 
                     add_surge_legend(mymap, true, data);
+
+                    this.setOpacity(index, 'surge', 'geojson');
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -889,6 +893,7 @@ $(document).ready(function () {
                 fetch(path).then(res => res.json()).then(data => {
                     if( 'runup' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['runup']);
+                        storm_layer_dict['runup'] = null;
                     }
                     storm_layer_dict['runup'] = L.geoJSON(data, {
                         style: function(feature) {
@@ -903,9 +908,10 @@ $(document).ready(function () {
                             return feature.properties.type != "Transect";
                         }
                     }).addTo(mymap);
-                    this.setOpacity(index, 'runup');
 
                     add_runup_legend(mymap);
+
+                    this.setOpacity(index, 'runup', 'geojson');
                 }).catch(error => {
                     console.error('Error:', error);
                 });
@@ -947,6 +953,7 @@ $(document).ready(function () {
             }else{
                 if( 'wind' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['wind']);
+                    storm_layer_dict['wind'] = null;
                     del_wind_legend();
                 }
                 this.state.wind = false;
@@ -960,6 +967,7 @@ $(document).ready(function () {
             }else{
                 if( 'surge' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['surge']);
+                    storm_layer_dict['surge'] = null;
                     del_surge_legend();
                 }
                 this.state.surge = false;
@@ -973,16 +981,17 @@ $(document).ready(function () {
             }else{
                 if( 'runup' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['runup']);
+                    storm_layer_dict['runup'] = null;
                     del_runup_legend();
                 }
                 this.state.runup = false;
             }
           },
           // This function allows for changing the opacity of the layers added to the map
-          setOpacity: function(index, type){
+          setOpacity: function(index, type, style){
             if( type in storm_layer_dict ) {
                 const percent = this.items[index].opacity[type]/100.0;
-                if( type == 'wind' || type == 'surge' ){
+                if( style === 'geojson' ){
                     storm_layer_dict[type].setStyle({'opacity' : percent, 'fillOpacity': percent });
                 }else{
                     storm_layer_dict[type].setOpacity(percent);
