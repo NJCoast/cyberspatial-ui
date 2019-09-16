@@ -165,7 +165,7 @@ function create_surge_legend_new(data){
     for( var i = 0; i < data.features.length; i++ ){
         lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
     }
-    bracket = Math.round(lData.length / 5.0)
+    bracket = parseInt(lData.length/5.0);
     lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
     var sLegend = L.control({position: 'bottomleft'});
@@ -247,7 +247,7 @@ function create_wind_legend_new(data){
     for( var i = 0; i < data.features.length; i++ ){
         lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
     }
-    bracket = Math.round(lData.length / 5.0)
+    bracket = parseInt(lData.length/5.0);
     lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
 
     var wLegend = L.control({position: 'bottomleft'});
