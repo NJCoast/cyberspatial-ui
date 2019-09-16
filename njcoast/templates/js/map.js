@@ -546,7 +546,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
-                    del_wind_legend();
+                    del_legend('wind');
                 }
                 this.items[index].state.wind = false;
             }
@@ -561,7 +561,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
-                    del_surge_legend();
+                    del_legend('surge');
                 }
                 this.items[index].state.surge = false;
             }
@@ -576,7 +576,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
-                    del_runup_legend();
+                    del_legend('runup');
                 }
                 this.items[index].state.runup = false;
             }
@@ -588,6 +588,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
+                    del_legend('wind');
                 }
                 storm_layer_dict[path] = L.geoJSON(data, {
                     style: function(feature) {
@@ -614,6 +615,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
+                    del_legend('surge');
                 }
                 storm_layer_dict[path] = L.geoJSON(data, {
                     style: function(feature) {
@@ -640,6 +642,7 @@ $(document).ready(function () {
                 if( path in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict[path]);
                     delete storm_layer_dict[path];
+                    del_legend('runup');
                 }
                 storm_layer_dict[path] = L.geoJSON(data, {
                     style: function(feature) {
@@ -931,7 +934,7 @@ $(document).ready(function () {
                 if( 'wind' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['wind']);
                     delete storm_layer_dict['wind'];
-                    del_wind_legend();
+                    del_legend('wind');
                 }
                 this.state.wind = false;
             }
@@ -945,7 +948,7 @@ $(document).ready(function () {
                 if( 'surge' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['surge']);
                     delete storm_layer_dict['surge'];
-                    del_surge_legend();
+                    del_legend('surge');
                 }
                 this.state.surge = false;
             }
@@ -959,7 +962,7 @@ $(document).ready(function () {
                 if( 'runup' in storm_layer_dict ) {
                     mymap.removeLayer(storm_layer_dict['runup']);
                     delete storm_layer_dict['runup'];
-                    del_runup_legend();
+                    del_legend('runup');
                 }
                 this.state.runup = false;
             }
@@ -1161,7 +1164,7 @@ $(document).ready(function () {
                     fetch(path).then(res => res.json()).then(data => {
                         if( 'surge' in storm_layer_dict ) {
                             mymap.removeLayer(storm_layer_dict['surge']);
-                            del_surge_legend();
+                            del_legend('surge');
                         }
                         if( this.state.surgeType == 0 ){
                             storm_layer_dict['surge'] = L.geoJSON(data, {
@@ -1235,7 +1238,7 @@ $(document).ready(function () {
                 }else{
                     if( 'wind' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['wind']);
-                        del_wind_legend();
+                        del_legend('wind');
                     }
                     this.state.wind = false;
                 }
@@ -1248,7 +1251,7 @@ $(document).ready(function () {
                 }else{
                     if( 'surge' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['surge']);
-                        del_surge_legend();
+                        del_legend('surge');
                     }
                     this.state.surge = false;
                 }
@@ -1261,7 +1264,7 @@ $(document).ready(function () {
                 }else{
                     if( 'runup' in storm_layer_dict ) {
                         mymap.removeLayer(storm_layer_dict['runup']);
-                        del_runup_legend();
+                        del_legend('runup');
                     }
                     this.state.runup = false;
                 }
@@ -1490,11 +1493,11 @@ function load_simulation(user_id, object){
         }
 
         if(object.id.includes("surge")){
-            del_surge_legend();
+            del_legend('surge');
         }else if(object.id.includes("wind")){
-            del_wind_legend();
+            del_legend('wind');
         }else if(object.id.includes("runup")){
-            del_runup_legend();
+            del_legend('runup');
         }
 
         //remove from layers

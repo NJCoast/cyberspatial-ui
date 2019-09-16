@@ -524,7 +524,7 @@ var app = new Vue({
                 fetch(path).then(res => res.json()).then(data => {
                     if( this.layer.surge !== undefined ) {
                         mymap.removeLayer(this.layer.surge);
-                        del_surge_legend();
+                        del_legend('surge');
                     }
                     if( this.state.surgeType == 0 ){
                         this.layer.surge = L.geoJSON(data, {
@@ -596,7 +596,7 @@ var app = new Vue({
             }else{
                 mymap.removeLayer(this.layer.wind);
                 this.layer.wind = undefined;
-                del_wind_legend();
+                del_legend('wind')
             }
           },
           // Function to toggle the state of the storm's surge layer
@@ -606,7 +606,7 @@ var app = new Vue({
             }else{
                 mymap.removeLayer(this.layer.surge);
                 this.layer.surge = undefined;
-                del_surge_legend();
+                del_legend('surge');
             }
           },
           // Function to toggle the state of the storm's runup layer
@@ -616,7 +616,7 @@ var app = new Vue({
             }else{
                 mymap.removeLayer(this.layer.runup);
                 this.layer.runup = undefined;
-                del_runup_legend();
+                del_legend('runup')
             }
           },
           // This function allows for changing the opacity of the layers added to the map
