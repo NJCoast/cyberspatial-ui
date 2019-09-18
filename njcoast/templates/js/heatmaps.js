@@ -163,10 +163,17 @@ function create_surge_legend(){
 function create_surge_legend_new(data){
     var lData = []
     for( var i = 0; i < data.features.length; i++ ){
-        lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+        lData.push({height: parseFloat(data.features[i].properties.name.replace("Level ", "")), color: data.features[i].properties.fill})
     }
     bracket = parseInt(lData.length/5.0);
-    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
+    lData = lData.sort((a, b) => {
+        if (a.height > b.height){
+            return 1;
+        }else if(a.height < b.height) {
+            return -1;
+        }
+        return 0;
+    }).filter((e,i) => i % bracket === 0);
 
     var sLegend = L.control({position: 'bottomleft'});
     sLegend.onAdd = function (map) {
@@ -250,10 +257,17 @@ function create_wind_legend(L){
 function create_wind_legend_new(data){
     var lData = []
     for( var i = 0; i < data.features.length; i++ ){
-        lData.push({height: data.features[i].properties.name.replace("Level ", ""), color: data.features[i].properties.fill})
+        lData.push({height: parseFloat(data.features[i].properties.name.replace("Level ", "")), color: data.features[i].properties.fill})
     }
     bracket = parseInt(lData.length/5.0);
-    lData = lData.sort((a, b) => parseFloat(a.height) > parseFloat(b.height)).filter((e,i) => i % bracket === 0);
+    lData = lData.sort((a, b) => {
+        if (a.height > b.height){
+            return 1;
+        }else if(a.height < b.height) {
+            return -1;
+        }
+        return 0;
+    }).filter((e,i) => i % bracket === 0);
 
     var wLegend = L.control({position: 'bottomleft'});
     wLegend.onAdd = function (map) {
