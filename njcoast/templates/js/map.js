@@ -758,18 +758,13 @@ $(document).ready(function () {
           setFollow: function(index, value){
             this.items[index].following = value;
             if( value == true ){
-                var path = this.items[index].s3_base_path + "cone.json";
+                var path = this.items[index].s3_base_path + "input.geojson";
                 $.get(path, (data) => {
                     if (data) {
                         if( 'cone' in storm_layer_dict ) {
                             mymap.removeLayer(storm_layer_dict['cone']);
                         }
                         storm_layer_dict['cone'] = L.geoJSON(data, {
-                            style: function(feature) {
-                                if( feature.properties.radius != undefined ){
-                                    return {fillColor:"red"};
-                                }
-                            },
                             pointToLayer: function (feature, latlng) {
                                 var options = {
                                     radius: 8,
