@@ -534,6 +534,18 @@ $(document).ready(function () {
                     path += 'extreme';
                 break;
             }
+            path += "__protection_";
+            switch( this.items[index].protection ){
+                case "1":
+                        path += 'current';
+                    break;
+                case "2":
+                        path += 'degraded';
+                    break;
+                case "3":
+                        path += 'compromised';
+                    break;
+            }
             return path + ".json";
           },
           // Function to toggle the state of the storm's wind layer
@@ -951,6 +963,18 @@ $(document).ready(function () {
                 case '0.1':
                     path += 'extreme';
                 break;
+            }
+            path += "__protection_";
+            switch( this.items[index].protection ){
+                case "1":
+                        path += 'current';
+                    break;
+                case "2":
+                        path += 'degraded';
+                    break;
+                case "3":
+                        path += 'compromised';
+                    break;
             }
             return path + ".json";
           },
