@@ -505,7 +505,7 @@ var app = new Vue({
                             };
                         }
                     }).addTo(mymap);
-                    //add_wind_legend(mymap);
+                    add_wind_legend(mymap, true, data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
