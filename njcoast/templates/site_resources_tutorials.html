@@ -81,7 +81,7 @@ $(document).ready(function () {
 
                 //populate table
                 doc_table.innerHTML += `<tr>
-                    <td bgcolor="${cell_color}">${ object.title.substring(pos) }</a></td>
+                    <td>${ object.title.substring(pos) }</a></td>
                     <td>${ object.abstract }</td>
                     <td><a href='/documents/${object.id}/download/'>Quick Reference Guide</a></td>
                     <td><a href='${ video_link }' target='_blank'>YouTube Video</a></td>
